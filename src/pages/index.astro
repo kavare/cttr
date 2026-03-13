@@ -1,0 +1,20 @@
+---
+// Redirect to the appropriate locale based on browser language
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting...</title>
+    <script is:inline>
+      const lang = navigator.language || navigator.languages?.[0] || 'en';
+      const isZhTw = lang.startsWith('zh');
+      window.location.replace(isZhTw ? '/zh-tw/' : '/en/');
+    </script>
+    <meta http-equiv="refresh" content="0;url=/en/" />
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { t } from '../../i18n/translations';
+
+const lang = 'zh-tw' as const;
+const i = t(lang);
+---
+
+<Layout lang={lang}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.15),transparent_60%)]"></div>
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
+      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-4">
+        {i.landing.heroTitle}
+      </h1>
+      <p class="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
+        {i.landing.heroSubtitle}
+      </p>
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href={`/${lang}/exercises/visa-memo`}
+          class="inline-flex items-center px-8 py-3.5 text-base font-semibold rounded-full bg-accent text-gray-900 hover:bg-yellow-400 shadow-lg hover:shadow-xl transition-all duration-200"
+        >
+          {i.landing.ctaButton}
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Bio Section -->
+  <section class="py-20 sm:py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-3">
+        {i.landing.bioTitle}
+      </h2>
+      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-10"></div>
+      <p class="text-lg text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
+        {i.landing.bio}
+      </p>
+    </div>
+  </section>
+
+  <!-- Book Section -->
+  <section class="py-20 sm:py-24 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-3">
+        {i.landing.bookTitle}
+      </h2>
+      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-14"></div>
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <!-- Placeholder Book Cover -->
+        <div class="flex-shrink-0">
+          <div class="w-56 h-72 rounded-xl bg-gradient-to-br from-primary-dark to-primary shadow-2xl flex flex-col items-center justify-center text-white p-6 ring-1 ring-white/10">
+            <div class="w-10 h-10 mb-4 rounded-full bg-accent/80 flex items-center justify-center">
+              <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            </div>
+            <p class="text-sm font-bold text-center leading-snug">{i.site.title}</p>
+            <p class="text-xs text-blue-200 mt-2">Aaron Hsieh</p>
+          </div>
+        </div>
+        <!-- Book Description -->
+        <div class="flex-1 text-center md:text-left">
+          <p class="text-lg text-gray-600 leading-relaxed">
+            {i.landing.bookDescription}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 sm:py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+        {i.landing.ctaTitle}
+      </h2>
+      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-8"></div>
+      <p class="text-lg text-gray-600 leading-relaxed mb-10">
+        {i.landing.ctaDescription}
+      </p>
+      <a
+        href={`/${lang}/exercises/visa-memo`}
+        class="inline-flex items-center px-10 py-4 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-light shadow-lg hover:shadow-xl transition-all duration-200"
+      >
+        {i.landing.ctaButton}
+        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+      </a>
+    </div>
+  </section>
+</Layout>
