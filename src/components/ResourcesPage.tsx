@@ -285,7 +285,7 @@ export default function ResourcesPage({ lang }: Props) {
           return (
             <div
               key={exercise.storageKey}
-              className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shadow-sm hover:shadow-md transition-shadow"
+              className="bg-surface-dark/40 border border-primary/10 rounded-xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 hover:border-primary/30 transition-all"
             >
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-900">
@@ -296,7 +296,7 @@ export default function ResourcesPage({ lang }: Props) {
               <button
                 onClick={() => handleDownload(exercise)}
                 disabled={downloading !== null}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md border border-primary/20 bg-transparent text-primary/70 hover:bg-primary/5 transition-colors disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
               >
                 {isDownloading ? (
                   <span className="inline-block w-4 h-4 mr-2 border-2 border-gray-500 border-t-transparent rounded-full animate-spin" />

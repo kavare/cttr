@@ -16,8 +16,8 @@ const pathWithoutLang = currentPath.replace(new RegExp(`^${base}/(en|zh-tw|ja|ko
 
 const langOptions: { code: Lang; label: string }[] = [
   { code: 'en', label: 'EN' },
-  { code: 'zh-tw', label: 'ZH' },
-  { code: 'ja', label: 'JA' },
+  { code: 'zh-tw', label: 'TW' },
+  { code: 'ja', label: 'JP' },
   { code: 'ko', label: 'KO' },
 ];
 const otherLangs = langOptions.filter((l) => l.code !== lang);

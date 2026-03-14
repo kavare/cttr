@@ -230,7 +230,7 @@ export default function ListFunnel({ lang }: { lang: Lang }) {
         <select
           value={String(row.pipelineStep ?? '')}
           onChange={(e) => onChange('pipelineStep', e.target.value)}
-          className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
+          className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-transparent"
         >
           <option value="">選択してください</option>
           {options.map((opt) => (
