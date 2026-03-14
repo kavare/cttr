@@ -2,17 +2,103 @@ import { useState } from 'react';
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
 
+interface ColumnDef {
+  key: string;
+  label: string;
+}
+
 interface ExerciseInfo {
   storageKey: string;
   titleKey: 'visaMemo' | 'starTime' | 'starQuestions' | 'listDashboard' | 'listFunnel';
+  getColumns: (lang: Lang) => ColumnDef[];
 }
 
 const exercises: ExerciseInfo[] = [
-  { storageKey: 'exercise-visa-memo', titleKey: 'visaMemo' },
-  { storageKey: 'exercise-star-time', titleKey: 'starTime' },
-  { storageKey: 'exercise-star-questions', titleKey: 'starQuestions' },
-  { storageKey: 'exercise-list-dashboard', titleKey: 'listDashboard' },
-  { storageKey: 'exercise-list-funnel', titleKey: 'listFunnel' },
+  {
+    storageKey: 'exercise-visa-memo',
+    titleKey: 'visaMemo',
+    getColumns: (lang) => {
+      const isZh = lang === 'zh-tw';
+      return [
+        { key: 'country', label: isZh ? '國家' : 'Country' },
+        { key: 'visaType', label: isZh ? '簽證類型' : 'Visa Type' },
+        { key: 'requirements', label: isZh ? '要求' : 'Requirements' },
+        { key: 'duration', label: isZh ? '期限' : 'Duration' },
+        { key: 'notes', label: isZh ? '備註' : 'Notes' },
+      ];
+    },
+  },
+  {
+    storageKey: 'exercise-star-time',
+    titleKey: 'starTime',
+    getColumns: (lang) => {
+      const isZh = lang === 'zh-tw';
+      return [
+        { key: 'timePeriod', label: isZh ? '時間 / 日期' : 'Time Period / Date' },
+        { key: 'projectName', label: isZh ? '專案名稱' : 'Project Name' },
+        { key: 'role', label: isZh ? '角色' : 'Role' },
+        { key: 'storyType', label: isZh ? '故事類型' : 'Story Type' },
+        { key: 'situation', label: isZh ? '情境' : 'Situation' },
+        { key: 'task', label: isZh ? '任務' : 'Task' },
+        { key: 'action', label: isZh ? '行動' : 'Action' },
+        { key: 'result', label: isZh ? '結果' : 'Result' },
+        { key: 'challenges', label: isZh ? '挑戰' : 'Challenges' },
+        { key: 'learnings', label: isZh ? '學習' : 'Learnings' },
+        { key: 'retro', label: isZh ? '回顧' : 'Retro' },
+      ];
+    },
+  },
+  {
+    storageKey: 'exercise-star-questions',
+    titleKey: 'starQuestions',
+    getColumns: (lang) => {
+      const isZh = lang === 'zh-tw';
+      return [
+        { key: 'question', label: isZh ? '行為面試問題' : 'Behavioral Question' },
+        { key: 'relatedStory', label: isZh ? '相關故事' : 'Related Story' },
+        { key: 'situation', label: isZh ? '情境' : 'Situation' },
+        { key: 'task', label: isZh ? '任務' : 'Task' },
+        { key: 'action', label: isZh ? '行動' : 'Action' },
+        { key: 'result', label: isZh ? '結果' : 'Result' },
+        { key: 'retro', label: isZh ? '回顧' : 'Retro' },
+      ];
+    },
+  },
+  {
+    storageKey: 'exercise-list-dashboard',
+    titleKey: 'listDashboard',
+    getColumns: (lang) => {
+      const isZh = lang === 'zh-tw';
+      return [
+        { key: 'week', label: isZh ? '週次' : 'Week' },
+        { key: 'date', label: isZh ? '日期' : 'Date' },
+        { key: 'location', label: isZh ? '地點' : 'Location' },
+        { key: 'connections', label: isZh ? '人脈連結' : 'Connections' },
+        { key: 'profileViews', label: isZh ? '檔案瀏覽' : 'Profile Views' },
+        { key: 'searches', label: isZh ? '搜尋次數' : 'Searches' },
+        { key: 'emailsSent', label: isZh ? '寄出郵件' : 'Emails Sent' },
+        { key: 'inMailsSent', label: isZh ? 'InMail 寄出' : 'InMails Sent' },
+        { key: 'phoneCalls', label: isZh ? '電話通話' : 'Phone Calls' },
+        { key: 'keywords', label: isZh ? '關鍵字' : 'Keywords' },
+        { key: 'notes', label: isZh ? '備註' : 'Notes' },
+      ];
+    },
+  },
+  {
+    storageKey: 'exercise-list-funnel',
+    titleKey: 'listFunnel',
+    getColumns: (lang) => {
+      const isZh = lang === 'zh-tw';
+      return [
+        { key: 'companyName', label: isZh ? '公司名稱' : 'Company Name' },
+        { key: 'title', label: isZh ? '職稱' : 'Title' },
+        { key: 'channel', label: isZh ? '管道' : 'Channel' },
+        { key: 'location', label: isZh ? '地點' : 'Location' },
+        { key: 'nextDate', label: isZh ? '下一個日期' : 'Next Date' },
+        { key: 'pipelineStep', label: isZh ? '管道階段' : 'Pipeline Step' },
+      ];
+    },
+  },
 ];
 
 function loadExerciseData(storageKey: string): Record<string, unknown>[] | null {
@@ -28,18 +114,25 @@ function loadExerciseData(storageKey: string): Record<string, unknown>[] | null 
 
 function buildHtmlForExercise(
   title: string,
+  columns: ColumnDef[],
   data: Record<string, unknown>[]
 ): string {
-  const keys = Object.keys(data[0] || {});
+  const headerCells = columns
+    .map(
+      (col) =>
+        `<th style="padding:8px 10px;border:1px solid #ccc;text-align:left;background:#e8ecf1;font-size:11px;color:#1e3a5f;">${col.label}</th>`
+    )
+    .join('');
+
   const rows = data
     .map(
       (row, idx) =>
-        `<tr>
-          <td style="padding:6px 10px;border:1px solid #ddd;text-align:center;">${idx + 1}</td>
-          ${keys
+        `<tr style="background:${idx % 2 === 0 ? '#ffffff' : '#f9fafb'};">
+          <td style="padding:6px 10px;border:1px solid #ddd;text-align:center;font-size:11px;color:#6b7280;">${idx + 1}</td>
+          ${columns
             .map(
-              (k) =>
-                `<td style="padding:6px 10px;border:1px solid #ddd;white-space:pre-wrap;">${String(row[k] ?? '')}</td>`
+              (col) =>
+                `<td style="padding:6px 10px;border:1px solid #ddd;white-space:pre-wrap;font-size:11px;">${String(row[col.key] ?? '')}</td>`
             )
             .join('')}
         </tr>`
@@ -47,18 +140,13 @@ function buildHtmlForExercise(
     .join('');
 
   return `
-    <div style="font-family:Inter,sans-serif;padding:20px;">
-      <h2 style="font-size:18px;margin-bottom:12px;color:#1e3a5f;">${title}</h2>
-      <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <div style="font-family:'Noto Sans TC',Inter,sans-serif;padding:20px;">
+      <h2 style="font-size:16px;margin-bottom:12px;color:#1e3a5f;">${title}</h2>
+      <table style="width:100%;border-collapse:collapse;">
         <thead>
-          <tr style="background:#f3f4f6;">
-            <th style="padding:6px 10px;border:1px solid #ddd;text-align:left;">#</th>
-            ${keys
-              .map(
-                (k) =>
-                  `<th style="padding:6px 10px;border:1px solid #ddd;text-align:left;">${k}</th>`
-              )
-              .join('')}
+          <tr>
+            <th style="padding:8px 10px;border:1px solid #ccc;text-align:center;background:#e8ecf1;font-size:11px;color:#1e3a5f;width:36px;">#</th>
+            ${headerCells}
           </tr>
         </thead>
         <tbody>${rows}</tbody>
@@ -72,16 +160,19 @@ async function generatePdf(htmlContent: string, filename: string) {
   const container = document.createElement('div');
   container.innerHTML = htmlContent;
   document.body.appendChild(container);
-  await html2pdf()
-    .set({
-      margin: [10, 10, 10, 10],
-      filename,
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
-    })
-    .from(container)
-    .save();
-  document.body.removeChild(container);
+  try {
+    await html2pdf()
+      .set({
+        margin: [10, 10, 10, 10],
+        filename,
+        html2canvas: { scale: 2, useCORS: true },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' },
+      })
+      .from(container)
+      .save();
+  } finally {
+    document.body.removeChild(container);
+  }
 }
 
 interface Props {
@@ -92,7 +183,15 @@ export default function ResourcesPage({ lang }: Props) {
   const i = t(lang);
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  const noDataLabel = lang === 'en' ? 'No data saved yet' : '尚無已儲存的資料';
+  const noDataLabel =
+    lang === 'en'
+      ? 'No data saved yet for this exercise. Complete the exercise first.'
+      : '此練習尚無已儲存的資料。請先完成練習。';
+
+  const noDataAllLabel =
+    lang === 'en'
+      ? 'No data saved for any exercise yet. Complete at least one exercise first.'
+      : '尚無任何練習的已儲存資料。請先完成至少一項練習。';
 
   const handleDownload = async (exercise: ExerciseInfo) => {
     const title = i.exercises[exercise.titleKey].title;
@@ -103,8 +202,12 @@ export default function ResourcesPage({ lang }: Props) {
     }
     setDownloading(exercise.storageKey);
     try {
-      const html = buildHtmlForExercise(title, data);
+      const columns = exercise.getColumns(lang);
+      const html = buildHtmlForExercise(title, columns, data);
       await generatePdf(html, `${exercise.storageKey}.pdf`);
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert(lang === 'en' ? 'Failed to generate PDF. Please try again.' : 'PDF 產生失敗，請重試。');
     } finally {
       setDownloading(null);
     }
@@ -120,15 +223,19 @@ export default function ResourcesPage({ lang }: Props) {
         const data = loadExerciseData(exercise.storageKey);
         if (data) {
           hasAny = true;
-          combinedHtml += buildHtmlForExercise(title, data);
+          const columns = exercise.getColumns(lang);
+          combinedHtml += buildHtmlForExercise(title, columns, data);
           combinedHtml += '<div style="page-break-after:always;"></div>';
         }
       }
       if (!hasAny) {
-        alert(noDataLabel);
+        alert(noDataAllLabel);
         return;
       }
       await generatePdf(combinedHtml, 'all-exercises.pdf');
+    } catch (err) {
+      console.error('PDF generation failed:', err);
+      alert(lang === 'en' ? 'Failed to generate PDF. Please try again.' : 'PDF 產生失敗，請重試。');
     } finally {
       setDownloading(null);
     }

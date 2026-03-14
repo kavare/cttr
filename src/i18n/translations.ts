@@ -1,4 +1,4 @@
-export type Lang = 'en' | 'zh-tw';
+export type Lang = 'en' | 'zh-tw' | 'ja';
 
 export const translations = {
   en: {
@@ -24,7 +24,7 @@ export const translations = {
     },
     exercises: {
       title: 'Career Exercises',
-      description: 'Complete these interactive exercises to prepare for your overseas job search. All data is saved locally in your browser.',
+      description: 'Complete these interactive exercises to prepare for your overseas job search. Your data is preserved locally in your browser. You can download or upload your own data anytime.',
       visaMemo: {
         title: 'Exercise 1: Visa Memo for Dream Countries',
         description: 'Research and organize visa requirements for your target countries.',
@@ -55,15 +55,18 @@ export const translations = {
     common: {
       addRow: 'Add Row',
       deleteRow: 'Delete',
-      exportJson: 'Export JSON',
-      importJson: 'Import JSON',
+      exportCsv: 'Export CSV',
+      importCsv: 'Import CSV',
+      downloadPdf: 'Download PDF',
+      dataTooltip: 'Download as CSV to copy into Google Sheets, or download as PDF to print out.',
       saved: 'Saved',
       saving: 'Saving...',
       noData: 'No data yet. Add a row to get started.',
       confirmDelete: 'Are you sure you want to delete this row?',
-      importSuccess: 'Data imported successfully!',
-      importError: 'Failed to import data. Please check the file format.',
-      footer: '© 2025 Aaron Hsieh. All rights reserved.',
+      importSuccess: 'CSV data imported successfully!',
+      importError: 'Failed to import data. Please check the CSV file format.',
+      backToExercises: 'Back to Exercises',
+      footer: '© 2026 Aaron Hsieh. All rights reserved.',
     },
   },
   'zh-tw': {
@@ -89,7 +92,7 @@ export const translations = {
     },
     exercises: {
       title: '職涯練習',
-      description: '完成這些互動練習，為您的海外求職做準備。所有資料都儲存在您的瀏覽器中。',
+      description: '完成這些互動練習，為您的海外求職做準備。資料會保存在您的瀏覽器中，您可以隨時下載或上傳自己的資料。',
       visaMemo: {
         title: '練習一：夢想國家簽證備忘錄',
         description: '研究並整理目標國家的簽證要求。',
@@ -120,15 +123,86 @@ export const translations = {
     common: {
       addRow: '新增列',
       deleteRow: '刪除',
-      exportJson: '匯出 JSON',
-      importJson: '匯入 JSON',
+      exportCsv: '匯出 CSV',
+      importCsv: '匯入 CSV',
+      downloadPdf: '下載 PDF',
+      dataTooltip: '下載 CSV 可複製到 Google 試算表，或下載 PDF 以列印。',
       saved: '已儲存',
       saving: '儲存中...',
       noData: '尚無資料。新增一列以開始。',
       confirmDelete: '確定要刪除此列嗎？',
-      importSuccess: '資料匯入成功！',
-      importError: '匯入失敗，請檢查檔案格式。',
-      footer: '© 2025 Aaron Hsieh. 保留所有權利。',
+      importSuccess: 'CSV 資料匯入成功！',
+      importError: '匯入失敗，請檢查 CSV 檔案格式。',
+      backToExercises: '返回練習列表',
+      footer: '© 2026 Aaron Hsieh. All rights reserved.',
+    },
+  },
+  ja: {
+    site: {
+      title: '初めての海外就職ガイド',
+      description: '初めての海外就職に役立つインタラクティブなキャリア演習とリソース。',
+    },
+    nav: {
+      home: 'ホーム',
+      exercises: '演習',
+      resources: 'リソース',
+    },
+    landing: {
+      heroTitle: 'Aaron Hsieh',
+      heroSubtitle: 'Engineering Manager @Datadog | Tech Lead @Meta | Early-Engineer @Beamery🦄 | 著者 | キャリアコーチ',
+      bioTitle: '自己紹介',
+      bio: `過去12年以上にわたり、台湾、イギリス、アメリカの3大陸でキャリアを築いてきました。Beamery（現在はユニコーン企業）のアーリーエンジニアとしてスタートし、MetaのTech Leadに成長し、現在はDatadogのEngineering Managerを務めています。その過程で、ビザ手続き、文化の違い、海外でキャリアを築く挑戦を乗り越えてきました。この本は、私が学んだすべてを、海外で働くことを夢見るすべての人のための実践的なステップバイステップガイドにまとめたものです。`,
+      bookTitle: '本について',
+      bookDescription: '初めての海外就職ガイド——ビザ戦略、履歴書作成、面接準備、国際的な求職者のためのキャリアプランニングをカバーする実践的なステップバイステップガイド。',
+      ctaTitle: 'インタラクティブ演習',
+      ctaDescription: 'この5つのキャリア演習をデジタルで完了しましょう。進捗はブラウザにローカル保存されます。',
+      ctaButton: '演習を始める',
+    },
+    exercises: {
+      title: 'キャリア演習',
+      description: 'これらのインタラクティブな演習を完了して、海外就職の準備をしましょう。データはブラウザにローカル保存されます。いつでもデータのダウンロードやアップロードが可能です。',
+      visaMemo: {
+        title: '演習1：夢の国のビザメモ',
+        description: '目標国のビザ要件を調査・整理しましょう。',
+      },
+      starTime: {
+        title: '演習2：STARストーリーブック（時系列）',
+        description: 'STARメソッドを使って、キャリアストーリーを時系列で記録しましょう。',
+      },
+      starQuestions: {
+        title: '演習3：STARストーリーブック（質問ベース）',
+        description: '行動面接の質問をSTARストーリーにマッピングしましょう。',
+      },
+      listDashboard: {
+        title: '演習4：LIST原則ダッシュボード',
+        description: '毎週の求職活動とネットワーキング指標を追跡しましょう。',
+      },
+      listFunnel: {
+        title: '演習5：LIST原則ファネル',
+        description: '応募からオファーまでの求職パイプラインを管理しましょう。',
+      },
+    },
+    resources: {
+      title: 'リソース',
+      description: '印刷可能なPDF版のキャリア演習をダウンロードできます。',
+      downloadPdf: 'PDF ダウンロード',
+      downloadAll: '全演習をダウンロード',
+    },
+    common: {
+      addRow: '行を追加',
+      deleteRow: '削除',
+      exportCsv: 'CSV エクスポート',
+      importCsv: 'CSV インポート',
+      downloadPdf: 'PDF ダウンロード',
+      dataTooltip: 'CSVをダウンロードしてGoogleスプレッドシートにコピー、またはPDFをダウンロードして印刷できます。',
+      saved: '保存済み',
+      saving: '保存中...',
+      noData: 'データがありません。行を追加して始めましょう。',
+      confirmDelete: 'この行を削除してもよろしいですか？',
+      importSuccess: 'CSVデータのインポートに成功しました！',
+      importError: 'データのインポートに失敗しました。CSVファイルの形式を確認してください。',
+      backToExercises: '演習一覧に戻る',
+      footer: '© 2026 Aaron Hsieh. All rights reserved.',
     },
   },
 } as const;
@@ -140,6 +214,7 @@ export function t(lang: Lang) {
 export function getLangFromUrl(url: URL): Lang {
   const [, langSegment] = url.pathname.split('/');
   if (langSegment === 'zh-tw') return 'zh-tw';
+  if (langSegment === 'ja') return 'ja';
   return 'en';
 }
 

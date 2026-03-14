@@ -7,87 +7,144 @@ const i = t(lang);
 ---
 
 <Layout lang={lang}>
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(245,158,11,0.15),transparent_60%)]"></div>
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 text-center">
-      <h1 class="text-5xl sm:text-6xl font-bold tracking-tight mb-4">
+  <!-- Hero Section - Reseda Style -->
+  <section class="pt-16 sm:pt-24 pb-24 sm:pb-36">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] mb-20 sm:mb-28 uppercase">
         {i.landing.heroTitle}
       </h1>
-      <p class="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-        {i.landing.heroSubtitle}
-      </p>
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a
-          href={`/${lang}/exercises/visa-memo`}
-          class="inline-flex items-center px-8 py-3.5 text-base font-semibold rounded-full bg-accent text-gray-900 hover:bg-yellow-400 shadow-lg hover:shadow-xl transition-all duration-200"
-        >
-          {i.landing.ctaButton}
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-        </a>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+        <!-- Left Column: Author Photo -->
+        <div class="overflow-hidden">
+          <img
+            src="/author-photo.jpg"
+            alt="Aaron Hsieh"
+            class="w-full object-cover object-[70%_center] aspect-[3/4]"
+          />
+        </div>
+        <!-- Right Column: Bio Content -->
+        <div class="flex flex-col justify-start">
+          <h2 class="text-base sm:text-lg font-bold text-primary mb-16 sm:mb-24 leading-snug tracking-tight">
+            Engineering Manager @Datadog | EX-Tech Lead @Meta | Early-Engineer @Beamery🦄 | Startups & NGOs Founder | Author | Career Coach
+          </h2>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-14 font-normal">
+            Over the past 12+ years, I've been finding my way across three continents, living and working through Paris, London, Taipei, and California. I started as an early engineer at Beamery (now a unicorn), grew into a Tech Lead at Meta, and currently serve as an Engineering Manager at Datadog. Along the way, I've crossed Siberia by rail, summited Kilimanjaro, trekked the Annapurna circuit, and road tripped Route 66 with a one year old in tow. This book distills everything I've learned about navigating visa processes, cultural shifts, and the challenges of building a career far from home into a practical guide for anyone dreaming of working abroad.
+          </p>
+          <div>
+            <a
+              href={`/${lang}/exercises/`}
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              Start Your Journey
+              <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
-  </section>
-
-  <!-- Bio Section -->
-  <section class="py-20 sm:py-24 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-3">
-        {i.landing.bioTitle}
-      </h2>
-      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-10"></div>
-      <p class="text-lg text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
-        {i.landing.bio}
-      </p>
     </div>
   </section>
 
   <!-- Book Section -->
-  <section class="py-20 sm:py-24 bg-surface">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-3">
-        {i.landing.bookTitle}
-      </h2>
-      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-14"></div>
-      <div class="flex flex-col md:flex-row items-center gap-12">
-        <!-- Placeholder Book Cover -->
-        <div class="flex-shrink-0">
-          <div class="w-56 h-72 rounded-xl bg-gradient-to-br from-primary-dark to-primary shadow-2xl flex flex-col items-center justify-center text-white p-6 ring-1 ring-white/10">
-            <div class="w-10 h-10 mb-4 rounded-full bg-accent/80 flex items-center justify-center">
-              <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-            </div>
-            <p class="text-sm font-bold text-center leading-snug">{i.site.title}</p>
-            <p class="text-xs text-blue-200 mt-2">Aaron Hsieh</p>
-          </div>
-        </div>
-        <!-- Book Description -->
-        <div class="flex-1 text-center md:text-left">
-          <p class="text-lg text-gray-600 leading-relaxed">
+  <section class="py-20 sm:py-28 border-t border-primary/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
+        <!-- Left: Title + Subtitle + Quote + Text -->
+        <div class="flex flex-col md:order-1">
+          <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
+            My Work
+          </h2>
+          <p class="text-lg sm:text-xl text-primary/45 mb-8">
+            A Beginner Guide to Find Your First Overseas Jobs
+          </p>
+          <blockquote class="border-l-2 border-primary/30 pl-4 mb-10">
+            <p class="text-[15px] text-primary/70 italic">"Trust yourself. You always have more options than you think."</p>
+          </blockquote>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-5">
             {i.landing.bookDescription}
           </p>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
+            After struggling with job rejections post military service and a failed startup, the author had no study abroad experience, no foreign residency, and only two years of local work experience when he launched his overseas career. He has since received offers from numerous companies across Europe and the US, and helped many others do the same. Drawing on over five years of community sharing and career coaching, this book introduces the original <span class="font-bold text-primary">LIST Principles</span>. Even from Taiwan, you can use this framework to iterate, experiment, and close the distance between you and the world.
+          </p>
+          <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
+            <li><span class="font-bold text-primary">Localize</span> — Blend in like a local.</li>
+            <li><span class="font-bold text-primary">Internationalize</span> — Make yourself visible to the world.</li>
+            <li><span class="font-bold text-primary">Strengthen</span> — Build internationally transferable expertise.</li>
+            <li><span class="font-bold text-primary">Test</span> — Use free market signals to measure your readiness.</li>
+          </ul>
+          <div>
+            <a
+              href="https://www.eslite.com/product/1001116042682161135005?srsltid=AfmBOooxk6OLJwkcMkBR3aLfXLnIlWk_QR2fAVj1hn8MzMJqWcnJWPoB"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              Read It
+            </a>
+          </div>
+        </div>
+        <!-- Right: Book Cover -->
+        <div class="md:order-2">
+          <img
+            src="/book-cover.png"
+            alt="Book Cover"
+            class="w-full drop-shadow-xl"
+          />
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="py-20 sm:py-24 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
-        {i.landing.ctaTitle}
+  <section class="py-20 sm:py-28 border-t border-primary/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
+        LIST Principles in Practice
       </h2>
-      <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-8"></div>
-      <p class="text-lg text-gray-600 leading-relaxed mb-10">
-        {i.landing.ctaDescription}
+      <p class="text-lg sm:text-xl text-primary/45 mb-20 sm:mb-28">
+        Start Anywhere. Build your overseas career right away.
       </p>
-      <a
-        href={`/${lang}/exercises/visa-memo`}
-        class="inline-flex items-center px-10 py-4 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-light shadow-lg hover:shadow-xl transition-all duration-200"
-      >
-        {i.landing.ctaButton}
-        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-      </a>
+      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
+        <!-- Left: Text + CTA -->
+        <div class="flex flex-col justify-end md:order-1">
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
+            Put the LIST Principles into action with five interactive exercises. Track your visa research, build your STAR stories, map behavioral interview questions, monitor your weekly job search metrics, and manage your application pipeline from submission to offer.
+          </p>
+          <div>
+            <a
+              href={`/${lang}/exercises/`}
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              Start Your Journey
+              <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Right: Visual -->
+        <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
+          <div class="space-y-5">
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">01</span>
+              <span class="text-sm font-medium text-primary/70">Visa Memo for Dream Countries</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">02</span>
+              <span class="text-sm font-medium text-primary/70">STAR Storybook (Time-series)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">03</span>
+              <span class="text-sm font-medium text-primary/70">STAR Storybook (Questions-based)</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">04</span>
+              <span class="text-sm font-medium text-primary/70">LIST Principles Dashboard</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">05</span>
+              <span class="text-sm font-medium text-primary/70">LIST Principles Funnel</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </Layout>

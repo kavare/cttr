@@ -33,6 +33,16 @@ const PIPELINE_STEPS_ZH: Record<string, string> = {
   'Offer Negotiation': '薪資談判',
 };
 
+const PIPELINE_STEPS_JA: Record<string, string> = {
+  'Submit': '応募',
+  'Info Session': '説明会',
+  'Online Judge': 'オンラインテスト',
+  'Phone Interview': '電話面接',
+  'Onsite': 'オンサイト面接',
+  'Oral Offer': '内定通知',
+  'Offer Negotiation': 'オファー交渉',
+};
+
 const STEP_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   'Submit':            { bg: 'bg-gray-100',    text: 'text-gray-700',    border: 'border-gray-300' },
   'Info Session':      { bg: 'bg-blue-100',    text: 'text-blue-700',    border: 'border-blue-300' },
@@ -43,51 +53,42 @@ const STEP_COLORS: Record<string, { bg: string; text: string; border: string }> 
   'Offer Negotiation': { bg: 'bg-green-100',   text: 'text-green-700',   border: 'border-green-300' },
 };
 
+const funnelLabels: Record<Lang, Record<keyof ListFunnelRow, { label: string; placeholder: string }>> = {
+  en: {
+    companyName: { label: 'Company Name', placeholder: 'e.g. Google' },
+    title: { label: 'Title', placeholder: 'e.g. Software Engineer' },
+    channel: { label: 'Channel', placeholder: 'e.g. LinkedIn' },
+    location: { label: 'Location', placeholder: 'e.g. San Francisco' },
+    nextDate: { label: 'Next Date', placeholder: 'e.g. 2025-02-15' },
+    pipelineStep: { label: 'Pipeline Step', placeholder: '' },
+  },
+  'zh-tw': {
+    companyName: { label: '公司名稱', placeholder: '例如：Google' },
+    title: { label: '職稱', placeholder: '例如：軟體工程師' },
+    channel: { label: '管道', placeholder: '例如：LinkedIn' },
+    location: { label: '地點', placeholder: '例如：舊金山' },
+    nextDate: { label: '下一個日期', placeholder: '例如：2025-02-15' },
+    pipelineStep: { label: '管道階段', placeholder: '' },
+  },
+  ja: {
+    companyName: { label: '会社名', placeholder: '例：Google' },
+    title: { label: '職種', placeholder: '例：ソフトウェアエンジニア' },
+    channel: { label: 'チャネル', placeholder: '例：LinkedIn' },
+    location: { label: '勤務地', placeholder: '例：東京' },
+    nextDate: { label: '次の日付', placeholder: '例：2025-02-15' },
+    pipelineStep: { label: 'パイプライン段階', placeholder: '' },
+  },
+};
+
 function getColumns(lang: Lang): Column<ListFunnelRow>[] {
-  const isZh = lang === 'zh-tw';
+  const labels = funnelLabels[lang];
   return [
-    {
-      key: 'companyName',
-      label: isZh ? '公司名稱' : 'Company Name',
-      type: 'text',
-      placeholder: isZh ? '例如：Google' : 'e.g. Google',
-      width: '140px',
-    },
-    {
-      key: 'title',
-      label: isZh ? '職稱' : 'Title',
-      type: 'text',
-      placeholder: isZh ? '例如：軟體工程師' : 'e.g. Software Engineer',
-      width: '150px',
-    },
-    {
-      key: 'channel',
-      label: isZh ? '管道' : 'Channel',
-      type: 'text',
-      placeholder: isZh ? '例如：LinkedIn' : 'e.g. LinkedIn',
-      width: '120px',
-    },
-    {
-      key: 'location',
-      label: isZh ? '地點' : 'Location',
-      type: 'text',
-      placeholder: isZh ? '例如：舊金山' : 'e.g. San Francisco',
-      width: '120px',
-    },
-    {
-      key: 'nextDate',
-      label: isZh ? '下一個日期' : 'Next Date',
-      type: 'text',
-      placeholder: isZh ? '例如：2025-02-15' : 'e.g. 2025-02-15',
-      width: '120px',
-    },
-    {
-      key: 'pipelineStep',
-      label: isZh ? '管道階段' : 'Pipeline Step',
-      type: 'select',
-      options: PIPELINE_STEPS_EN,
-      width: '280px',
-    },
+    { key: 'companyName', label: labels.companyName.label, type: 'text', placeholder: labels.companyName.placeholder, width: '140px' },
+    { key: 'title', label: labels.title.label, type: 'text', placeholder: labels.title.placeholder, width: '150px' },
+    { key: 'channel', label: labels.channel.label, type: 'text', placeholder: labels.channel.placeholder, width: '120px' },
+    { key: 'location', label: labels.location.label, type: 'text', placeholder: labels.location.placeholder, width: '120px' },
+    { key: 'nextDate', label: labels.nextDate.label, type: 'text', placeholder: labels.nextDate.placeholder, width: '120px' },
+    { key: 'pipelineStep', label: labels.pipelineStep.label, type: 'select', options: PIPELINE_STEPS_EN, width: '280px' },
   ];
 }
 
@@ -102,15 +103,21 @@ function defaultRow(): ListFunnelRow {
   };
 }
 
+const PIPELINE_STEPS_LOCALIZED: Record<Lang, Record<string, string>> = {
+  en: Object.fromEntries(PIPELINE_STEPS_EN.map((s) => [s, s])),
+  'zh-tw': PIPELINE_STEPS_ZH,
+  ja: PIPELINE_STEPS_JA,
+};
+
 function PipelineIndicator({ step, lang }: { step: string; lang: Lang }) {
   if (!step) return null;
 
-  const isZh = lang === 'zh-tw';
   const currentIndex = PIPELINE_STEPS_EN.indexOf(step);
   if (currentIndex === -1) return null;
 
   const colors = STEP_COLORS[step] || STEP_COLORS['Submit'];
-  const displayLabel = isZh ? PIPELINE_STEPS_ZH[step] || step : step;
+  const localizedSteps = PIPELINE_STEPS_LOCALIZED[lang];
+  const displayLabel = localizedSteps[step] || step;
 
   return (
     <div className="space-y-1.5">
@@ -143,7 +150,7 @@ function PipelineIndicator({ step, lang }: { step: string; lang: Lang }) {
                     }
                   : undefined
               }
-              title={isZh ? PIPELINE_STEPS_ZH[s] : s}
+              title={localizedSteps[s] || s}
             />
           );
         })}
@@ -152,8 +159,35 @@ function PipelineIndicator({ step, lang }: { step: string; lang: Lang }) {
   );
 }
 
+const sampleRow: Record<Lang, ListFunnelRow[]> = {
+  en: [{
+    companyName: 'Google',
+    title: 'Senior Software Engineer',
+    channel: 'LinkedIn',
+    location: 'London, UK',
+    nextDate: '2025-02-15',
+    pipelineStep: 'Phone Interview',
+  }],
+  'zh-tw': [{
+    companyName: 'Google',
+    title: '資深軟體工程師',
+    channel: 'LinkedIn',
+    location: '倫敦',
+    nextDate: '2025-02-15',
+    pipelineStep: 'Phone Interview',
+  }],
+  ja: [{
+    companyName: 'Google',
+    title: 'シニアソフトウェアエンジニア',
+    channel: 'LinkedIn',
+    location: 'ロンドン',
+    nextDate: '2025-02-15',
+    pipelineStep: 'Phone Interview',
+  }],
+};
+
 export default function ListFunnel({ lang }: { lang: Lang }) {
-  const isZh = lang === 'zh-tw';
+  const localizedSteps = PIPELINE_STEPS_LOCALIZED[lang];
 
   const renderCell = (
     row: ListFunnelRow,
@@ -162,9 +196,7 @@ export default function ListFunnel({ lang }: { lang: Lang }) {
   ): ReactNode | null => {
     if (col.key !== 'pipelineStep') return null;
 
-    const options = isZh
-      ? PIPELINE_STEPS_EN.map((s) => ({ value: s, label: PIPELINE_STEPS_ZH[s] || s }))
-      : PIPELINE_STEPS_EN.map((s) => ({ value: s, label: s }));
+    const options = PIPELINE_STEPS_EN.map((s) => ({ value: s, label: localizedSteps[s] || s }));
 
     return (
       <div className="space-y-2">
@@ -191,6 +223,7 @@ export default function ListFunnel({ lang }: { lang: Lang }) {
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}
+      initialData={sampleRow[lang]}
       renderCell={renderCell}
     />
   );

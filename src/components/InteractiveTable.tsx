@@ -36,12 +36,13 @@ export function InteractiveTable<T extends Record<string, unknown>>({
 
   useEffect(() => {
     const stored = load();
-    if (stored && stored.length > 0) {
+    if (stored !== null && stored.length > 0) {
       setRows(stored);
     } else if (initialData && initialData.length > 0) {
       setRows(initialData);
+      save(initialData);
     }
-  }, [load, initialData]);
+  }, [load, save, initialData]);
 
   const autoSave = useCallback(
     (newRows: T[]) => {
@@ -79,7 +80,7 @@ export function InteractiveTable<T extends Record<string, unknown>>({
         <div className="flex items-center gap-3">
           <button
             onClick={addRow}
-            className="inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-primary text-white hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center px-4 py-2 text-sm font-medium bg-primary text-[#f7f5f0] hover:bg-primary-light transition-colors"
           >
             + {i.common.addRow}
           </button>
@@ -92,23 +93,24 @@ export function InteractiveTable<T extends Record<string, unknown>>({
           data={rows}
           onImport={handleImport}
           lang={lang}
+          columns={columns.map((col) => ({ key: col.key, label: col.label }))}
         />
       </div>
 
       {rows.length === 0 ? (
-        <p className="text-center py-12 text-gray-400">{i.common.noData}</p>
+        <p className="text-center py-12 text-primary/30">{i.common.noData}</p>
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+        <div className="overflow-x-auto border border-primary/10">
+          <table className="min-w-full divide-y divide-primary/10">
+            <thead className="bg-primary/[0.03]">
               <tr>
-                <th className="px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider w-12">
+                <th className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider w-12">
                   #
                 </th>
                 {columns.map((col) => (
                   <th
                     key={col.key}
-                    className="px-3 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                    className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider"
                     style={col.width ? { minWidth: col.width } : undefined}
                   >
                     {col.label}
@@ -117,10 +119,10 @@ export function InteractiveTable<T extends Record<string, unknown>>({
                 <th className="px-3 py-3 w-16" />
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-100">
+            <tbody className="bg-surface divide-y divide-primary/5">
               {rows.map((row, rowIdx) => (
-                <tr key={rowIdx} className="hover:bg-gray-50/50">
-                  <td className="px-3 py-2 text-xs text-gray-400">{rowIdx + 1}</td>
+                <tr key={rowIdx} className="hover:bg-primary/[0.02]">
+                  <td className="px-3 py-2 text-xs text-primary/30">{rowIdx + 1}</td>
                   {columns.map((col) => {
                     const customCell = renderCell?.(
                       row,
@@ -137,7 +139,7 @@ export function InteractiveTable<T extends Record<string, unknown>>({
                           <select
                             value={String(row[col.key] ?? '')}
                             onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
-                            className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
+                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
                           >
                             <option value="">—</option>
                             {col.options?.map((opt) => (
@@ -152,7 +154,7 @@ export function InteractiveTable<T extends Record<string, unknown>>({
                             onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
                             placeholder={col.placeholder}
                             rows={2}
-                            className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-y"
+                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent resize-y"
                           />
                         ) : (
                           <input
@@ -160,7 +162,7 @@ export function InteractiveTable<T extends Record<string, unknown>>({
                             value={String(row[col.key] ?? '')}
                             onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
                             placeholder={col.placeholder}
-                            className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
+                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
                           />
                         )}
                       </td>
