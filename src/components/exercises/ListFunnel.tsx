@@ -34,13 +34,23 @@ const PIPELINE_STEPS_ZH: Record<string, string> = {
 };
 
 const PIPELINE_STEPS_JA: Record<string, string> = {
-  'Submit': '応募',
+  'Submit': '応募済み',
   'Info Session': '説明会',
-  'Online Judge': 'オンラインテスト',
+  'Online Judge': 'コーディング試験',
   'Phone Interview': '電話面接',
-  'Onsite': 'オンサイト面接',
-  'Oral Offer': '内定通知',
-  'Offer Negotiation': 'オファー交渉',
+  'Onsite': '最終面接',
+  'Oral Offer': '内定',
+  'Offer Negotiation': '条件交渉',
+};
+
+const PIPELINE_STEPS_KO: Record<string, string> = {
+  'Submit': '지원 완료',
+  'Info Session': '설명회',
+  'Online Judge': '온라인 코딩 테스트',
+  'Phone Interview': '전화 면접',
+  'Onsite': '현장 면접',
+  'Oral Offer': '구두 합격',
+  'Offer Negotiation': '처우 협상',
 };
 
 const STEP_COLORS: Record<string, { bg: string; text: string; border: string }> = {
@@ -73,10 +83,18 @@ const funnelLabels: Record<Lang, Record<keyof ListFunnelRow, { label: string; pl
   ja: {
     companyName: { label: '会社名', placeholder: '例：Google' },
     title: { label: '職種', placeholder: '例：ソフトウェアエンジニア' },
-    channel: { label: 'チャネル', placeholder: '例：LinkedIn' },
+    channel: { label: '応募経路', placeholder: '例：LinkedIn' },
     location: { label: '勤務地', placeholder: '例：東京' },
-    nextDate: { label: '次の日付', placeholder: '例：2025-02-15' },
-    pipelineStep: { label: 'パイプライン段階', placeholder: '' },
+    nextDate: { label: '次のアクション日', placeholder: '例：2025-02-15' },
+    pipelineStep: { label: '選考状況', placeholder: '' },
+  },
+  ko: {
+    companyName: { label: '회사명', placeholder: '예: Google' },
+    title: { label: '직무', placeholder: '예: 소프트웨어 엔지니어' },
+    channel: { label: '지원 경로', placeholder: '예: LinkedIn' },
+    location: { label: '근무지', placeholder: '예: 런던' },
+    nextDate: { label: '다음 일정', placeholder: '예: 2025-02-15' },
+    pipelineStep: { label: '전형 단계', placeholder: '' },
   },
 };
 
@@ -107,6 +125,7 @@ const PIPELINE_STEPS_LOCALIZED: Record<Lang, Record<string, string>> = {
   en: Object.fromEntries(PIPELINE_STEPS_EN.map((s) => [s, s])),
   'zh-tw': PIPELINE_STEPS_ZH,
   ja: PIPELINE_STEPS_JA,
+  ko: PIPELINE_STEPS_KO,
 };
 
 function PipelineIndicator({ step, lang }: { step: string; lang: Lang }) {
@@ -184,6 +203,14 @@ const sampleRow: Record<Lang, ListFunnelRow[]> = {
     nextDate: '2025-02-15',
     pipelineStep: 'Phone Interview',
   }],
+  ko: [{
+    companyName: 'Google',
+    title: '시니어 소프트웨어 엔지니어',
+    channel: 'LinkedIn',
+    location: '런던',
+    nextDate: '2025-02-15',
+    pipelineStep: 'Phone Interview',
+  }],
 };
 
 export default function ListFunnel({ lang }: { lang: Lang }) {
@@ -205,7 +232,7 @@ export default function ListFunnel({ lang }: { lang: Lang }) {
           onChange={(e) => onChange('pipelineStep', e.target.value)}
           className="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary bg-white"
         >
-          <option value="">—</option>
+          <option value="">選択してください</option>
           {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}

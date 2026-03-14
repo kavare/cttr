@@ -1,15 +1,17 @@
-export type Lang = 'en' | 'zh-tw' | 'ja';
+export type Lang = 'en' | 'zh-tw' | 'ja' | 'ko';
 
 export const translations = {
   en: {
     site: {
-      title: 'A Beginner Guide to Find Your First Overseas Jobs',
+      title: 'Aaron Hsieh - A Beginner Guide to Find Your First Overseas Jobs',
       description: 'Interactive career exercises and resources for landing your first international job.',
     },
     nav: {
+      brand: 'A Beginner Guide to Find Your First Overseas Jobs',
       home: 'Home',
       exercises: 'Exercises',
       resources: 'Resources',
+      coffeechat: 'Coffee Chat',
     },
     landing: {
       heroTitle: 'Aaron Hsieh',
@@ -71,13 +73,15 @@ export const translations = {
   },
   'zh-tw': {
     site: {
-      title: '海外求職新手指南',
+      title: 'Aaron Hsieh - 普通人的海外求職指南',
       description: '互動式職涯練習與資源，助你找到第一份海外工作。',
     },
     nav: {
+      brand: '普通人的海外求職指南',
       home: '首頁',
       exercises: '練習',
       resources: '資源',
+      coffeechat: 'Coffee Chat',
     },
     landing: {
       heroTitle: 'Aaron Hsieh',
@@ -139,69 +143,141 @@ export const translations = {
   },
   ja: {
     site: {
-      title: '初めての海外就職ガイド',
-      description: '初めての海外就職に役立つインタラクティブなキャリア演習とリソース。',
+      title: 'Aaron Hsieh 「はじめての海外キャリアのつくり方」',
+      description: '海外就職を目指すあなたのための実践ワークとお役立ち情報をまとめました。',
     },
     nav: {
-      home: 'ホーム',
-      exercises: '演習',
-      resources: 'リソース',
+      brand: 'はじめての海外キャリアのつくり方',
+      home: 'トップ',
+      exercises: 'ワーク',
+      resources: '資料集',
+      coffeechat: 'コーヒーチャット',
     },
     landing: {
       heroTitle: 'Aaron Hsieh',
-      heroSubtitle: 'Engineering Manager @Datadog | Tech Lead @Meta | Early-Engineer @Beamery🦄 | 著者 | キャリアコーチ',
-      bioTitle: '自己紹介',
-      bio: `過去12年以上にわたり、台湾、イギリス、アメリカの3大陸でキャリアを築いてきました。Beamery（現在はユニコーン企業）のアーリーエンジニアとしてスタートし、MetaのTech Leadに成長し、現在はDatadogのEngineering Managerを務めています。その過程で、ビザ手続き、文化の違い、海外でキャリアを築く挑戦を乗り越えてきました。この本は、私が学んだすべてを、海外で働くことを夢見るすべての人のための実践的なステップバイステップガイドにまとめたものです。`,
-      bookTitle: '本について',
-      bookDescription: '初めての海外就職ガイド——ビザ戦略、履歴書作成、面接準備、国際的な求職者のためのキャリアプランニングをカバーする実践的なステップバイステップガイド。',
-      ctaTitle: 'インタラクティブ演習',
-      ctaDescription: 'この5つのキャリア演習をデジタルで完了しましょう。進捗はブラウザにローカル保存されます。',
-      ctaButton: '演習を始める',
+      heroSubtitle: 'エンジニアリングマネージャー @Datadog / 元テックリード @Meta / 初期メンバー @Beamery🦄 / 著者 / キャリアコーチ',
+      bioTitle: '著者について',
+      bio: `12年以上かけて、台湾、イギリス、アメリカの3つの大陸でキャリアを積んできました。ユニコーン企業Beameryの初期エンジニアからスタートし、Metaのテックリードを経て、現在はDatadogでエンジニアリングマネージャーを務めています。ビザの壁、文化の違い、海外でゼロからキャリアを築く大変さ。その全てを乗り越えてきた経験を、この一冊にまとめました。海外で働きたいと思っているあなたに、すぐ使える実践ガイドをお届けします。`,
+      bookTitle: '書籍のご紹介',
+      bookDescription: 'ビザの取り方、職務経歴書の書き方、面接対策、キャリア設計まで。海外就職に必要なことを一冊にまとめた実践ガイドです。',
+      ctaTitle: '実践ワーク',
+      ctaDescription: '5つのワークにオンラインで取り組めます。入力した内容はお使いのブラウザに自動保存されます。',
+      ctaButton: 'ワークを始める',
     },
     exercises: {
-      title: 'キャリア演習',
-      description: 'これらのインタラクティブな演習を完了して、海外就職の準備をしましょう。データはブラウザにローカル保存されます。いつでもデータのダウンロードやアップロードが可能です。',
+      title: '実践ワーク',
+      description: '海外就職の準備に役立つ5つのワークに取り組みましょう。入力データはブラウザに自動保存されます。CSV形式でのダウンロードやアップロードもいつでも可能です。',
       visaMemo: {
-        title: '演習1：夢の国のビザメモ',
-        description: '目標国のビザ要件を調査・整理しましょう。',
+        title: 'ワーク1：行きたい国のビザ調査メモ',
+        description: '気になる国のビザ要件を調べて、一覧に整理しましょう。',
       },
       starTime: {
-        title: '演習2：STARストーリーブック（時系列）',
-        description: 'STARメソッドを使って、キャリアストーリーを時系列で記録しましょう。',
+        title: 'ワーク2：STAR式キャリア年表',
+        description: 'STAR形式で、これまでの仕事の実績を時系列で書き出しましょう。',
       },
       starQuestions: {
-        title: '演習3：STARストーリーブック（質問ベース）',
-        description: '行動面接の質問をSTARストーリーにマッピングしましょう。',
+        title: 'ワーク3：STAR式 面接質問の準備',
+        description: 'よくある行動面接の質問に対して、STAR形式で回答を準備しましょう。',
       },
       listDashboard: {
-        title: '演習4：LIST原則ダッシュボード',
-        description: '毎週の求職活動とネットワーキング指標を追跡しましょう。',
+        title: 'ワーク4：LIST式 週間活動ボード',
+        description: '毎週の求職活動や人脈づくりの進み具合を記録しましょう。',
       },
       listFunnel: {
-        title: '演習5：LIST原則ファネル',
-        description: '応募からオファーまでの求職パイプラインを管理しましょう。',
+        title: 'ワーク5：LIST式 選考パイプライン',
+        description: '応募から内定まで、選考の進捗を一元管理しましょう。',
       },
     },
     resources: {
-      title: 'リソース',
-      description: '印刷可能なPDF版のキャリア演習をダウンロードできます。',
-      downloadPdf: 'PDF ダウンロード',
-      downloadAll: '全演習をダウンロード',
+      title: '資料集',
+      description: '各ワークの印刷用PDFをダウンロードできます。',
+      downloadPdf: 'PDFをダウンロード',
+      downloadAll: 'すべてダウンロード',
     },
     common: {
       addRow: '行を追加',
       deleteRow: '削除',
-      exportCsv: 'CSV エクスポート',
-      importCsv: 'CSV インポート',
-      downloadPdf: 'PDF ダウンロード',
-      dataTooltip: 'CSVをダウンロードしてGoogleスプレッドシートにコピー、またはPDFをダウンロードして印刷できます。',
-      saved: '保存済み',
+      exportCsv: 'CSV書き出し',
+      importCsv: 'CSV読み込み',
+      downloadPdf: 'PDFをダウンロード',
+      dataTooltip: 'CSVでダウンロードしてGoogleスプレッドシートに貼り付けたり、PDFで印刷したりできます。',
+      saved: '保存しました',
       saving: '保存中...',
-      noData: 'データがありません。行を追加して始めましょう。',
-      confirmDelete: 'この行を削除してもよろしいですか？',
-      importSuccess: 'CSVデータのインポートに成功しました！',
-      importError: 'データのインポートに失敗しました。CSVファイルの形式を確認してください。',
-      backToExercises: '演習一覧に戻る',
+      noData: 'まだデータがありません。「行を追加」で始めましょう。',
+      confirmDelete: 'この行を削除しますか？',
+      importSuccess: 'CSVデータを読み込みました。',
+      importError: '読み込みに失敗しました。CSVファイルの形式をご確認ください。',
+      backToExercises: 'ワーク一覧に戻る',
+      footer: '© 2026 Aaron Hsieh. All rights reserved.',
+    },
+  },
+  ko: {
+    site: {
+      title: 'Aaron Hsieh - 평범한 사람의 해외 취업 가이드',
+      description: '해외 취업을 준비하는 당신을 위한 실전 커리어 워크북과 자료 모음입니다.',
+    },
+    nav: {
+      brand: '평범한 사람의 해외 취업 가이드',
+      home: '홈',
+      exercises: '실습',
+      resources: '자료실',
+      coffeechat: '커피챗',
+    },
+    landing: {
+      heroTitle: 'Aaron Hsieh',
+      heroSubtitle: '엔지니어링 매니저 @Datadog / 전 테크리드 @Meta / 초기 엔지니어 @Beamery🦄 / 저자 / 커리어 코치',
+      bioTitle: '저자 소개',
+      bio: `지난 12년간 대만, 영국, 미국 세 대륙을 넘나들며 커리어를 쌓아왔습니다. 유니콘 기업 Beamery의 초기 엔지니어로 시작해 Meta의 테크리드를 거쳐 현재 Datadog에서 엔지니어링 매니저로 일하고 있습니다. 비자 문제, 문화 차이, 낯선 땅에서 처음부터 커리어를 만들어가는 과정을 모두 겪었습니다. 그 경험을 한 권에 담았습니다. 해외에서 일하고 싶은 모든 분께 드리는 실전 가이드입니다.`,
+      bookTitle: '책 소개',
+      bookDescription: '평범한 사람의 해외 취업 가이드는 비자 전략, 이력서 작성법, 면접 준비, 커리어 설계까지 해외 취업에 필요한 모든 것을 담은 실전 안내서입니다.',
+      ctaTitle: '실전 워크북',
+      ctaDescription: '5가지 커리어 실습을 온라인으로 진행할 수 있습니다. 작성한 내용은 브라우저에 자동 저장됩니다.',
+      ctaButton: '실습 시작하기',
+    },
+    exercises: {
+      title: '커리어 실습',
+      description: '해외 취업 준비에 도움이 되는 5가지 실습을 진행해 보세요. 데이터는 브라우저에 자동 저장되며, CSV로 다운로드하거나 업로드할 수 있습니다.',
+      visaMemo: {
+        title: '실습 1: 희망 국가 비자 메모',
+        description: '가고 싶은 나라의 비자 요건을 조사하고 한눈에 정리해 보세요.',
+      },
+      starTime: {
+        title: '실습 2: STAR 스토리북 (시간순)',
+        description: 'STAR 기법으로 지금까지의 커리어 경험을 시간순으로 정리해 보세요.',
+      },
+      starQuestions: {
+        title: '실습 3: STAR 스토리북 (질문 기반)',
+        description: '행동 면접 질문에 맞는 STAR 스토리를 미리 준비해 보세요.',
+      },
+      listDashboard: {
+        title: '실습 4: LIST 원칙 대시보드',
+        description: '매주 구직 활동과 네트워킹 현황을 기록하고 점검해 보세요.',
+      },
+      listFunnel: {
+        title: '실습 5: LIST 원칙 퍼널',
+        description: '지원부터 최종 합격까지, 채용 파이프라인을 한눈에 관리해 보세요.',
+      },
+    },
+    resources: {
+      title: '자료실',
+      description: '각 실습의 인쇄용 PDF 버전을 다운로드할 수 있습니다.',
+      downloadPdf: 'PDF 다운로드',
+      downloadAll: '전체 실습 다운로드',
+    },
+    common: {
+      addRow: '행 추가',
+      deleteRow: '삭제',
+      exportCsv: 'CSV 내보내기',
+      importCsv: 'CSV 가져오기',
+      downloadPdf: 'PDF 다운로드',
+      dataTooltip: 'CSV로 다운로드해서 Google 스프레드시트에 붙여넣거나, PDF로 인쇄할 수 있습니다.',
+      saved: '저장 완료',
+      saving: '저장 중...',
+      noData: '아직 데이터가 없습니다. 행 추가를 눌러 시작해 보세요.',
+      confirmDelete: '이 행을 삭제하시겠습니까?',
+      importSuccess: 'CSV 데이터를 성공적으로 가져왔습니다.',
+      importError: '가져오기에 실패했습니다. CSV 파일 형식을 확인해 주세요.',
+      backToExercises: '실습 목록으로',
       footer: '© 2026 Aaron Hsieh. All rights reserved.',
     },
   },
@@ -215,6 +291,7 @@ export function getLangFromUrl(url: URL): Lang {
   const [, langSegment] = url.pathname.split('/');
   if (langSegment === 'zh-tw') return 'zh-tw';
   if (langSegment === 'ja') return 'ja';
+  if (langSegment === 'ko') return 'ko';
   return 'en';
 }
 

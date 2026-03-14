@@ -27,11 +27,18 @@ const columnLabels: Record<Lang, Record<keyof VisaMemoRow, { label: string; plac
     notes: { label: '備註', placeholder: '額外備註' },
   },
   ja: {
-    country: { label: '国', placeholder: '例：アメリカ' },
-    visaType: { label: 'ビザ種類', placeholder: '例：H-1B' },
-    requirements: { label: '要件', placeholder: 'ビザの要件と条件' },
-    duration: { label: '期間', placeholder: '例：3年' },
-    notes: { label: '備考', placeholder: '追加メモ' },
+    country: { label: '国名', placeholder: '例：アメリカ' },
+    visaType: { label: 'ビザの種類', placeholder: '例：H-1B' },
+    requirements: { label: '取得条件', placeholder: '必要な資格や条件を記入' },
+    duration: { label: '有効期間', placeholder: '例：3年' },
+    notes: { label: 'メモ', placeholder: '気づいたことを自由に記入' },
+  },
+  ko: {
+    country: { label: '국가', placeholder: '예: 미국' },
+    visaType: { label: '비자 종류', placeholder: '예: H-1B' },
+    requirements: { label: '요건', placeholder: '비자 취득 조건을 정리해 보세요' },
+    duration: { label: '기간', placeholder: '예: 3년' },
+    notes: { label: '메모', placeholder: '참고할 내용을 자유롭게 적어 보세요' },
   },
 };
 
@@ -74,9 +81,16 @@ const sampleRow: Record<Lang, VisaMemoRow[]> = {
   ja: [{
     country: 'アメリカ',
     visaType: 'H-1B',
-    requirements: '学士号または同等の学位、雇用主スポンサー、専門職',
-    duration: '3年（最大6年まで更新可）',
-    notes: '抽選制、3月に申請。L-1やO-1も代替として検討。',
+    requirements: '学士号以上、企業によるスポンサー、専門職であること',
+    duration: '3年（最長6年まで延長可能）',
+    notes: '抽選制で毎年3月に申請。L-1やO-1ビザも選択肢として要チェック。',
+  }],
+  ko: [{
+    country: '미국',
+    visaType: 'H-1B',
+    requirements: '학사 학위 이상, 고용주 스폰서십, 전문직 해당',
+    duration: '3년 (최대 6년까지 연장 가능)',
+    notes: '추첨제로 매년 3월에 신청. L-1이나 O-1 비자도 대안으로 검토해 볼 것.',
   }],
 };
 

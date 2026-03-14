@@ -12,12 +12,13 @@ const base = import.meta.env.BASE_URL;
 
 // Build switch paths for all other languages
 const currentPath = Astro.url.pathname;
-const pathWithoutLang = currentPath.replace(new RegExp(`^${base}/(en|zh-tw|ja)`), '');
+const pathWithoutLang = currentPath.replace(new RegExp(`^${base}/(en|zh-tw|ja|ko)`), '');
 
 const langOptions: { code: Lang; label: string }[] = [
   { code: 'en', label: 'EN' },
   { code: 'zh-tw', label: 'ZH' },
   { code: 'ja', label: 'JA' },
+  { code: 'ko', label: 'KO' },
 ];
 const otherLangs = langOptions.filter((l) => l.code !== lang);
 ---
@@ -26,7 +27,7 @@ const otherLangs = langOptions.filter((l) => l.code !== lang);
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-14">
       <a href={`${base}/${lang}/`} class="text-base font-bold text-primary tracking-tight hover:opacity-70 transition-opacity">
-        On the Road
+        {i.nav.brand}
       </a>
 
       <div class="hidden sm:flex items-center gap-8">
@@ -38,6 +39,9 @@ const otherLangs = langOptions.filter((l) => l.code !== lang);
         </a>
         <a href={`${base}/${lang}/resources`} class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
           {i.nav.resources}
+        </a>
+        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
+          {i.nav.coffeechat}
         </a>
         <div class="inline-flex items-center px-3 py-1 text-xs font-medium border border-primary/20 text-primary/70 gap-1">
           {otherLangs.map((l, idx) => (
@@ -82,6 +86,9 @@ const otherLangs = langOptions.filter((l) => l.code !== lang);
         </a>
         <a href={`${base}/${lang}/resources`} class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
           {i.nav.resources}
+        </a>
+        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
+          {i.nav.coffeechat}
         </a>
       </div>
     </div>

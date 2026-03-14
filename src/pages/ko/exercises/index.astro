@@ -1,0 +1,55 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { t } from '../../../i18n/translations';
+
+const base = import.meta.env.BASE_URL;
+const lang = 'ko' as const;
+const i = t(lang);
+
+const exercises = [
+  {
+    href: `${base}/${lang}/exercises/visa-memo`,
+    title: i.exercises.visaMemo.title,
+    description: i.exercises.visaMemo.description,
+  },
+  {
+    href: `${base}/${lang}/exercises/star-timeseries`,
+    title: i.exercises.starTime.title,
+    description: i.exercises.starTime.description,
+  },
+  {
+    href: `${base}/${lang}/exercises/star-questions`,
+    title: i.exercises.starQuestions.title,
+    description: i.exercises.starQuestions.description,
+  },
+  {
+    href: `${base}/${lang}/exercises/list-dashboard`,
+    title: i.exercises.listDashboard.title,
+    description: i.exercises.listDashboard.description,
+  },
+  {
+    href: `${base}/${lang}/exercises/list-funnel`,
+    title: i.exercises.listFunnel.title,
+    description: i.exercises.listFunnel.description,
+  },
+];
+---
+
+<Layout title={i.exercises.title} lang={lang}>
+  <section class="max-w-4xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">{i.exercises.title}</h1>
+    <p class="text-gray-600 mb-8">{i.exercises.description}</p>
+
+    <div class="grid gap-4">
+      {exercises.map((exercise) => (
+        <a
+          href={exercise.href}
+          class="block p-6 bg-white border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
+        >
+          <h2 class="text-lg font-semibold text-gray-900 mb-1">{exercise.title}</h2>
+          <p class="text-sm text-gray-600">{exercise.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

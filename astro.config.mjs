@@ -11,7 +11,7 @@ export default defineConfig({
   integrations: [react()],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh-tw', 'ja'],
+    locales: ['en', 'zh-tw', 'ja', 'ko'],
     routing: {
       prefixDefaultLocale: true,
       redirectToDefaultLocale: false,

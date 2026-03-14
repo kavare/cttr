@@ -18,7 +18,7 @@ const i = t(lang);
         <!-- Left Column: Author Photo -->
         <div class="overflow-hidden">
           <img
-            src="/author-photo.jpg"
+            src={`${base}/images/author-photo.jpg`}
             alt="Aaron Hsieh"
             class="w-full object-cover object-[70%_center] aspect-[3/4]"
           />
@@ -86,7 +86,7 @@ const i = t(lang);
         <!-- Right: Book Cover -->
         <div class="md:order-2">
           <img
-            src="/book-cover.png"
+            src={`${base}/images/book-cover.png`}
             alt="Book Cover"
             class="w-full drop-shadow-xl"
           />
@@ -104,9 +104,10 @@ const i = t(lang);
       <p class="text-lg sm:text-xl text-primary/45 mb-20 sm:mb-28">
         從任何地方開始，立刻打造你的海外職涯。
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
-        <!-- Left: Text + CTA -->
-        <div class="flex flex-col justify-end md:order-1">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <!-- Left: Image + Description + CTA -->
+        <div class="flex flex-col md:order-1">
+          <img src={`${base}/images/list-cycle.png`} alt="LIST 循環" class="w-full mb-8" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             透過五個互動練習，將 LIST 原則付諸實踐。追蹤簽證研究、建立你的 STAR 故事、對應行為面試問題、監控每週求職指標，並管理從投遞到錄取的完整求職管道。
           </p>
@@ -120,7 +121,7 @@ const i = t(lang);
             </a>
           </div>
         </div>
-        <!-- Right: Visual -->
+        <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
           <div class="space-y-5">
             <div class="flex items-center gap-4">

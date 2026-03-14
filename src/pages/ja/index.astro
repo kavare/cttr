@@ -18,7 +18,7 @@ const i = t(lang);
         <!-- Left Column: Author Photo -->
         <div class="overflow-hidden">
           <img
-            src="/author-photo.jpg"
+            src={`${base}/images/author-photo.jpg`}
             alt="Aaron Hsieh"
             class="w-full object-cover object-[70%_center] aspect-[3/4]"
           />
@@ -26,17 +26,17 @@ const i = t(lang);
         <!-- Right Column: Bio Content -->
         <div class="flex flex-col justify-start">
           <h2 class="text-base sm:text-lg font-bold text-primary mb-16 sm:mb-24 leading-snug tracking-tight">
-            エンジニアリングマネージャー @Datadog | 元テックリード @Meta | アーリーエンジニア @Beamery🦄 | スタートアップ & NGO 創設者 | 著者 | キャリアコーチ
+            エンジニアリングマネージャー @Datadog / 元テックリード @Meta / 初期メンバー @Beamery🦄 / スタートアップ&NGO創設者 / 著者 / キャリアコーチ
           </h2>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-14 font-normal">
-            12年以上にわたり、3つの大陸を渡り歩きながら、パリ、ロンドン、台北、カリフォルニアで暮らし、働いてきました。Beamery（現在はユニコーン企業）のアーリーエンジニアからスタートし、Metaのテックリードを経て、現在はDatadogのエンジニアリングマネージャーを務めています。その間、シベリア鉄道で大陸を横断し、キリマンジャロに登頂し、アンナプルナサーキットを踏破し、1歳の子供を連れてルート66のロードトリップも敢行しました。この本は、ビザ手続き、文化の違い、異国でのキャリア構築の中で学んだすべてを、海外で働くことを夢見るすべての人のための実践的なガイドにまとめたものです。
+            12年以上かけて、パリ、ロンドン、台北、カリフォルニアと3つの大陸で暮らし、働いてきました。ユニコーン企業Beameryの初期エンジニアからスタートし、Metaのテックリードを経て、現在はDatadogのエンジニアリングマネージャーを務めています。シベリア鉄道で大陸を横断し、キリマンジャロに登り、アンナプルナを一周し、1歳の子どもとルート66も走りました。ビザの壁、文化の違い、異国でゼロからキャリアを築く中で学んだことの全てを、この一冊にまとめています。
           </p>
           <div>
             <a
               href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              旅を始める
+              ワークを始める
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
@@ -52,25 +52,25 @@ const i = t(lang);
         <!-- Left: Title + Subtitle + Quote + Text -->
         <div class="flex flex-col md:order-1">
           <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
-            私の作品
+            書籍のご紹介
           </h2>
           <p class="text-lg sm:text-xl text-primary/45 mb-8">
-            初めての海外就職ガイド
+            はじめての海外キャリアのつくり方
           </p>
           <blockquote class="border-l-2 border-primary/30 pl-4 mb-10">
-            <p class="text-[15px] text-primary/70 italic">「自分を信じて。あなたにも選ぶ権利がある」</p>
+            <p class="text-[15px] text-primary/70 italic">「自分を信じよう。選ぶのは、いつだってあなた自身だ。」</p>
           </blockquote>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-5">
             {i.landing.bookDescription}
           </p>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
-            著者は兵役後の就職失敗やスタートアップの挫折を経験し、留学経験も海外の在留資格もなく、わずか2年の国内実務経験だけで海外キャリアを切り開きました。欧米の多くの企業からオファーを受け、多くの人の海外オファー獲得もサポートしてきました。5年以上のコミュニティ活動とキャリアコーチングの経験をもとに、本書ではオリジナルの<span class="font-bold text-primary">LIST原則</span>を提唱しています。台湾にいても、この方法で繰り返し挑戦し、世界との距離を縮めることができます。
+            著者は兵役後の就活失敗やスタートアップの挫折を経験しながらも、留学経験なし、海外の在留資格なし、国内での実務経験わずか2年という状態から海外キャリアを切り開きました。欧米の数々の企業からオファーを獲得し、多くの人の海外転職もサポートしてきました。5年以上のコミュニティ運営とキャリアコーチングの実績をもとに、本書ではオリジナルの<span class="font-bold text-primary">LIST原則</span>を紹介しています。今いる場所から、何度でもチャレンジできる。世界は思っているより近いのです。
           </p>
           <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
-            <li><span class="font-bold text-primary">Localize</span>（現地に溶け込む）：現地の人のように振る舞う。</li>
-            <li><span class="font-bold text-primary">Internationalize</span>（国境を越える）：世界に自分を知ってもらう。</li>
-            <li><span class="font-bold text-primary">Strengthen</span>（専門性を強化）：国際的に通用する専門能力を築く。</li>
-            <li><span class="font-bold text-primary">Test</span>（繰り返しテスト）：無料の市場指標で自分を検証する。</li>
+            <li><span class="font-bold text-primary">Localize</span>（現地に溶け込む）現地の人と同じ目線で動く。</li>
+            <li><span class="font-bold text-primary">Internationalize</span>（世界とつながる）自分の存在を海外に届ける。</li>
+            <li><span class="font-bold text-primary">Strengthen</span>（実力を磨く）どこでも通用する専門性を身につける。</li>
+            <li><span class="font-bold text-primary">Test</span>（試して確かめる）市場からのフィードバックで自分の立ち位置を知る。</li>
           </ul>
           <div>
             <a
@@ -79,14 +79,14 @@ const i = t(lang);
               rel="noopener noreferrer"
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              読んでみる
+              書籍を見る
             </a>
           </div>
         </div>
         <!-- Right: Book Cover -->
         <div class="md:order-2">
           <img
-            src="/book-cover.png"
+            src={`${base}/images/book-cover.png`}
             alt="Book Cover"
             class="w-full drop-shadow-xl"
           />
@@ -99,49 +99,50 @@ const i = t(lang);
   <section class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
-        LIST原則を実践する
+        LIST原則を体験しよう
       </h2>
       <p class="text-lg sm:text-xl text-primary/45 mb-20 sm:mb-28">
-        どこからでも始められる。今すぐ海外キャリアを築こう。
+        今いる場所から、海外キャリアへの一歩を踏み出そう。
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
-        <!-- Left: Text + CTA -->
-        <div class="flex flex-col justify-end md:order-1">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <!-- Left: Image + Description + CTA -->
+        <div class="flex flex-col md:order-1">
+          <img src={`${base}/images/list-cycle.png`} alt="LISTサイクル" class="w-full mb-8" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
-            5つのインタラクティブな演習でLIST原則を実践しましょう。ビザ調査の追跡、STARストーリーの構築、行動面接の質問マッピング、週次求職指標のモニタリング、応募から内定までのパイプライン管理が行えます。
+            5つの実践ワークを通じて、LIST原則を身につけましょう。ビザ情報の整理、STAR形式での実績まとめ、行動面接への回答準備、毎週の活動記録、応募から内定までの進捗管理ができます。
           </p>
           <div>
             <a
               href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              旅を始める
+              ワークを始める
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
         </div>
-        <!-- Right: Visual -->
+        <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
           <div class="space-y-5">
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">01</span>
-              <span class="text-sm font-medium text-primary/70">夢の国ビザメモ</span>
+              <span class="text-sm font-medium text-primary/70">ビザ調査メモ</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">02</span>
-              <span class="text-sm font-medium text-primary/70">STARストーリーブック（時系列）</span>
+              <span class="text-sm font-medium text-primary/70">STAR式キャリア年表</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">03</span>
-              <span class="text-sm font-medium text-primary/70">STARストーリーブック（質問ベース）</span>
+              <span class="text-sm font-medium text-primary/70">STAR式 面接質問の準備</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">04</span>
-              <span class="text-sm font-medium text-primary/70">LIST原則ダッシュボード</span>
+              <span class="text-sm font-medium text-primary/70">LIST式 週間活動ボード</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">05</span>
-              <span class="text-sm font-medium text-primary/70">LIST原則ファネル</span>
+              <span class="text-sm font-medium text-primary/70">LIST式 選考パイプライン</span>
             </div>
           </div>
         </div>

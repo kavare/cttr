@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { t } from '../../i18n/translations';
 
 const base = import.meta.env.BASE_URL;
-const lang = 'en' as const;
+const lang = 'ko' as const;
 const i = t(lang);
 ---
 
@@ -26,17 +26,17 @@ const i = t(lang);
         <!-- Right Column: Bio Content -->
         <div class="flex flex-col justify-start">
           <h2 class="text-base sm:text-lg font-bold text-primary mb-16 sm:mb-24 leading-snug tracking-tight">
-            Engineering Manager @Datadog | EX-Tech Lead @Meta | Early-Engineer @Beamery🦄 | Startups & NGOs Founder | Author | Career Coach
+            엔지니어링 매니저 @Datadog / 전 테크리드 @Meta / 초기 엔지니어 @Beamery🦄 / 스타트업&NGO 창업자 / 저자 / 커리어 코치
           </h2>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-14 font-normal">
-            Over the past 12+ years, I've been finding my way across three continents, living and working through Paris, London, Taipei, and California. I started as an early engineer at Beamery (now a unicorn), grew into a Tech Lead at Meta, and currently serve as an Engineering Manager at Datadog. Along the way, I've crossed Siberia by rail, summited Kilimanjaro, trekked the Annapurna circuit, and road tripped Route 66 with a one year old in tow. This book distills everything I've learned about navigating visa processes, cultural shifts, and the challenges of building a career far from home into a practical guide for anyone dreaming of working abroad.
+            지난 12년간 파리, 런던, 타이베이, 캘리포니아를 오가며 세 대륙에서 살고 일해 왔습니다. 유니콘 기업 Beamery의 초기 엔지니어로 시작해 Meta의 테크리드를 거쳐 현재 Datadog에서 엔지니어링 매니저로 일하고 있습니다. 시베리아 횡단열차를 타고 대륙을 건넜고, 킬리만자로 정상에 올랐고, 안나푸르나 서킷을 걸었고, 한 살짜리 아이와 함께 루트 66을 달리기도 했습니다. 비자 문제, 문화 차이, 타국에서 처음부터 커리어를 만들어가는 과정에서 배운 모든 것을 이 한 권에 담았습니다.
           </p>
           <div>
             <a
               href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              Start Your Journey
+              실습 시작하기
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
@@ -52,25 +52,25 @@ const i = t(lang);
         <!-- Left: Title + Subtitle + Quote + Text -->
         <div class="flex flex-col md:order-1">
           <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
-            My Work
+            책 소개
           </h2>
           <p class="text-lg sm:text-xl text-primary/45 mb-8">
-            A Beginner Guide to Find Your First Overseas Jobs
+            평범한 사람의 해외 취업 가이드
           </p>
           <blockquote class="border-l-2 border-primary/30 pl-4 mb-10">
-            <p class="text-[15px] text-primary/70 italic">"Trust yourself. You always have more options than you think."</p>
+            <p class="text-[15px] text-primary/70 italic">"자신을 믿으세요. 선택은 언제나 당신의 것입니다."</p>
           </blockquote>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-5">
             {i.landing.bookDescription}
           </p>
           <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
-            After struggling with job rejections post military service and a failed startup, the author had no study abroad experience, no foreign residency, and only two years of local work experience when he launched his overseas career. He has since received offers from numerous companies across Europe and the US, and helped many others do the same. Drawing on over five years of community sharing and career coaching, this book introduces the original <span class="font-bold text-primary">LIST Principles</span>. Even from Taiwan, you can use this framework to iterate, experiment, and close the distance between you and the world.
+            저자는 군 복무 후 취업에 실패하고 스타트업도 좌절을 겪었습니다. 유학 경험도, 해외 거주 경력도, 국내 실무 경력도 겨우 2년뿐인 상태에서 해외 커리어를 시작했습니다. 이후 유럽과 미국의 수많은 기업에서 오퍼를 받았고, 많은 사람들의 해외 취업도 도왔습니다. 5년 넘게 커뮤니티를 운영하고 커리어 코칭을 해온 경험을 바탕으로 이 책에서는 독창적인 <span class="font-bold text-primary">LIST 원칙</span>을 소개합니다. 지금 있는 곳에서 얼마든지 도전할 수 있습니다. 세상은 생각보다 가깝습니다.
           </p>
           <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
-            <li><span class="font-bold text-primary">Localize</span> — Blend in like a local.</li>
-            <li><span class="font-bold text-primary">Internationalize</span> — Make yourself visible to the world.</li>
-            <li><span class="font-bold text-primary">Strengthen</span> — Build internationally transferable expertise.</li>
-            <li><span class="font-bold text-primary">Test</span> — Use free market signals to measure your readiness.</li>
+            <li><span class="font-bold text-primary">Localize</span> 현지인처럼 녹아들기</li>
+            <li><span class="font-bold text-primary">Internationalize</span> 나를 세계에 알리기</li>
+            <li><span class="font-bold text-primary">Strengthen</span> 어디서든 통하는 전문성 갖추기</li>
+            <li><span class="font-bold text-primary">Test</span> 시장의 피드백으로 내 위치 확인하기</li>
           </ul>
           <div>
             <a
@@ -79,7 +79,7 @@ const i = t(lang);
               rel="noopener noreferrer"
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              Read It
+              책 보러 가기
             </a>
           </div>
         </div>
@@ -99,24 +99,24 @@ const i = t(lang);
   <section class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
-        LIST Principles in Practice
+        LIST 원칙, 직접 해보기
       </h2>
       <p class="text-lg sm:text-xl text-primary/45 mb-20 sm:mb-28">
-        Start Anywhere. Build your overseas career right away.
+        지금 있는 곳에서 해외 커리어의 첫걸음을 내딛어 보세요.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LIST Cycle" class="w-full mb-8" />
+          <img src={`${base}/images/list-cycle.png`} alt="LIST 사이클" class="w-full mb-8" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
-            Put the LIST Principles into action with five interactive exercises. Track your visa research, build your STAR stories, map behavioral interview questions, monitor your weekly job search metrics, and manage your application pipeline from submission to offer.
+            5가지 실전 워크북을 통해 LIST 원칙을 직접 체험해 보세요. 비자 정보 정리, STAR 기법으로 경력 스토리 만들기, 행동 면접 질문 대비, 주간 구직 활동 기록, 지원부터 합격까지 파이프라인 관리를 한 곳에서 할 수 있습니다.
           </p>
           <div>
             <a
               href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              Start Your Journey
+              실습 시작하기
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
@@ -126,23 +126,23 @@ const i = t(lang);
           <div class="space-y-5">
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">01</span>
-              <span class="text-sm font-medium text-primary/70">Visa Memo for Dream Countries</span>
+              <span class="text-sm font-medium text-primary/70">희망 국가 비자 메모</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">02</span>
-              <span class="text-sm font-medium text-primary/70">STAR Storybook (Time-series)</span>
+              <span class="text-sm font-medium text-primary/70">STAR 스토리북 (시간순)</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">03</span>
-              <span class="text-sm font-medium text-primary/70">STAR Storybook (Questions-based)</span>
+              <span class="text-sm font-medium text-primary/70">STAR 스토리북 (질문 기반)</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">04</span>
-              <span class="text-sm font-medium text-primary/70">LIST Principles Dashboard</span>
+              <span class="text-sm font-medium text-primary/70">LIST 원칙 대시보드</span>
             </div>
             <div class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">05</span>
-              <span class="text-sm font-medium text-primary/70">LIST Principles Funnel</span>
+              <span class="text-sm font-medium text-primary/70">LIST 원칙 퍼널</span>
             </div>
           </div>
         </div>
