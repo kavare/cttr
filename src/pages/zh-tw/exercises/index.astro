@@ -2,32 +2,33 @@
 import Layout from '../../../layouts/Layout.astro';
 import { t } from '../../../i18n/translations';
 
+const base = import.meta.env.BASE_URL;
 const lang = 'zh-tw' as const;
 const i = t(lang);
 
 const exercises = [
   {
-    href: `/${lang}/exercises/visa-memo`,
+    href: `${base}/${lang}/exercises/visa-memo`,
     title: i.exercises.visaMemo.title,
     description: i.exercises.visaMemo.description,
   },
   {
-    href: `/${lang}/exercises/star-timeseries`,
+    href: `${base}/${lang}/exercises/star-timeseries`,
     title: i.exercises.starTime.title,
     description: i.exercises.starTime.description,
   },
   {
-    href: `/${lang}/exercises/star-questions`,
+    href: `${base}/${lang}/exercises/star-questions`,
     title: i.exercises.starQuestions.title,
     description: i.exercises.starQuestions.description,
   },
   {
-    href: `/${lang}/exercises/list-dashboard`,
+    href: `${base}/${lang}/exercises/list-dashboard`,
     title: i.exercises.listDashboard.title,
     description: i.exercises.listDashboard.description,
   },
   {
-    href: `/${lang}/exercises/list-funnel`,
+    href: `${base}/${lang}/exercises/list-funnel`,
     title: i.exercises.listFunnel.title,
     description: i.exercises.listFunnel.description,
   },

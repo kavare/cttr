@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import ListDashboard from '../../../components/exercises/ListDashboard';
 import { t } from '../../../i18n/translations';
 
+const base = import.meta.env.BASE_URL;
 const lang = 'zh-tw' as const;
 const i = t(lang);
 ---
@@ -10,7 +11,7 @@ const i = t(lang);
 <Layout title={i.exercises.listDashboard.title} lang={lang}>
   <section class="max-w-6xl mx-auto px-4 py-10">
     <a
-      href={`/${lang}/exercises/`}
+      href={`${base}/${lang}/exercises/`}
       class="inline-flex items-center text-sm text-primary hover:text-primary-dark transition-colors mb-6"
     >
       &larr; {i.common.backToExercises}

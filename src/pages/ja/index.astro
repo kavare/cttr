@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { t } from '../../i18n/translations';
 
+const base = import.meta.env.BASE_URL;
 const lang = 'ja' as const;
 const i = t(lang);
 ---
@@ -32,7 +33,7 @@ const i = t(lang);
           </p>
           <div>
             <a
-              href={`/${lang}/exercises/`}
+              href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
               旅を始める
@@ -111,7 +112,7 @@ const i = t(lang);
           </p>
           <div>
             <a
-              href={`/${lang}/exercises/`}
+              href={`${base}/${lang}/exercises/`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
               旅を始める

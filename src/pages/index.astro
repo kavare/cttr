@@ -1,5 +1,6 @@
 ---
 // Redirect to the appropriate locale based on browser language
+const base = import.meta.env.BASE_URL;
 ---
 
 <html lang="en">
@@ -7,17 +8,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirecting...</title>
-    <script is:inline>
+    <script is:inline define:vars={{ base }}>
       const lang = navigator.language || navigator.languages?.[0] || 'en';
       if (lang.startsWith('zh')) {
-        window.location.replace('/zh-tw/');
+        window.location.replace(base + '/zh-tw/');
       } else if (lang.startsWith('ja')) {
-        window.location.replace('/ja/');
+        window.location.replace(base + '/ja/');
       } else {
-        window.location.replace('/en/');
+        window.location.replace(base + '/en/');
       }
     </script>
-    <meta http-equiv="refresh" content="0;url=/en/" />
+    <meta http-equiv="refresh" content={`0;url=${base}/en/`} />
   </head>
   <body>
     <p>Redirecting...</p>
