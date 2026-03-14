@@ -81,6 +81,14 @@ export const translations = {
       downloadPdf: 'Download PDF',
       downloadAll: 'Download All Exercises',
     },
+    coffeechat: {
+      title: 'Coffee Chat',
+      subtitle: "I've been helped by multiple mentors throughout my career and I highly believe in the idea of a Reciprocity Ring. Chat with me by sending a LinkedIn message or booking my time.",
+      calendlyTitle: 'Book a 15 min chat about your life',
+      calendlyDescription: 'Pick a time that works for you. Come with your authentic self and what you find challenging recently on your career.',
+      linkedinTitle: 'Know more about me and reach out with your career story',
+      linkedinDescription: 'Connect on LinkedIn and send me a message about your journey.',
+    },
     common: {
       addRow: 'Add Row',
       deleteRow: 'Delete',
@@ -177,6 +185,14 @@ export const translations = {
       description: '下載可列印的 PDF 版本職涯練習。',
       downloadPdf: '下載 PDF',
       downloadAll: '下載全部練習',
+    },
+    coffeechat: {
+      title: 'Coffee Chat',
+      subtitle: '一路走來，我受到許多前輩的幫助，也深信互惠圈（Reciprocity Ring）的力量。歡迎透過 LinkedIn 訊息聯繫我，或直接預約時間聊聊。',
+      calendlyTitle: '預約 15 分鐘，聊聊你的人生',
+      calendlyDescription: '選一個你方便的時間，帶著最真實的自己，聊聊你最近在職涯上遇到的挑戰。',
+      linkedinTitle: '更認識我，分享你的職涯故事',
+      linkedinDescription: '在 LinkedIn 上與我聯繫，跟我說說你的旅程。',
     },
     common: {
       addRow: '新增列',
@@ -275,6 +291,14 @@ export const translations = {
       downloadPdf: 'PDFをダウンロード',
       downloadAll: 'すべてダウンロード',
     },
+    coffeechat: {
+      title: 'Coffee Chat',
+      subtitle: 'これまで多くのメンターに助けられてきました。互恵の輪（Reciprocity Ring）の力を信じています。LinkedInでメッセージを送るか、時間を予約してお話ししましょう。',
+      calendlyTitle: '15分間、あなたの人生について話しましょう',
+      calendlyDescription: 'ご都合の良い時間を選んでください。ありのままの自分で、今キャリアで感じている課題を話しましょう。',
+      linkedinTitle: 'もっと知りたい方はLinkedInでつながりましょう',
+      linkedinDescription: 'LinkedInでつながって、あなたのキャリアストーリーを聞かせてください。',
+    },
     common: {
       addRow: '行を追加',
       deleteRow: '削除',
@@ -371,6 +395,14 @@ export const translations = {
       description: '각 실습의 인쇄용 PDF 버전을 다운로드할 수 있습니다.',
       downloadPdf: 'PDF 다운로드',
       downloadAll: '전체 실습 다운로드',
+    },
+    coffeechat: {
+      title: 'Coffee Chat',
+      subtitle: '지금까지 많은 멘토들에게 도움을 받았고, 호혜의 고리(Reciprocity Ring)의 힘을 깊이 믿고 있습니다. LinkedIn 메시지를 보내거나 시간을 예약해서 이야기 나눠요.',
+      calendlyTitle: '15분간, 당신의 이야기를 들려주세요',
+      calendlyDescription: '편한 시간을 골라주세요. 진짜 당신 모습 그대로, 최근 커리어에서 느끼는 고민을 나눠봐요.',
+      linkedinTitle: '저에 대해 더 알고 싶다면, 당신의 커리어 이야기를 들려주세요',
+      linkedinDescription: 'LinkedIn에서 연결하고 당신의 여정에 대해 메시지를 보내주세요.',
     },
     common: {
       addRow: '행 추가',

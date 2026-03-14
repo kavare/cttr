@@ -27,6 +27,7 @@ const stripped = pathWithoutLang.replace(/^\//, '').replace(/\/$/, '');
 const isHome = stripped === '' || stripped === '/';
 const isExercises = stripped.startsWith('exercises');
 const isResources = stripped.startsWith('resources');
+const isCoffeeChat = stripped.startsWith('coffee-chat');
 
 const navClass = (active: boolean) =>
   active
@@ -39,7 +40,7 @@ const mobileNavClass = (active: boolean) =>
     : 'block px-3 py-2 text-sm font-medium text-primary/50 hover:text-primary';
 ---
 
-<nav class="sticky top-0 z-50 bg-surface border-b border-primary/10">
+<nav class="sticky top-0 z-50 bg-[#f0ede6] border-b border-primary/10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-14">
       <a href={`${base}/${lang}/`} class="text-base font-bold text-primary tracking-tight hover:opacity-70 transition-opacity">
@@ -56,7 +57,7 @@ const mobileNavClass = (active: boolean) =>
         <a href={`${base}/${lang}/resources`} class={navClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class={navClass(false)}>
+        <a href={`${base}/${lang}/coffee-chat`} class={navClass(isCoffeeChat)}>
           {i.nav.coffeechat}
         </a>
         <div class="inline-flex items-center px-3 py-1 text-xs font-medium border border-primary/20 text-primary/70 gap-1">
@@ -103,7 +104,7 @@ const mobileNavClass = (active: boolean) =>
         <a href={`${base}/${lang}/resources`} class={mobileNavClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class={mobileNavClass(false)}>
+        <a href={`${base}/${lang}/coffee-chat`} class={mobileNavClass(isCoffeeChat)}>
           {i.nav.coffeechat}
         </a>
       </div>
