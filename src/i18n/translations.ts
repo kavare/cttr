@@ -4,11 +4,11 @@ export const translations = {
   en: {
     site: {
       title: 'Aaron Hsieh - A Beginner Guide to Find Your First Overseas Jobs',
-      description: 'Interactive career exercises and resources for landing your first international job.',
+      description: 'Aaron Hsieh, Career Coach and author, shares a practical guide to overseas jobs, international career building, leadership, and working abroad for startups and beyond.',
     },
     nav: {
       brand: 'A Beginner Guide to Find Your First Overseas Jobs',
-      home: 'Home',
+      home: 'About',
       exercises: 'Exercises',
       resources: 'Resources',
       coffeechat: 'Coffee Chat',
@@ -74,11 +74,11 @@ export const translations = {
   'zh-tw': {
     site: {
       title: 'Aaron Hsieh - 普通人的海外求職指南',
-      description: '互動式職涯練習與資源，助你找到第一份海外工作。',
+      description: '職涯教練 Aaron Hsieh 的國際職涯指南。普通人也能掌握海外工作技巧，從零開始海外求職，打造屬於自己的國際職涯。',
     },
     nav: {
       brand: '普通人的海外求職指南',
-      home: '首頁',
+      home: '關於',
       exercises: '練習',
       resources: '資源',
       coffeechat: 'Coffee Chat',
@@ -144,11 +144,11 @@ export const translations = {
   ja: {
     site: {
       title: 'Aaron Hsieh 「はじめての海外キャリアのつくり方」',
-      description: '海外就職を目指すあなたのための実践ワークとお役立ち情報をまとめました。',
+      description: 'キャリアコーチ Aaron Hsieh による海外キャリア・海外就職の実践ガイド。国際キャリアの築き方から海外転職のコツまで、すぐに使えるノウハウを紹介。',
     },
     nav: {
       brand: 'はじめての海外キャリアのつくり方',
-      home: 'トップ',
+      home: '著者について',
       exercises: 'ワーク',
       resources: '資料集',
       coffeechat: 'コーヒーチャット',
@@ -214,11 +214,11 @@ export const translations = {
   ko: {
     site: {
       title: 'Aaron Hsieh - 평범한 사람의 해외 취업 가이드',
-      description: '해외 취업을 준비하는 당신을 위한 실전 커리어 워크북과 자료 모음입니다.',
+      description: '커리어 코치 Aaron Hsieh의 해외 취업·해외 커리어 실전 가이드. 국제 커리어 구축부터 해외 구직 노하우까지 한 권에 담았습니다.',
     },
     nav: {
       brand: '평범한 사람의 해외 취업 가이드',
-      home: '홈',
+      home: '소개',
       exercises: '실습',
       resources: '자료실',
       coffeechat: '커피챗',

@@ -8,8 +8,8 @@ const i = t(lang);
 ---
 
 <Layout lang={lang}>
-  <!-- Hero Section - Reseda Style -->
-  <section class="pt-16 sm:pt-24 pb-24 sm:pb-36">
+  <!-- Hero Section -->
+  <section aria-label="Aaron Hsieh 소개" class="pt-16 sm:pt-24 pb-24 sm:pb-36">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] mb-20 sm:mb-28 uppercase">
         {i.landing.heroTitle}
@@ -19,7 +19,7 @@ const i = t(lang);
         <div class="overflow-hidden">
           <img
             src={`${base}/images/author-photo.jpg`}
-            alt="Aaron Hsieh"
+            alt="Aaron Hsieh - 커리어 코치, 해외 취업과 국제 커리어 전문가"
             class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
         </div>
@@ -46,7 +46,7 @@ const i = t(lang);
   </section>
 
   <!-- Book Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <article aria-label="책: 평범한 사람의 해외 취업 가이드" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
         <!-- Left: Title + Subtitle + Quote + Text -->
@@ -66,12 +66,24 @@ const i = t(lang);
           <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
             저자는 군 복무 후 취업에 실패하고 스타트업도 좌절을 겪었습니다. 유학 경험도, 해외 거주 경력도, 국내 실무 경력도 겨우 2년뿐인 상태에서 해외 커리어를 시작했습니다. 이후 유럽과 미국의 수많은 기업에서 오퍼를 받았고, 많은 사람들의 해외 취업도 도왔습니다. 5년 넘게 커뮤니티를 운영하고 커리어 코칭을 해온 경험을 바탕으로 이 책에서는 독창적인 <span class="font-bold text-primary">LIST 원칙</span>을 소개합니다. 지금 있는 곳에서 얼마든지 도전할 수 있습니다. 세상은 생각보다 가깝습니다.
           </p>
-          <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
-            <li><span class="font-bold text-primary">Localize</span> 현지인처럼 녹아들기</li>
-            <li><span class="font-bold text-primary">Internationalize</span> 나를 세계에 알리기</li>
-            <li><span class="font-bold text-primary">Strengthen</span> 어디서든 통하는 전문성 갖추기</li>
-            <li><span class="font-bold text-primary">Test</span> 시장의 피드백으로 내 위치 확인하기</li>
-          </ul>
+          <dl class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1">
+            <div>
+              <dt class="inline font-bold text-primary">Localize</dt>
+              <dd class="inline"> 현지인처럼 녹아들기. 이력서, 언어, 문화 이해도를 목표 시장에 맞게 조정합니다.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Internationalize</dt>
+              <dd class="inline"> 나를 세계에 알리기. 국경을 넘어 리크루터가 찾을 수 있는 온라인 프레즌스를 구축합니다.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Strengthen</dt>
+              <dd class="inline"> 어디서든 통하는 전문성 갖추기. 글로벌 고용주가 가치 있게 여기는 스킬을 개발합니다.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Test</dt>
+              <dd class="inline"> 시장의 피드백으로 내 위치 확인하기. 전략적으로 지원하고 매번의 결과에서 배웁니다.</dd>
+            </div>
+          </dl>
           <div>
             <a
               href="https://www.eslite.com/product/1001116042682161135005?srsltid=AfmBOooxk6OLJwkcMkBR3aLfXLnIlWk_QR2fAVj1hn8MzMJqWcnJWPoB"
@@ -79,7 +91,7 @@ const i = t(lang);
               rel="noopener noreferrer"
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              책 보러 가기
+              도서 구매하기
             </a>
           </div>
         </div>
@@ -87,16 +99,16 @@ const i = t(lang);
         <div class="md:order-2">
           <img
             src={`${base}/images/book-cover.png`}
-            alt="Book Cover"
+            alt="평범한 사람의 해외 취업 가이드 책 표지 - Aaron Hsieh 저"
             class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
       </div>
     </div>
-  </section>
+  </article>
 
   <!-- CTA Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <section aria-label="LIST 원칙 실전 워크북" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
         LIST 원칙, 직접 해보기
@@ -107,44 +119,44 @@ const i = t(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LIST 사이클" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
+          <img src={`${base}/images/list-cycle.png`} alt="LIST 사이클 다이어그램: Localize, Internationalize, Strengthen, Test" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             5가지 실전 워크북을 통해 LIST 원칙을 직접 체험해 보세요. 비자 정보 정리, STAR 기법으로 경력 스토리 만들기, 행동 면접 질문 대비, 주간 구직 활동 기록, 지원부터 합격까지 파이프라인 관리를 한 곳에서 할 수 있습니다.
           </p>
           <div>
             <a
-              href={`${base}/${lang}/exercises/`}
+              href={`${base}/${lang}/resources`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              실습 시작하기
+              더 많은 커리어 자료
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
         </div>
         <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
-          <div class="space-y-5">
-            <div class="flex items-center gap-4">
+          <ol class="space-y-5 list-none">
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">01</span>
               <span class="text-sm font-medium text-primary/70">희망 국가 비자 메모</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">02</span>
               <span class="text-sm font-medium text-primary/70">STAR 스토리북 (시간순)</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">03</span>
               <span class="text-sm font-medium text-primary/70">STAR 스토리북 (질문 기반)</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">04</span>
               <span class="text-sm font-medium text-primary/70">LIST 원칙 대시보드</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">05</span>
               <span class="text-sm font-medium text-primary/70">LIST 원칙 퍼널</span>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
       </div>
     </div>

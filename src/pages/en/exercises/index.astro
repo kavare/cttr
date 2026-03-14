@@ -35,19 +35,20 @@ const exercises = [
 ];
 ---
 
-<Layout title={i.exercises.title} lang={lang}>
-  <section class="max-w-4xl mx-auto px-4 py-10">
-    <h1 class="text-3xl font-bold text-gray-900 mb-2">{i.exercises.title}</h1>
-    <p class="text-gray-600 mb-8">{i.exercises.description}</p>
+<Layout title={i.exercises.title} lang={lang} description={i.exercises.description}>
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-3">{i.exercises.title}</h1>
+    <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-4"></div>
+    <p class="text-lg text-primary/60 text-center mb-10">{i.exercises.description}</p>
 
     <div class="grid gap-4">
       {exercises.map((exercise) => (
         <a
           href={exercise.href}
-          class="block p-6 bg-white border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
+          class="block p-6 border border-primary/10 hover:border-primary/30 hover:shadow-md transition-all"
         >
-          <h2 class="text-lg font-semibold text-gray-900 mb-1">{exercise.title}</h2>
-          <p class="text-sm text-gray-600">{exercise.description}</p>
+          <h2 class="text-lg font-semibold text-primary mb-1">{exercise.title}</h2>
+          <p class="text-sm text-primary/50">{exercise.description}</p>
         </a>
       ))}
     </div>

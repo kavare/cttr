@@ -8,12 +8,67 @@ import { t } from '../i18n/translations';
 interface Props {
   title?: string;
   lang?: Lang;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title, lang = 'en' } = Astro.props;
+const { title, lang = 'en', description, ogImage } = Astro.props;
 const i = t(lang);
 const base = import.meta.env.BASE_URL;
+const site = 'https://kavare.github.io';
 const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
+const pageDescription = description || i.site.description;
+const canonicalURL = new URL(Astro.url.pathname, site);
+const ogImageURL = ogImage ? new URL(ogImage, site).href : `${site}${base}/images/book-cover.png`;
+
+const ogLocaleMap: Record<string, string> = {
+  en: 'en_US',
+  'zh-tw': 'zh_TW',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+};
+const ogLocale = ogLocaleMap[lang] || 'en_US';
+
+const keywordsMap: Record<string, string> = {
+  en: 'Career Coach, Startups, Leadership, International Career, overseas jobs, working abroad, Aaron Hsieh, LIST Principles',
+  'zh-tw': '國際職涯, 海外工作, 普通人, 職涯教練, 海外求職, Aaron Hsieh, LIST 原則',
+  ja: '海外キャリア, 海外就職, キャリアコーチ, 国際キャリア, 海外転職, Aaron Hsieh, LIST原則',
+  ko: '해외 취업, 해외 커리어, 커리어 코치, 국제 커리어, 해외 구직, Aaron Hsieh, LIST 원칙',
+};
+const keywords = keywordsMap[lang] || keywordsMap.en;
+
+const bookNameMap: Record<string, string> = {
+  en: 'A Beginner Guide to Find Your First Overseas Jobs',
+  'zh-tw': '普通人的海外求職指南',
+  ja: 'はじめての海外キャリアのつくり方',
+  ko: '평범한 사람의 해외 취업 가이드',
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Aaron Hsieh",
+      "url": `${site}${base}/en/`,
+      "jobTitle": "Engineering Manager",
+      "worksFor": { "@type": "Organization", "name": "Datadog" },
+      "sameAs": [
+        "https://www.linkedin.com/in/aarontthsieh/",
+        "https://medium.com/dimly-lit"
+      ],
+      "knowsAbout": ["Career Coaching", "International Career Development", "Software Engineering", "Leadership"]
+    },
+    {
+      "@type": "Book",
+      "name": bookNameMap[lang] || bookNameMap.en,
+      "author": { "@type": "Person", "name": "Aaron Hsieh" },
+      "inLanguage": lang === 'zh-tw' ? 'zh-TW' : lang,
+      "description": pageDescription,
+      "url": `${site}${base}/${lang}/`
+    }
+  ]
+};
 ---
 
 <!doctype html>
@@ -22,8 +77,38 @@ const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={i.site.description} />
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Aaron Hsieh" />
+    <meta name="robots" content="index, follow" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Hreflang for international SEO -->
+    <link rel="alternate" hreflang="en" href={`${site}${base}/en/`} />
+    <link rel="alternate" hreflang="zh-TW" href={`${site}${base}/zh-tw/`} />
+    <link rel="alternate" hreflang="ja" href={`${site}${base}/ja/`} />
+    <link rel="alternate" hreflang="ko" href={`${site}${base}/ko/`} />
+    <link rel="alternate" hreflang="x-default" href={`${site}${base}/en/`} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:site_name" content={i.site.title} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />

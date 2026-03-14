@@ -8,8 +8,8 @@ const i = t(lang);
 ---
 
 <Layout lang={lang}>
-  <!-- Hero Section - Reseda Style -->
-  <section class="pt-16 sm:pt-24 pb-24 sm:pb-36">
+  <!-- Hero Section -->
+  <section aria-label="About Aaron Hsieh" class="pt-16 sm:pt-24 pb-24 sm:pb-36">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] mb-20 sm:mb-28 uppercase">
         {i.landing.heroTitle}
@@ -19,7 +19,7 @@ const i = t(lang);
         <div class="overflow-hidden">
           <img
             src={`${base}/images/author-photo.jpg`}
-            alt="Aaron Hsieh"
+            alt="Aaron Hsieh - Career Coach and Engineering Manager helping people find overseas jobs"
             class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
         </div>
@@ -46,7 +46,7 @@ const i = t(lang);
   </section>
 
   <!-- Book Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <article aria-label="Book: A Beginner Guide to Find Your First Overseas Jobs" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
         <!-- Left: Title + Subtitle + Quote + Text -->
@@ -66,12 +66,24 @@ const i = t(lang);
           <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
             After struggling with job rejections post military service and a failed startup, the author had no study abroad experience, no foreign residency, and only two years of local work experience when he launched his overseas career. He has since received offers from numerous companies across Europe and the US, and helped many others do the same. Drawing on over five years of community sharing and career coaching, this book introduces the original <span class="font-bold text-primary">LIST Principles</span>. Even from Taiwan, you can use this framework to iterate, experiment, and close the distance between you and the world.
           </p>
-          <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
-            <li><span class="font-bold text-primary">Localize</span> — Blend in like a local.</li>
-            <li><span class="font-bold text-primary">Internationalize</span> — Make yourself visible to the world.</li>
-            <li><span class="font-bold text-primary">Strengthen</span> — Build internationally transferable expertise.</li>
-            <li><span class="font-bold text-primary">Test</span> — Use free market signals to measure your readiness.</li>
-          </ul>
+          <dl class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1">
+            <div>
+              <dt class="inline font-bold text-primary">Localize</dt>
+              <dd class="inline"> — Blend in like a local. Adapt your resume, language, and cultural awareness to match your target market.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Internationalize</dt>
+              <dd class="inline"> — Make yourself visible to the world. Build an online presence that recruiters across borders can find.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Strengthen</dt>
+              <dd class="inline"> — Build internationally transferable expertise. Develop skills valued by global employers.</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Test</dt>
+              <dd class="inline"> — Use free market signals to measure your readiness. Apply strategically and learn from every response.</dd>
+            </div>
+          </dl>
           <div>
             <a
               href="https://www.eslite.com/product/1001116042682161135005?srsltid=AfmBOooxk6OLJwkcMkBR3aLfXLnIlWk_QR2fAVj1hn8MzMJqWcnJWPoB"
@@ -79,7 +91,7 @@ const i = t(lang);
               rel="noopener noreferrer"
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              Read It
+              Get the Book
             </a>
           </div>
         </div>
@@ -87,16 +99,16 @@ const i = t(lang);
         <div class="md:order-2">
           <img
             src={`${base}/images/book-cover.png`}
-            alt="Book Cover"
+            alt="Book Cover - A Beginner Guide to Find Your First Overseas Jobs by Aaron Hsieh"
             class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
       </div>
     </div>
-  </section>
+  </article>
 
   <!-- CTA Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <section aria-label="LIST Principles interactive exercises" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
         LIST Principles in Practice
@@ -107,44 +119,44 @@ const i = t(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LIST Cycle" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
+          <img src={`${base}/images/list-cycle.png`} alt="LIST Cycle diagram showing Localize, Internationalize, Strengthen, and Test phases" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             Put the LIST Principles into action with five interactive exercises. Track your visa research, build your STAR stories, map behavioral interview questions, monitor your weekly job search metrics, and manage your application pipeline from submission to offer.
           </p>
           <div>
             <a
-              href={`${base}/${lang}/exercises/`}
+              href={`${base}/${lang}/resources`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              Start Your Journey
+              More Career Resources
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
         </div>
         <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
-          <div class="space-y-5">
-            <div class="flex items-center gap-4">
+          <ol class="space-y-5 list-none">
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">01</span>
               <span class="text-sm font-medium text-primary/70">Visa Memo for Dream Countries</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">02</span>
               <span class="text-sm font-medium text-primary/70">STAR Storybook (Time-series)</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">03</span>
               <span class="text-sm font-medium text-primary/70">STAR Storybook (Questions-based)</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">04</span>
               <span class="text-sm font-medium text-primary/70">LIST Principles Dashboard</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">05</span>
               <span class="text-sm font-medium text-primary/70">LIST Principles Funnel</span>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
       </div>
     </div>

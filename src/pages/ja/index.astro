@@ -8,8 +8,8 @@ const i = t(lang);
 ---
 
 <Layout lang={lang}>
-  <!-- Hero Section - Reseda Style -->
-  <section class="pt-16 sm:pt-24 pb-24 sm:pb-36">
+  <!-- Hero Section -->
+  <section aria-label="Aaron Hsieh について" class="pt-16 sm:pt-24 pb-24 sm:pb-36">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] mb-20 sm:mb-28 uppercase">
         {i.landing.heroTitle}
@@ -19,7 +19,7 @@ const i = t(lang);
         <div class="overflow-hidden">
           <img
             src={`${base}/images/author-photo.jpg`}
-            alt="Aaron Hsieh"
+            alt="Aaron Hsieh - キャリアコーチ、海外キャリア・海外就職の専門家"
             class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
         </div>
@@ -46,7 +46,7 @@ const i = t(lang);
   </section>
 
   <!-- Book Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <article aria-label="書籍：はじめての海外キャリアのつくり方" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
         <!-- Left: Title + Subtitle + Quote + Text -->
@@ -66,12 +66,24 @@ const i = t(lang);
           <p class="text-[14px] text-primary/50 leading-relaxed mb-4">
             著者は兵役後の就活失敗やスタートアップの挫折を経験しながらも、留学経験なし、海外の在留資格なし、国内での実務経験わずか2年という状態から海外キャリアを切り開きました。欧米の数々の企業からオファーを獲得し、多くの人の海外転職もサポートしてきました。5年以上のコミュニティ運営とキャリアコーチングの実績をもとに、本書ではオリジナルの<span class="font-bold text-primary">LIST原則</span>を紹介しています。今いる場所から、何度でもチャレンジできる。世界は思っているより近いのです。
           </p>
-          <ul class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1 list-none">
-            <li><span class="font-bold text-primary">Localize</span>（現地に溶け込む）現地の人と同じ目線で動く。</li>
-            <li><span class="font-bold text-primary">Internationalize</span>（世界とつながる）自分の存在を海外に届ける。</li>
-            <li><span class="font-bold text-primary">Strengthen</span>（実力を磨く）どこでも通用する専門性を身につける。</li>
-            <li><span class="font-bold text-primary">Test</span>（試して確かめる）市場からのフィードバックで自分の立ち位置を知る。</li>
-          </ul>
+          <dl class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1">
+            <div>
+              <dt class="inline font-bold text-primary">Localize</dt>
+              <dd class="inline">（現地に溶け込む）現地の人と同じ目線で動く。履歴書や言葉遣い、文化理解をターゲット市場に合わせる。</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Internationalize</dt>
+              <dd class="inline">（世界とつながる）自分の存在を海外に届ける。国境を越えてリクルーターに見つけてもらえるオンラインプレゼンスを構築する。</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Strengthen</dt>
+              <dd class="inline">（実力を磨く）どこでも通用する専門性を身につける。グローバル企業が求めるスキルを磨く。</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Test</dt>
+              <dd class="inline">（試して確かめる）市場からのフィードバックで自分の立ち位置を知る。戦略的に応募し、毎回の結果から学ぶ。</dd>
+            </div>
+          </dl>
           <div>
             <a
               href="https://www.eslite.com/product/1001116042682161135005?srsltid=AfmBOooxk6OLJwkcMkBR3aLfXLnIlWk_QR2fAVj1hn8MzMJqWcnJWPoB"
@@ -79,7 +91,7 @@ const i = t(lang);
               rel="noopener noreferrer"
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              書籍を見る
+              書籍を購入する
             </a>
           </div>
         </div>
@@ -87,16 +99,16 @@ const i = t(lang);
         <div class="md:order-2">
           <img
             src={`${base}/images/book-cover.png`}
-            alt="Book Cover"
+            alt="はじめての海外キャリアのつくり方 書籍カバー - Aaron Hsieh 著"
             class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
       </div>
     </div>
-  </section>
+  </article>
 
   <!-- CTA Section -->
-  <section class="py-20 sm:py-28 border-t border-primary/10">
+  <section aria-label="LIST原則の実践ワーク" class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
         LIST原則を体験しよう
@@ -107,44 +119,44 @@ const i = t(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LISTサイクル" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
+          <img src={`${base}/images/list-cycle.png`} alt="LISTサイクル図：Localize、Internationalize、Strengthen、Test" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             5つの実践ワークを通じて、LIST原則を身につけましょう。ビザ情報の整理、STAR形式での実績まとめ、行動面接への回答準備、毎週の活動記録、応募から内定までの進捗管理ができます。
           </p>
           <div>
             <a
-              href={`${base}/${lang}/exercises/`}
+              href={`${base}/${lang}/resources`}
               class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
             >
-              ワークを始める
+              キャリア資料をもっと見る
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
           </div>
         </div>
         <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
-          <div class="space-y-5">
-            <div class="flex items-center gap-4">
+          <ol class="space-y-5 list-none">
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">01</span>
               <span class="text-sm font-medium text-primary/70">ビザ調査メモ</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">02</span>
               <span class="text-sm font-medium text-primary/70">STAR式キャリア年表</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">03</span>
               <span class="text-sm font-medium text-primary/70">STAR式 面接質問の準備</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">04</span>
               <span class="text-sm font-medium text-primary/70">LIST式 週間活動ボード</span>
-            </div>
-            <div class="flex items-center gap-4">
+            </li>
+            <li class="flex items-center gap-4">
               <span class="text-2xl font-bold text-primary/20">05</span>
               <span class="text-sm font-medium text-primary/70">LIST式 選考パイプライン</span>
-            </div>
-          </div>
+            </li>
+          </ol>
         </div>
       </div>
     </div>
