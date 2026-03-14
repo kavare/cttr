@@ -163,7 +163,7 @@ const sampleRow: Record<Lang, ListDashboardRow[]> = {
 export default function ListDashboard({ lang }: { lang: Lang }) {
   return (
     <InteractiveTable<ListDashboardRow>
-      storageKey={STORAGE_KEY}
+      storageKey={`${STORAGE_KEY}-${lang}`}
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}

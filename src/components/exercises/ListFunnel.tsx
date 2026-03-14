@@ -246,7 +246,7 @@ export default function ListFunnel({ lang }: { lang: Lang }) {
 
   return (
     <InteractiveTable<ListFunnelRow>
-      storageKey={STORAGE_KEY}
+      storageKey={`${STORAGE_KEY}-${lang}`}
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}

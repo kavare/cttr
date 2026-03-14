@@ -97,7 +97,7 @@ const sampleRow: Record<Lang, VisaMemoRow[]> = {
 export default function VisaMemo({ lang }: { lang: Lang }) {
   return (
     <InteractiveTable<VisaMemoRow>
-      storageKey={STORAGE_KEY}
+      storageKey={`${STORAGE_KEY}-${lang}`}
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}

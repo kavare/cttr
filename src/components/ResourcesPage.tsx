@@ -195,7 +195,7 @@ export default function ResourcesPage({ lang }: Props) {
 
   const handleDownload = async (exercise: ExerciseInfo) => {
     const title = i.exercises[exercise.titleKey].title;
-    const data = loadExerciseData(exercise.storageKey);
+    const data = loadExerciseData(`${exercise.storageKey}-${lang}`);
     if (!data) {
       alert(noDataLabel);
       return;
@@ -220,7 +220,7 @@ export default function ResourcesPage({ lang }: Props) {
       let hasAny = false;
       for (const exercise of exercises) {
         const title = i.exercises[exercise.titleKey].title;
-        const data = loadExerciseData(exercise.storageKey);
+        const data = loadExerciseData(`${exercise.storageKey}-${lang}`);
         if (data) {
           hasAny = true;
           const columns = exercise.getColumns(lang);

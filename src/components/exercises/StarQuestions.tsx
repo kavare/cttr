@@ -150,7 +150,7 @@ interface Props {
 export default function StarQuestions({ lang }: Props) {
   return (
     <InteractiveTable<StarQuestionsRow>
-      storageKey={STORAGE_KEY}
+      storageKey={`${STORAGE_KEY}-${lang}`}
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}

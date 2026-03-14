@@ -174,7 +174,7 @@ const sampleRow: Record<Lang, StarTimeRow[]> = {
 export default function StarTimeSeries({ lang }: Props) {
   return (
     <InteractiveTable<StarTimeRow>
-      storageKey={STORAGE_KEY}
+      storageKey={`${STORAGE_KEY}-${lang}`}
       columns={getColumns(lang)}
       defaultRow={defaultRow}
       lang={lang}
