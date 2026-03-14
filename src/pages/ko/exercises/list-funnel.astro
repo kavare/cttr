@@ -1,27 +1,8 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
+import ExercisePageLayout from '../../../components/ExercisePageLayout.astro';
 import ListFunnel from '../../../components/exercises/ListFunnel';
-import { t } from '../../../i18n/translations';
-
-const base = import.meta.env.BASE_URL;
-const lang = 'ko' as const;
-const i = t(lang);
 ---
 
-<Layout title={i.exercises.listFunnel.title} lang={lang}>
-  <section class="max-w-6xl mx-auto px-4 py-10">
-    <a
-      href={`${base}/${lang}/exercises/`}
-      class="inline-flex items-center text-sm text-primary hover:text-primary-dark transition-colors mb-6"
-    >
-      &larr; {i.common.backToExercises}
-    </a>
-    <h1 class="text-2xl font-bold text-gray-900 mb-2">
-      {i.exercises.listFunnel.title}
-    </h1>
-    <p class="text-gray-600 mb-8">
-      {i.exercises.listFunnel.description}
-    </p>
-    <ListFunnel lang={lang} client:load />
-  </section>
-</Layout>
+<ExercisePageLayout lang="ko" exerciseKey="listFunnel">
+  <ListFunnel lang="ko" client:load />
+</ExercisePageLayout>

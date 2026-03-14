@@ -1,12 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ResourcesPage from '../../components/ResourcesPage.tsx';
-import { t } from '../../i18n/translations';
-
-const lang = 'ja' as const;
-const i = t(lang);
+import ResourcesPageWrapper from '../../components/ResourcesPageWrapper.astro';
 ---
 
-<Layout lang={lang} title={i.resources.title}>
-  <ResourcesPage lang={lang} client:load />
-</Layout>
+<ResourcesPageWrapper lang="ja" />

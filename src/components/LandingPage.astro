@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { Lang } from '../i18n/translations';
+import { t } from '../i18n/translations';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const i = t(lang);
+---
+
+<Layout lang={lang}>
+  <!-- Hero Section -->
+  <section aria-label={i.landing.heroAriaLabel} class="pt-16 sm:pt-24 pb-24 sm:pb-36">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] mb-20 sm:mb-28 uppercase">
+        {i.landing.heroTitle}
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+        <!-- Left Column: Author Photo -->
+        <div class="overflow-hidden">
+          <img
+            src={`${base}/images/author-photo.jpg`}
+            alt={i.landing.authorImgAlt}
+            class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
+          />
+        </div>
+        <!-- Right Column: Bio Content -->
+        <div class="flex flex-col justify-start">
+          <h2 class="text-base sm:text-lg font-bold text-primary mb-16 sm:mb-24 leading-snug tracking-tight">
+            {i.landing.jobTitle}
+          </h2>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-14 font-normal">
+            {i.landing.bioText}
+          </p>
+          <div>
+            <a
+              href={`${base}/${lang}/exercises/`}
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              {i.landing.heroCtaText}
+              <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Book Section -->
+  <article aria-label={i.landing.bookSectionAriaLabel} class="py-20 sm:py-28 border-t border-primary/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
+        <!-- Left: Title + Subtitle + Quote + Text -->
+        <div class="flex flex-col md:order-1">
+          <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
+            {i.landing.bookSectionTitle}
+          </h2>
+          <p class="text-lg sm:text-xl text-primary/45 mb-8">
+            {i.landing.bookSubtitle}
+          </p>
+          <blockquote class="border-l-2 border-primary/30 pl-4 mb-10">
+            <p class="text-[15px] text-primary/70 italic">{i.landing.quote}</p>
+          </blockquote>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-5">
+            {i.landing.bookDescription}
+          </p>
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-4" set:html={i.landing.listParagraph}>
+          </p>
+          <dl class="text-[14px] text-primary/50 leading-relaxed mb-8 space-y-1">
+            <div>
+              <dt class="inline font-bold text-primary">Localize</dt>
+              <dd class="inline">{i.landing.listL}</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Internationalize</dt>
+              <dd class="inline">{i.landing.listI}</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Strengthen</dt>
+              <dd class="inline">{i.landing.listS}</dd>
+            </div>
+            <div>
+              <dt class="inline font-bold text-primary">Test</dt>
+              <dd class="inline">{i.landing.listT}</dd>
+            </div>
+          </dl>
+          <div>
+            <a
+              href="https://www.eslite.com/product/1001116042682161135005?srsltid=AfmBOooxk6OLJwkcMkBR3aLfXLnIlWk_QR2fAVj1hn8MzMJqWcnJWPoB"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              {i.landing.bookCta}
+            </a>
+          </div>
+        </div>
+        <!-- Right: Book Cover -->
+        <div class="md:order-2">
+          <img
+            src={`${base}/images/book-cover.png`}
+            alt={i.landing.bookCoverAlt}
+            class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
+          />
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA Section -->
+  <section aria-label={i.landing.section3AriaLabel} class="py-20 sm:py-28 border-t border-primary/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl sm:text-5xl font-bold text-primary mb-4 tracking-tight">
+        {i.landing.section3Title}
+      </h2>
+      <p class="text-lg sm:text-xl text-primary/45 mb-20 sm:mb-28">
+        {i.landing.section3Subtitle}
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
+        <!-- Left: Image + Description + CTA -->
+        <div class="flex flex-col md:order-1">
+          <img src={`${base}/images/list-cycle.png`} alt={i.landing.listCycleAlt} class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
+          <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
+            {i.landing.section3Description}
+          </p>
+          <div>
+            <a
+              href={`${base}/${lang}/resources`}
+              class="inline-flex items-center px-7 py-3 text-xs font-medium border border-primary text-primary hover:bg-primary hover:text-surface transition-colors tracking-[0.15em] uppercase"
+            >
+              {i.landing.section3Cta}
+              <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Right: Exercise List -->
+        <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
+          <ol class="space-y-5 list-none">
+            <li class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">01</span>
+              <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName1}</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">02</span>
+              <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName2}</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">03</span>
+              <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName3}</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">04</span>
+              <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName4}</span>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="text-2xl font-bold text-primary/20">05</span>
+              <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName5}</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
