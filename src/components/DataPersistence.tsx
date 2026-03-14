@@ -212,7 +212,7 @@ export function DataPersistenceControls<T>({
   };
 
   const btnClass =
-    'inline-flex items-center px-3 py-1.5 text-sm font-medium border border-primary/15 bg-transparent text-primary/60 hover:text-primary hover:border-primary/30 transition-colors';
+    'inline-flex items-center px-3 py-1.5 text-xs sm:text-sm font-medium border border-primary/15 bg-transparent text-primary/60 hover:text-primary hover:border-primary/30 transition-colors';
 
   return (
     <div className="flex flex-wrap items-center gap-2">

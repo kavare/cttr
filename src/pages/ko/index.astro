@@ -20,7 +20,7 @@ const i = t(lang);
           <img
             src={`${base}/images/author-photo.jpg`}
             alt="Aaron Hsieh"
-            class="w-full object-cover object-[70%_center] aspect-[3/4]"
+            class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
         </div>
         <!-- Right Column: Bio Content -->
@@ -88,7 +88,7 @@ const i = t(lang);
           <img
             src={`${base}/images/book-cover.png`}
             alt="Book Cover"
-            class="w-full drop-shadow-xl"
+            class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@ const i = t(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LIST 사이클" class="w-full mb-8" />
+          <img src={`${base}/images/list-cycle.png`} alt="LIST 사이클" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             5가지 실전 워크북을 통해 LIST 원칙을 직접 체험해 보세요. 비자 정보 정리, STAR 기법으로 경력 스토리 만들기, 행동 면접 질문 대비, 주간 구직 활동 기록, 지원부터 합격까지 파이프라인 관리를 한 곳에서 할 수 있습니다.
           </p>

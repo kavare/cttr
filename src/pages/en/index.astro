@@ -20,7 +20,7 @@ const i = t(lang);
           <img
             src={`${base}/images/author-photo.jpg`}
             alt="Aaron Hsieh"
-            class="w-full object-cover object-[70%_center] aspect-[3/4]"
+            class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
         </div>
         <!-- Right Column: Bio Content -->
@@ -88,7 +88,7 @@ const i = t(lang);
           <img
             src={`${base}/images/book-cover.png`}
             alt="Book Cover"
-            class="w-full drop-shadow-xl"
+            class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@ const i = t(lang);
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
         <!-- Left: Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
-          <img src={`${base}/images/list-cycle.png`} alt="LIST Cycle" class="w-full mb-8" />
+          <img src={`${base}/images/list-cycle.png`} alt="LIST Cycle" class="w-full mb-8 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[14px] text-primary/50 leading-relaxed mb-8">
             Put the LIST Principles into action with five interactive exercises. Track your visa research, build your STAR stories, map behavioral interview questions, monitor your weekly job search metrics, and manage your application pipeline from submission to offer.
           </p>

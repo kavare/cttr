@@ -77,7 +77,7 @@ export function InteractiveTable<T extends Record<string, unknown>>({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             onClick={addRow}
             className="inline-flex items-center px-4 py-2 text-sm font-medium bg-primary text-[#f7f5f0] hover:bg-primary-light transition-colors"
@@ -100,88 +100,155 @@ export function InteractiveTable<T extends Record<string, unknown>>({
       {rows.length === 0 ? (
         <p className="text-center py-12 text-primary/30">{i.common.noData}</p>
       ) : (
-        <div className="overflow-x-auto border border-primary/10">
-          <table className="min-w-full divide-y divide-primary/10">
-            <thead className="bg-primary/[0.03]">
-              <tr>
-                <th className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider w-12">
-                  #
-                </th>
-                {columns.map((col) => (
-                  <th
-                    key={col.key}
-                    className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider"
-                    style={col.width ? { minWidth: col.width } : undefined}
+        <>
+          {/* Mobile card layout */}
+          <div className="md:hidden space-y-4">
+            {rows.map((row, rowIdx) => (
+              <div key={rowIdx} className="border border-primary/10 bg-surface p-4 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-primary/40 uppercase tracking-wider">#{rowIdx + 1}</span>
+                  <button
+                    onClick={() => deleteRow(rowIdx)}
+                    className="text-xs text-red-500 hover:text-red-700 transition-colors px-2 py-1"
+                    title={i.common.deleteRow}
                   >
-                    {col.label}
-                  </th>
-                ))}
-                <th className="px-3 py-3 w-16" />
-              </tr>
-            </thead>
-            <tbody className="bg-surface divide-y divide-primary/5">
-              {rows.map((row, rowIdx) => (
-                <tr key={rowIdx} className="hover:bg-primary/[0.02]">
-                  <td className="px-3 py-2 text-xs text-primary/30">{rowIdx + 1}</td>
-                  {columns.map((col) => {
-                    const customCell = renderCell?.(
-                      row,
-                      col,
-                      (key, value) => updateCell(rowIdx, key, value)
-                    );
-                    if (customCell !== null && customCell !== undefined) {
-                      return <td key={col.key} className="px-3 py-2">{customCell}</td>;
-                    }
+                    ✕
+                  </button>
+                </div>
+                {columns.map((col) => {
+                  const customCell = renderCell?.(
+                    row,
+                    col,
+                    (key, value) => updateCell(rowIdx, key, value)
+                  );
+                  return (
+                    <div key={col.key} className="space-y-1">
+                      <label className="block text-xs font-semibold text-primary/50 uppercase tracking-wider">
+                        {col.label}
+                      </label>
+                      {customCell !== null && customCell !== undefined ? (
+                        <div>{customCell}</div>
+                      ) : col.type === 'select' ? (
+                        <select
+                          value={String(row[col.key] ?? '')}
+                          onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                          className="w-full text-sm border border-primary/10 px-3 py-2 focus:outline-none focus:border-primary/30 bg-transparent"
+                        >
+                          <option value="">—</option>
+                          {col.options?.map((opt) => (
+                            <option key={opt} value={opt}>
+                              {opt}
+                            </option>
+                          ))}
+                        </select>
+                      ) : col.type === 'textarea' ? (
+                        <textarea
+                          value={String(row[col.key] ?? '')}
+                          onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                          placeholder={col.placeholder}
+                          rows={3}
+                          className="w-full text-sm border border-primary/10 px-3 py-2 focus:outline-none focus:border-primary/30 bg-transparent resize-y"
+                        />
+                      ) : (
+                        <input
+                          type="text"
+                          value={String(row[col.key] ?? '')}
+                          onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                          placeholder={col.placeholder}
+                          className="w-full text-sm border border-primary/10 px-3 py-2 focus:outline-none focus:border-primary/30 bg-transparent"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
 
-                    return (
-                      <td key={col.key} className="px-3 py-2">
-                        {col.type === 'select' ? (
-                          <select
-                            value={String(row[col.key] ?? '')}
-                            onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
-                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
-                          >
-                            <option value="">—</option>
-                            {col.options?.map((opt) => (
-                              <option key={opt} value={opt}>
-                                {opt}
-                              </option>
-                            ))}
-                          </select>
-                        ) : col.type === 'textarea' ? (
-                          <textarea
-                            value={String(row[col.key] ?? '')}
-                            onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
-                            placeholder={col.placeholder}
-                            rows={2}
-                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent resize-y"
-                          />
-                        ) : (
-                          <input
-                            type="text"
-                            value={String(row[col.key] ?? '')}
-                            onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
-                            placeholder={col.placeholder}
-                            className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
-                          />
-                        )}
-                      </td>
-                    );
-                  })}
-                  <td className="px-3 py-2">
-                    <button
-                      onClick={() => deleteRow(rowIdx)}
-                      className="text-xs text-red-500 hover:text-red-700 transition-colors"
-                      title={i.common.deleteRow}
+          {/* Desktop table layout */}
+          <div className="hidden md:block overflow-x-auto border border-primary/10">
+            <table className="min-w-full divide-y divide-primary/10">
+              <thead className="bg-primary/[0.03]">
+                <tr>
+                  <th className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider w-12">
+                    #
+                  </th>
+                  {columns.map((col) => (
+                    <th
+                      key={col.key}
+                      className="px-3 py-3 text-left text-xs font-semibold text-primary/50 uppercase tracking-wider"
+                      style={col.width ? { minWidth: col.width } : undefined}
                     >
-                      ✕
-                    </button>
-                  </td>
+                      {col.label}
+                    </th>
+                  ))}
+                  <th className="px-3 py-3 w-16" />
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="bg-surface divide-y divide-primary/5">
+                {rows.map((row, rowIdx) => (
+                  <tr key={rowIdx} className="hover:bg-primary/[0.02]">
+                    <td className="px-3 py-2 text-xs text-primary/30">{rowIdx + 1}</td>
+                    {columns.map((col) => {
+                      const customCell = renderCell?.(
+                        row,
+                        col,
+                        (key, value) => updateCell(rowIdx, key, value)
+                      );
+                      if (customCell !== null && customCell !== undefined) {
+                        return <td key={col.key} className="px-3 py-2">{customCell}</td>;
+                      }
+
+                      return (
+                        <td key={col.key} className="px-3 py-2">
+                          {col.type === 'select' ? (
+                            <select
+                              value={String(row[col.key] ?? '')}
+                              onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                              className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
+                            >
+                              <option value="">—</option>
+                              {col.options?.map((opt) => (
+                                <option key={opt} value={opt}>
+                                  {opt}
+                                </option>
+                              ))}
+                            </select>
+                          ) : col.type === 'textarea' ? (
+                            <textarea
+                              value={String(row[col.key] ?? '')}
+                              onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                              placeholder={col.placeholder}
+                              rows={2}
+                              className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent resize-y"
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              value={String(row[col.key] ?? '')}
+                              onChange={(e) => updateCell(rowIdx, col.key, e.target.value)}
+                              placeholder={col.placeholder}
+                              className="w-full text-sm border border-primary/10 px-2 py-1.5 focus:outline-none focus:border-primary/30 bg-transparent"
+                            />
+                          )}
+                        </td>
+                      );
+                    })}
+                    <td className="px-3 py-2">
+                      <button
+                        onClick={() => deleteRow(rowIdx)}
+                        className="text-xs text-red-500 hover:text-red-700 transition-colors"
+                        title={i.common.deleteRow}
+                      >
+                        ✕
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
     </div>
   );
