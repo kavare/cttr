@@ -1,43 +1,39 @@
-# Astro Starter Kit: Minimal
+# On the Road — A Beginner Guide to Find Your First Overseas Jobs
+
+Companion website for the book by Aaron Hsieh. A static site with interactive career exercises based on the LIST Principles (Localize, Internationalize, Strengthen, Test).
+
+**Live site:** [kavare.github.io/cttr](https://kavare.github.io/cttr/)
+
+## What's on the site
+
+- **About the author** — 12+ years building a career across Paris, London, Taipei, and California
+- **The book** — Practical guide covering visa strategies, resume building, interview prep, and career planning for international job seekers
+- **5 interactive exercises:**
+  1. Visa Memo for Dream Countries
+  2. STAR Storybook (Time-series)
+  3. STAR Storybook (Questions-based)
+  4. LIST Principles Dashboard
+  5. LIST Principles Funnel
+- **Resources** — Download exercises as PDF
+
+All exercise data is saved locally in the browser. Users can export/import via CSV.
+
+## Languages
+
+English, 繁體中文, 日本語, 한국어 — auto-detected from browser language.
+
+## Tech stack
+
+Astro 6 · React 19 · Tailwind CSS v4 · html2pdf.js · GitHub Pages
+
+## Development
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev        # localhost:4321/cttr/
+npm run build      # static output to ./dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## License
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+All rights reserved. Content and book materials are property of Aaron Hsieh.
