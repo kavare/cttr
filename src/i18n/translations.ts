@@ -96,7 +96,7 @@ export const translations = {
     },
     exercises: {
       title: '職涯練習',
-      description: '完成這些互動練習，為您的海外求職做準備。資料會保存在您的瀏覽器中，您可以隨時下載或上傳自己的資料。',
+      description: '海外求職實戰練習。資料自動保存，可隨時下載或上傳。',
       visaMemo: {
         title: '練習一：夢想國家簽證備忘錄',
         description: '研究並整理目標國家的簽證要求。',
@@ -236,7 +236,7 @@ export const translations = {
     },
     exercises: {
       title: '커리어 실습',
-      description: '해외 취업 준비에 도움이 되는 5가지 실습을 진행해 보세요. 데이터는 브라우저에 자동 저장되며, CSV로 다운로드하거나 업로드할 수 있습니다.',
+      description: '해외 취업 실전 연습. 데이터는 자동 저장되며 다운로드·업로드 가능합니다.',
       visaMemo: {
         title: '실습 1: 희망 국가 비자 메모',
         description: '가고 싶은 나라의 비자 요건을 조사하고 한눈에 정리해 보세요.',

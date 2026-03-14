@@ -21,6 +21,22 @@ const langOptions: { code: Lang; label: string }[] = [
   { code: 'ko', label: 'KO' },
 ];
 const otherLangs = langOptions.filter((l) => l.code !== lang);
+
+// Determine active nav item
+const stripped = pathWithoutLang.replace(/^\//, '').replace(/\/$/, '');
+const isHome = stripped === '' || stripped === '/';
+const isExercises = stripped.startsWith('exercises');
+const isResources = stripped.startsWith('resources');
+
+const navClass = (active: boolean) =>
+  active
+    ? 'text-sm font-medium text-primary border-b-2 border-primary pb-0.5 transition-colors'
+    : 'text-sm font-medium text-primary/50 hover:text-primary transition-colors';
+
+const mobileNavClass = (active: boolean) =>
+  active
+    ? 'block px-3 py-2 text-sm font-medium text-primary border-l-2 border-primary'
+    : 'block px-3 py-2 text-sm font-medium text-primary/50 hover:text-primary';
 ---
 
 <nav class="sticky top-0 z-50 bg-surface border-b border-primary/10">
@@ -31,16 +47,16 @@ const otherLangs = langOptions.filter((l) => l.code !== lang);
       </a>
 
       <div class="hidden sm:flex items-center gap-8">
-        <a href={`${base}/${lang}/`} class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
+        <a href={`${base}/${lang}/`} class={navClass(isHome)}>
           {i.nav.home}
         </a>
-        <a href={`${base}/${lang}/exercises/`} class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
+        <a href={`${base}/${lang}/exercises/`} class={navClass(isExercises)}>
           {i.nav.exercises}
         </a>
-        <a href={`${base}/${lang}/resources`} class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
+        <a href={`${base}/${lang}/resources`} class={navClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-primary/70 hover:text-primary transition-colors">
+        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class={navClass(false)}>
           {i.nav.coffeechat}
         </a>
         <div class="inline-flex items-center px-3 py-1 text-xs font-medium border border-primary/20 text-primary/70 gap-1">
@@ -78,16 +94,16 @@ const otherLangs = langOptions.filter((l) => l.code !== lang);
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden sm:hidden pb-4">
       <div class="flex flex-col gap-1">
-        <a href={`${base}/${lang}/`} class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
+        <a href={`${base}/${lang}/`} class={mobileNavClass(isHome)}>
           {i.nav.home}
         </a>
-        <a href={`${base}/${lang}/exercises/`} class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
+        <a href={`${base}/${lang}/exercises/`} class={mobileNavClass(isExercises)}>
           {i.nav.exercises}
         </a>
-        <a href={`${base}/${lang}/resources`} class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
+        <a href={`${base}/${lang}/resources`} class={mobileNavClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class="block px-3 py-2 text-sm font-medium text-primary/70 hover:text-primary">
+        <a href="https://calendly.com/aaron-hsieh-nexf/30min" target="_blank" rel="noopener noreferrer" class={mobileNavClass(false)}>
           {i.nav.coffeechat}
         </a>
       </div>
