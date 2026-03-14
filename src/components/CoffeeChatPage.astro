@@ -16,7 +16,7 @@ const base = import.meta.env.BASE_URL;
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <h1 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-3">{i.coffeechat.title}</h1>
     <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-6"></div>
-    <p class="text-lg text-primary/60 text-center mb-14 max-w-2xl mx-auto">{i.coffeechat.subtitle}</p>
+    <p class="text-lg text-primary/60 text-center mb-14 max-w-2xl mx-auto" set:html={i.coffeechat.subtitle}></p>
 
     <div class="grid gap-6 max-w-2xl mx-auto">
       <!-- Calendly CTA -->

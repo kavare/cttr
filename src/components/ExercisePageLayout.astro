@@ -22,9 +22,10 @@ const exercise = i.exercises[exerciseKey];
   <section class={containerClass}>
     <a
       href={`${base}/${lang}/exercises/`}
-      class="inline-flex items-center text-sm text-primary hover:text-primary-dark transition-colors mb-6"
+      class="inline-flex items-center text-xs font-medium tracking-wide uppercase text-primary/40 hover:text-primary transition-colors mb-6 gap-1.5"
     >
-      &larr; {i.common.backToExercises}
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m0 0l5-5m-5 5l5 5" /></svg>
+      {i.common.backToExercises}
     </a>
     <h1 class={headingClass}>
       {exercise.title}

@@ -2,11 +2,11 @@
 
 @theme {
   --color-primary: #1a1a1a;
-  --color-primary-light: #333333;
+  --color-primary-light: #3a3a3a;
   --color-primary-dark: #000000;
-  --color-accent: #a3a092;
-  --color-surface: #f7f5f0;
-  --color-surface-dark: #e8e4dc;
+  --color-accent: #808080;
+  --color-surface: #f0f0f0;
+  --color-surface-dark: #d4d4d4;
   --font-sans: 'Source Serif 4', 'Noto Serif TC', 'Noto Serif JP', 'Noto Serif KR', Georgia, serif;
   --font-heading: 'Space Grotesk', 'Noto Sans TC', 'Noto Sans JP', 'Noto Sans KR', system-ui, sans-serif;
 }
@@ -16,16 +16,46 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 button, select, input, textarea, label,
-a[class*="uppercase"],
 table, th, td,
-nav, ol, .space-y-5 {
+nav, ol {
   font-family: var(--font-heading);
 }
 
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: color 0.15s, background-color 0.15s;
+}
+.cta-link:hover {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+
 body {
-  font-size: 19px;
+  font-size: 16px;
   background-image:
     linear-gradient(180deg, rgba(0,0,0,0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+  }
+}
+
+.brand-mobile { display: inline; }
+.brand-full { display: none; }
+@media (min-width: 640px) {
+  .brand-mobile { display: none; }
+  .brand-full { display: inline; }
 }

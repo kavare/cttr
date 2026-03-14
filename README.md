@@ -1,4 +1,4 @@
-# On the Road — A Beginner Guide to Find Your First Overseas Jobs
+# A Beginner Guide to Find Your First Overseas Jobs
 
 Companion website for the book by Aaron Hsieh. A static site with interactive career exercises based on the LIST Principles (Localize, Internationalize, Strengthen, Test).
 
@@ -6,7 +6,7 @@ Companion website for the book by Aaron Hsieh. A static site with interactive ca
 
 ## What's on the site
 
-- **About the author** — 12+ years building a career across Paris, London, Taipei, and California
+- **About the author** — 15+ years building a career across Paris, London, Taipei, and California
 - **The book** — Practical guide covering visa strategies, resume building, interview prep, and career planning for international job seekers
 - **5 interactive exercises:**
   1. Visa Memo for Dream Countries
@@ -25,14 +25,6 @@ English, 繁體中文, 日本語, 한국어 — auto-detected from browser langu
 ## Tech stack
 
 Astro 6 · React 19 · Tailwind CSS v4 · html2pdf.js · GitHub Pages
-
-## Development
-
-```sh
-npm install
-npm run dev        # localhost:4321/cttr/
-npm run build      # static output to ./dist/
-```
 
 ## License
 

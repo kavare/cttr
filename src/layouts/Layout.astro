@@ -19,7 +19,7 @@ const site = 'https://kavare.github.io';
 const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
 const pageDescription = description || i.site.description;
 const canonicalURL = new URL(Astro.url.pathname, site);
-const ogImageURL = ogImage ? new URL(ogImage, site).href : `${site}${base}/images/book-cover.png`;
+const ogImageURL = ogImage ? new URL(ogImage, site).href : `${site}${base}/images/book-cover-all_rights_reserved_aaron_hsieh.png`;
 
 const ogLocaleMap: Record<string, string> = {
   en: 'en_US',
