@@ -45,10 +45,10 @@ const exercises = [
       {exercises.map((exercise) => (
         <a
           href={exercise.href}
-          class="block p-6 border border-primary/10 hover:border-primary/30 hover:shadow-md transition-all"
+          class="block p-6 bg-white border border-gray-200 rounded-lg hover:border-primary hover:shadow-md transition-all"
         >
-          <h2 class="text-lg font-semibold text-primary mb-1">{exercise.title}</h2>
-          <p class="text-sm text-primary/50">{exercise.description}</p>
+          <h2 class="text-lg font-semibold text-gray-900 mb-1">{exercise.title}</h2>
+          <p class="text-sm text-gray-600">{exercise.description}</p>
         </a>
       ))}
     </div>
