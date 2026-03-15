@@ -44,7 +44,8 @@ const mobileNavClass = (active: boolean) =>
 <nav class="sticky top-0 z-50 bg-[#f0ede6] border-b border-primary/10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-14">
-      <a href={`${base}/${lang}/`} class="font-bold text-primary tracking-tight hover:opacity-70 transition-opacity shrink-0 whitespace-nowrap text-sm lg:text-base">
+      <a href={`${base}/${lang}/`} class="flex items-center gap-2 font-bold text-primary tracking-tight hover:opacity-70 transition-opacity shrink-0 whitespace-nowrap text-sm lg:text-base">
+        <img src={`${base}/images/logo.png`} alt="" class="h-7 w-auto" />
         {i.nav.brand}
       </a>
 
