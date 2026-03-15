@@ -10,31 +10,27 @@ interface Props {
 const { lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const i = t(lang);
-const sectionTitle = `text-3xl sm:text-5xl ${lang === 'en' ? 'font-black' : 'font-bold'} text-primary uppercase tracking-tight`;
+const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'font-bold'} text-primary uppercase tracking-tight leading-tight font-heading`;
 ---
 
 <Layout lang={lang}>
   <!-- Hero: Name Title -->
-  <section aria-label={i.landing.heroAriaLabel} class="pt-16 sm:pt-24 pb-20 sm:pb-28">
+  <section aria-label={i.landing.heroAriaLabel} class="pt-16 sm:pt-24 pb-10 sm:pb-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-black tracking-tight text-primary leading-[0.9] uppercase">
+      <h1 class="text-6xl sm:text-8xl lg:text-9xl font-[900] tracking-[-0.03em] text-primary leading-[0.85] uppercase">
         {i.landing.heroTitle}
       </h1>
     </div>
   </section>
 
   <!-- Book Section -->
-  <article aria-label={i.landing.bookSectionAriaLabel} class="py-20 sm:py-28 border-t border-primary/10">
+  <article aria-label={i.landing.bookSectionAriaLabel} class="py-20 sm:py-28">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-x-16 md:gap-y-0 items-start">
-        <!-- Left: Title + Subtitle -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-20 md:gap-y-0 items-start">
+        <!-- Left: Quote as title + Body -->
         <div class="flex flex-col">
-          <h2 class={`${sectionTitle} mb-4`}>
-            {i.landing.bookSectionTitle}
+          <h2 class="text-2xl sm:text-3xl font-black text-primary leading-tight tracking-tight uppercase font-heading mb-8 sm:mb-12" set:html={i.landing.quote}>
           </h2>
-          <p class="text-lg sm:text-xl text-primary/45 mb-8">
-            {i.landing.bookSubtitle}
-          </p>
         </div>
         <!-- Right: Book Cover -->
         <div class="md:row-span-2">
@@ -44,11 +40,8 @@ const sectionTitle = `text-3xl sm:text-5xl ${lang === 'en' ? 'font-black' : 'fon
             class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
         </div>
-        <!-- Left continued: Quote + Body + CTA -->
+        <!-- Left continued: Body + CTA -->
         <div class="flex flex-col">
-          <blockquote class="border-l-2 border-primary/30 pl-4 mb-10">
-            <p class="text-[15px] text-primary/70 italic">{i.landing.quote}</p>
-          </blockquote>
           <p class="text-[15px] text-primary/50 leading-relaxed mb-5">
             {i.landing.bookDescription}
           </p>
@@ -101,12 +94,8 @@ const sectionTitle = `text-3xl sm:text-5xl ${lang === 'en' ? 'font-black' : 'fon
         </div>
         <!-- Right Column: Bio Content -->
         <div class="flex flex-col justify-start">
-          <h2 class={`${sectionTitle} mb-6`}>
-            {i.landing.aboutMeTitle}
+          <h2 class={`${sectionTitle} mb-16 sm:mb-24`} set:html={i.landing.jobTitle}>
           </h2>
-          <p class="text-base sm:text-lg font-bold text-primary mb-16 sm:mb-24 leading-snug tracking-tight">
-            {i.landing.jobTitle}
-          </p>
           <p class="text-[15px] text-primary/50 leading-relaxed mb-14 font-normal" set:html={i.landing.bioText}>
           </p>
           <div>
@@ -123,15 +112,11 @@ const sectionTitle = `text-3xl sm:text-5xl ${lang === 'en' ? 'font-black' : 'fon
   <!-- LIST Principles Exercises -->
   <section aria-label={i.landing.section3AriaLabel} class="py-20 sm:py-28 border-t border-primary/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class={`${sectionTitle} mb-4`}>
-        {i.landing.section3Title}
-      </h2>
-      <p class="text-lg sm:text-xl text-primary/45 mb-8">
-        {i.landing.section3Subtitle}
-      </p>
       <div class="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-12 md:gap-16 items-start">
-        <!-- Left: Image + Description + CTA -->
+        <!-- Left: Title + Image + Description + CTA -->
         <div class="flex flex-col md:order-1">
+          <h2 class={`${sectionTitle} mb-8`} set:html={i.landing.section3Title}>
+          </h2>
           <img src={`${base}/images/list-cycle-all_rights_reserved_aaron_hsieh.png`} alt={i.landing.listCycleAlt} class="w-full mb-10 sm:mb-12 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[15px] text-primary/50 leading-relaxed mb-8">
             {i.landing.section3Description}
@@ -179,11 +164,8 @@ const sectionTitle = `text-3xl sm:text-5xl ${lang === 'en' ? 'font-black' : 'fon
         <!-- Left: Title + Quote -->
         <div class="flex flex-col justify-start mb-8 md:mb-0">
           <h2 class={`${sectionTitle} mb-10 md:mb-6`}>
-            {i.landing.section4Title}
+            {i.landing.section4Quote}
           </h2>
-          <blockquote class="border-l-2 border-primary/30 pl-4">
-            <p class="text-[15px] text-primary/70 italic">{i.landing.section4Quote}</p>
-          </blockquote>
         </div>
         <!-- Right: Image -->
         <div class="overflow-hidden md:row-span-2 my-8 md:my-0">
