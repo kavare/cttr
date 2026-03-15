@@ -29,6 +29,7 @@ const isHome = stripped === '' || stripped === '/';
 const isExercises = stripped.startsWith('exercises');
 const isResources = stripped.startsWith('resources');
 const isCoffeeChat = stripped.startsWith('coffee-chat');
+const isEssays = stripped.startsWith('essays');
 
 const navClass = (active: boolean) =>
   active
@@ -58,6 +59,9 @@ const mobileNavClass = (active: boolean) =>
         </a>
         <a href={`${base}/${lang}/resources`} class={navClass(isResources)}>
           {i.nav.resources}
+        </a>
+        <a href={`${base}/${lang}/essays`} class={navClass(isEssays)}>
+          {i.nav.essays}
         </a>
         <a href={`${base}/${lang}/coffee-chat`} class={navClass(isCoffeeChat)}>
           {i.nav.coffeechat}
@@ -95,6 +99,9 @@ const mobileNavClass = (active: boolean) =>
         </a>
         <a href={`${base}/${lang}/resources`} class={mobileNavClass(isResources)}>
           {i.nav.resources}
+        </a>
+        <a href={`${base}/${lang}/essays`} class={mobileNavClass(isEssays)}>
+          {i.nav.essays}
         </a>
         <a href={`${base}/${lang}/coffee-chat`} class={mobileNavClass(isCoffeeChat)}>
           {i.nav.coffeechat}
