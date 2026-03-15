@@ -52,10 +52,3 @@ body {
     font-size: 17px;
   }
 }
-
-.brand-mobile { display: inline; }
-.brand-full { display: none; }
-@media (min-width: 640px) {
-  .brand-mobile { display: none; }
-  .brand-full { display: inline; }
-}
