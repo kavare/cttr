@@ -4,6 +4,15 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      target:
+        description: Build target
+        required: true
+        default: github-pages
+        type: choice
+        options:
+          - github-pages
+          - custom-domain
 
 permissions:
   contents: read
@@ -17,6 +26,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SITE_URL: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'custom-domain' && 'https://aarontthsieh.com' || 'https://kavare.github.io' }}
+      BASE_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'custom-domain' && '/' || '/cttr' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
