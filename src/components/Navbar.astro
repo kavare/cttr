@@ -1,6 +1,7 @@
 ---
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { joinBasePath } from '../lib/url';
 
 interface Props {
   lang: Lang;
@@ -9,10 +10,11 @@ interface Props {
 const { lang } = Astro.props;
 const i = t(lang);
 const base = import.meta.env.BASE_URL;
+const basePrefix = base === '/' ? '' : base;
 
 // Build switch paths for all other languages
 const currentPath = Astro.url.pathname;
-const pathWithoutLang = currentPath.replace(new RegExp(`^${base}/(en|zh-tw|ja|ko)`), '');
+const pathWithoutLang = currentPath.replace(new RegExp(`^${basePrefix || ''}/(en|zh-tw|ja|ko)`), '');
 
 const langOptions: { code: Lang; label: string }[] = [
   { code: 'en', label: 'EN' },
@@ -45,32 +47,32 @@ const mobileNavClass = (active: boolean) =>
 <nav class="sticky top-0 z-50 bg-[#f0ede6] border-b border-primary/10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-14">
-      <a href={`${base}/${lang}/`} class="flex items-center gap-2 font-bold text-primary tracking-tight hover:opacity-70 transition-opacity min-w-0 text-sm lg:text-base">
-        <img src={`${base}/images/logo-all_rights_reserved_aaron_hsieh.png`} alt="" class="h-7 w-auto shrink-0" />
+      <a href={joinBasePath(base, `/${lang}/`)} class="flex items-center gap-2 font-bold text-primary tracking-tight hover:opacity-70 transition-opacity min-w-0 text-sm lg:text-base">
+        <img src={joinBasePath(base, '/images/logo-all_rights_reserved_aaron_hsieh.png')} alt="" class="h-7 w-auto shrink-0" />
         <span class="truncate">{i.nav.brand}</span>
       </a>
 
       <div class="hidden lg:flex items-center gap-8">
-        <a href={`${base}/${lang}/`} class={navClass(isHome)}>
+        <a href={joinBasePath(base, `/${lang}/`)} class={navClass(isHome)}>
           {i.nav.home}
         </a>
-        <a href={`${base}/${lang}/exercises/`} class={navClass(isExercises)}>
+        <a href={joinBasePath(base, `/${lang}/exercises/`)} class={navClass(isExercises)}>
           {i.nav.exercises}
         </a>
-        <a href={`${base}/${lang}/resources`} class={navClass(isResources)}>
+        <a href={joinBasePath(base, `/${lang}/resources`)} class={navClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href={`${base}/${lang}/essays`} class={navClass(isEssays)}>
+        <a href={joinBasePath(base, `/${lang}/essays`)} class={navClass(isEssays)}>
           {i.nav.essays}
         </a>
-        <a href={`${base}/${lang}/coffee-chat`} class={navClass(isCoffeeChat)}>
+        <a href={joinBasePath(base, `/${lang}/coffee-chat`)} class={navClass(isCoffeeChat)}>
           {i.nav.coffeechat}
         </a>
         <div class="inline-flex items-center px-3 py-1 text-xs font-medium border border-primary/20 text-primary/70 gap-1">
           {otherLangs.map((l, idx) => (
             <>
               {idx > 0 && <span class="text-primary/30">/</span>}
-              <a href={`${base}/${l.code}${pathWithoutLang}`} class="hover:text-primary transition-colors">{l.label}</a>
+              <a href={joinBasePath(base, `/${l.code}${pathWithoutLang}`)} class="hover:text-primary transition-colors">{l.label}</a>
             </>
           ))}
         </div>
@@ -91,19 +93,19 @@ const mobileNavClass = (active: boolean) =>
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden pb-4">
       <div class="flex flex-col gap-1">
-        <a href={`${base}/${lang}/`} class={mobileNavClass(isHome)}>
+        <a href={joinBasePath(base, `/${lang}/`)} class={mobileNavClass(isHome)}>
           {i.nav.home}
         </a>
-        <a href={`${base}/${lang}/exercises/`} class={mobileNavClass(isExercises)}>
+        <a href={joinBasePath(base, `/${lang}/exercises/`)} class={mobileNavClass(isExercises)}>
           {i.nav.exercises}
         </a>
-        <a href={`${base}/${lang}/resources`} class={mobileNavClass(isResources)}>
+        <a href={joinBasePath(base, `/${lang}/resources`)} class={mobileNavClass(isResources)}>
           {i.nav.resources}
         </a>
-        <a href={`${base}/${lang}/essays`} class={mobileNavClass(isEssays)}>
+        <a href={joinBasePath(base, `/${lang}/essays`)} class={mobileNavClass(isEssays)}>
           {i.nav.essays}
         </a>
-        <a href={`${base}/${lang}/coffee-chat`} class={mobileNavClass(isCoffeeChat)}>
+        <a href={joinBasePath(base, `/${lang}/coffee-chat`)} class={mobileNavClass(isCoffeeChat)}>
           {i.nav.coffeechat}
         </a>
       </div>
@@ -114,7 +116,7 @@ const mobileNavClass = (active: boolean) =>
             {l.code === lang ? (
               <span class="px-2 py-1 text-xs font-semibold text-primary">{l.label}</span>
             ) : (
-              <a href={`${base}/${l.code}${pathWithoutLang}`} class="px-2 py-1 text-xs font-medium text-primary/40 hover:text-primary transition-colors">{l.label}</a>
+              <a href={joinBasePath(base, `/${l.code}${pathWithoutLang}`)} class="px-2 py-1 text-xs font-medium text-primary/40 hover:text-primary transition-colors">{l.label}</a>
             )}
           </>
         ))}

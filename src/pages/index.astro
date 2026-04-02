@@ -1,6 +1,7 @@
 ---
 // Redirect to the appropriate locale based on browser language
 const base = import.meta.env.BASE_URL;
+const basePath = base === '/' ? '' : base;
 ---
 
 <html lang="en">
@@ -11,16 +12,16 @@ const base = import.meta.env.BASE_URL;
     <script is:inline define:vars={{ base }}>
       const lang = navigator.language || navigator.languages?.[0] || 'en';
       if (lang.startsWith('zh')) {
-        window.location.replace(base + '/zh-tw/');
+        window.location.replace((base === '/' ? '' : base) + '/zh-tw/');
       } else if (lang.startsWith('ja')) {
-        window.location.replace(base + '/ja/');
+        window.location.replace((base === '/' ? '' : base) + '/ja/');
       } else if (lang.startsWith('ko')) {
-        window.location.replace(base + '/ko/');
+        window.location.replace((base === '/' ? '' : base) + '/ko/');
       } else {
-        window.location.replace(base + '/en/');
+        window.location.replace((base === '/' ? '' : base) + '/en/');
       }
     </script>
-    <meta http-equiv="refresh" content={`0;url=${base}/en/`} />
+    <meta http-equiv="refresh" content={`0;url=${basePath}/en/`} />
   </head>
   <body>
     <p>Redirecting...</p>

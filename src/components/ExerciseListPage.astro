@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { joinBasePath } from '../lib/url';
 
 interface Props {
   lang: Lang;
@@ -13,27 +14,27 @@ const i = t(lang);
 
 const exercises = [
   {
-    href: `${base}/${lang}/exercises/visa-memo`,
+    href: joinBasePath(base, `/${lang}/exercises/visa-memo`),
     title: i.exercises.visaMemo.title,
     description: i.exercises.visaMemo.description,
   },
   {
-    href: `${base}/${lang}/exercises/star-timeseries`,
+    href: joinBasePath(base, `/${lang}/exercises/star-timeseries`),
     title: i.exercises.starTime.title,
     description: i.exercises.starTime.description,
   },
   {
-    href: `${base}/${lang}/exercises/star-questions`,
+    href: joinBasePath(base, `/${lang}/exercises/star-questions`),
     title: i.exercises.starQuestions.title,
     description: i.exercises.starQuestions.description,
   },
   {
-    href: `${base}/${lang}/exercises/list-dashboard`,
+    href: joinBasePath(base, `/${lang}/exercises/list-dashboard`),
     title: i.exercises.listDashboard.title,
     description: i.exercises.listDashboard.description,
   },
   {
-    href: `${base}/${lang}/exercises/list-funnel`,
+    href: joinBasePath(base, `/${lang}/exercises/list-funnel`),
     title: i.exercises.listFunnel.title,
     description: i.exercises.listFunnel.description,
   },

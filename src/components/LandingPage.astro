@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { joinBasePath } from '../lib/url';
 
 interface Props {
   lang: Lang;
@@ -30,7 +31,7 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
         <!-- Left: Book Cover (on desktop) -->
         <div class="md:row-span-2 md:order-1 order-2">
           <img
-            src={`${base}/images/book-cover-all_rights_reserved_aaron_hsieh.png`}
+            src={joinBasePath(base, '/images/book-cover-all_rights_reserved_aaron_hsieh.png')}
             alt={i.landing.bookCoverAlt}
             class="w-full drop-shadow-xl max-w-[280px] mx-auto md:max-w-none md:mx-0"
           />
@@ -91,7 +92,7 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
           <p class="text-[15px] text-primary/50 leading-relaxed mb-14 font-normal" set:html={i.landing.bioText}>
           </p>
           <div>
-            <a href={`${base}/${lang}/exercises/`} class="cta-link">
+            <a href={joinBasePath(base, `/${lang}/exercises/`)} class="cta-link">
               {i.landing.heroCtaText}
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
@@ -100,7 +101,7 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
         <!-- Right: Author Photo (on desktop) -->
         <div class="overflow-hidden md:order-2 order-1">
           <img
-            src={`${base}/images/author-photo-all_rights_reserved_aaron_hsieh.jpg`}
+            src={joinBasePath(base, '/images/author-photo-all_rights_reserved_aaron_hsieh.jpg')}
             alt={i.landing.authorImgAlt}
             class="w-full object-cover object-[70%_center] aspect-[3/4] max-w-xs mx-auto md:max-w-none md:mx-0"
           />
@@ -117,12 +118,12 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
         <div class="flex flex-col md:order-1">
           <h2 class={`${sectionTitle} mb-8`} set:html={i.landing.section3Title}>
           </h2>
-          <img src={`${base}/images/list-cycle-all_rights_reserved_aaron_hsieh.png`} alt={i.landing.listCycleAlt} class="w-full mb-10 sm:mb-12 max-w-sm mx-auto md:max-w-none md:mx-0" />
+          <img src={joinBasePath(base, '/images/list-cycle-all_rights_reserved_aaron_hsieh.png')} alt={i.landing.listCycleAlt} class="w-full mb-10 sm:mb-12 max-w-sm mx-auto md:max-w-none md:mx-0" />
           <p class="text-[15px] text-primary/50 leading-relaxed mb-8">
             {i.landing.section3Description}
           </p>
           <div>
-            <a href={`${base}/${lang}/resources`} class="cta-link">
+            <a href={joinBasePath(base, `/${lang}/resources`)} class="cta-link">
               {i.landing.section3Cta}
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
@@ -131,23 +132,23 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
         <!-- Right: Exercise List -->
         <div class="md:order-2 bg-primary/[0.03] border border-primary/10 p-8 sm:p-12">
           <ol class="space-y-5 list-none">
-            <li><a href={`${base}/${lang}/exercises/visa-memo`} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
+            <li><a href={joinBasePath(base, `/${lang}/exercises/visa-memo`)} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
               <span class="text-2xl font-bold text-primary/20">01</span>
               <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName1}</span>
             </a></li>
-            <li><a href={`${base}/${lang}/exercises/star-timeseries`} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
+            <li><a href={joinBasePath(base, `/${lang}/exercises/star-timeseries`)} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
               <span class="text-2xl font-bold text-primary/20">02</span>
               <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName2}</span>
             </a></li>
-            <li><a href={`${base}/${lang}/exercises/star-questions`} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
+            <li><a href={joinBasePath(base, `/${lang}/exercises/star-questions`)} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
               <span class="text-2xl font-bold text-primary/20">03</span>
               <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName3}</span>
             </a></li>
-            <li><a href={`${base}/${lang}/exercises/list-dashboard`} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
+            <li><a href={joinBasePath(base, `/${lang}/exercises/list-dashboard`)} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
               <span class="text-2xl font-bold text-primary/20">04</span>
               <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName4}</span>
             </a></li>
-            <li><a href={`${base}/${lang}/exercises/list-funnel`} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
+            <li><a href={joinBasePath(base, `/${lang}/exercises/list-funnel`)} class="flex items-center gap-4 hover:bg-primary/5 -mx-3 px-3 py-1 transition-colors">
               <span class="text-2xl font-bold text-primary/20">05</span>
               <span class="text-sm font-medium text-primary/70">{i.landing.exerciseName5}</span>
             </a></li>
@@ -170,7 +171,7 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
         <!-- Right: Image -->
         <div class="overflow-hidden md:row-span-2 my-2 md:my-0">
           <img
-            src={`${base}/images/aaron-coffee-all_rights_reserved_aaron_hsieh.png`}
+            src={joinBasePath(base, '/images/aaron-coffee-all_rights_reserved_aaron_hsieh.png')}
             alt={i.landing.section4ImgAlt}
             class="w-full object-contain max-w-xs mx-auto md:max-w-none md:mx-0"
           />
@@ -180,7 +181,7 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
           <p class="text-[15px] text-primary/50 leading-relaxed mb-14 font-normal" set:html={i.coffeechat.subtitle}>
           </p>
           <div>
-            <a href={`${base}/${lang}/coffee-chat`} class="cta-link">
+            <a href={joinBasePath(base, `/${lang}/coffee-chat`)} class="cta-link">
               {i.landing.section4Cta}
               <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
             </a>
