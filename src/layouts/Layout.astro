@@ -15,11 +15,13 @@ interface Props {
 const { title, lang = 'en', description, ogImage } = Astro.props;
 const i = t(lang);
 const base = import.meta.env.BASE_URL;
-const site = 'https://kavare.github.io';
+const basePath = base === '/' ? '' : base;
 const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
 const pageDescription = description || i.site.description;
-const canonicalURL = new URL(Astro.url.pathname, site);
-const ogImageURL = ogImage ? new URL(ogImage, site).href : `${site}${base}/images/book-cover-all_rights_reserved_aaron_hsieh.png`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const ogImageURL = ogImage
+  ? new URL(ogImage, Astro.site ?? Astro.url).href
+  : new URL(`${basePath}/images/book-cover-all_rights_reserved_aaron_hsieh.png`, Astro.site ?? Astro.url).href;
 
 const ogLocaleMap: Record<string, string> = {
   en: 'en_US',
@@ -50,7 +52,7 @@ const jsonLd = {
     {
       "@type": "Person",
       "name": "Aaron Hsieh",
-      "url": `${site}${base}/en/`,
+      "url": new URL(`${basePath}/en/`, Astro.site ?? Astro.url).href,
       "jobTitle": "Engineering Manager",
       "worksFor": { "@type": "Organization", "name": "Datadog" },
       "sameAs": [
@@ -65,7 +67,7 @@ const jsonLd = {
       "author": { "@type": "Person", "name": "Aaron Hsieh" },
       "inLanguage": lang === 'zh-tw' ? 'zh-TW' : lang,
       "description": pageDescription,
-      "url": `${site}${base}/${lang}/`
+      "url": new URL(`${basePath}/${lang}/`, Astro.site ?? Astro.url).href
     }
   ]
 };
@@ -85,11 +87,11 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Hreflang for international SEO -->
-    <link rel="alternate" hreflang="en" href={`${site}${base}/en/`} />
-    <link rel="alternate" hreflang="zh-TW" href={`${site}${base}/zh-tw/`} />
-    <link rel="alternate" hreflang="ja" href={`${site}${base}/ja/`} />
-    <link rel="alternate" hreflang="ko" href={`${site}${base}/ko/`} />
-    <link rel="alternate" hreflang="x-default" href={`${site}${base}/en/`} />
+    <link rel="alternate" hreflang="en" href={new URL(`${basePath}/en/`, Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="zh-TW" href={new URL(`${basePath}/zh-tw/`, Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="ja" href={new URL(`${basePath}/ja/`, Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="ko" href={new URL(`${basePath}/ko/`, Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(`${basePath}/en/`, Astro.site ?? Astro.url).href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />

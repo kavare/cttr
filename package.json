@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:github": "SITE_URL=https://kavare.github.io BASE_PATH=/cttr astro build",
+    "build:custom": "SITE_URL=https://aarontthsieh.com BASE_PATH=/ astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
