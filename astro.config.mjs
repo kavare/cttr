@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE_URL ?? 'https://aarontthsieh.com',
-  base: process.env.BASE_PATH ?? '/cttr',
+  base: process.env.BASE_PATH ?? '/',
   output: 'static',
   integrations: [react()],
   i18n: {
