@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { trackEvent } from '../lib/analytics';
 
 interface ColumnDef {
   key: string;
@@ -200,6 +201,7 @@ export default function ResourcesPage({ lang }: Props) {
       alert(noDataLabel);
       return;
     }
+    trackEvent('resources_download_single', { exercise: exercise.titleKey, locale: lang });
     setDownloading(exercise.storageKey);
     try {
       const columns = exercise.getColumns(lang);
@@ -214,6 +216,7 @@ export default function ResourcesPage({ lang }: Props) {
   };
 
   const handleDownloadAll = async () => {
+    trackEvent('resources_download_all', { locale: lang });
     setDownloading('all');
     try {
       let combinedHtml = '';

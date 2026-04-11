@@ -26,5 +26,12 @@ const base = import.meta.env.BASE_URL;
       <a href={joinBasePath(base, '/ja/')} class="px-4 py-2 border border-primary/20 hover:border-primary transition-colors">日本語</a>
       <a href={joinBasePath(base, '/ko/')} class="px-4 py-2 border border-primary/20 hover:border-primary transition-colors">한국어</a>
     </nav>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        var props = { attempted_url: window.location.href, referrer: document.referrer };
+        if (window.posthog) window.posthog.capture('404_page_view', props);
+        if (window.mixpanel) window.mixpanel.track('404 Page View', props);
+      });
+    </script>
   </body>
 </html>

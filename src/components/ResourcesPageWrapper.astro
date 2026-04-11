@@ -12,6 +12,6 @@ const { lang } = Astro.props;
 const i = t(lang);
 ---
 
-<Layout lang={lang} title={i.resources.title}>
+<Layout lang={lang} title={i.resources.title} pageType="resources">
   <ResourcesPage lang={lang} client:load />
 </Layout>

@@ -1,6 +1,7 @@
 import { useCallback, useRef, type ChangeEvent } from 'react';
 import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
+import { trackEvent } from '../lib/analytics';
 
 interface DataPersistenceProps<T> {
   storageKey: string;
@@ -130,6 +131,7 @@ export function DataPersistenceControls<T>({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleExportCsv = () => {
+    trackEvent('exercise_csv_export', { exercise: storageKey, locale: lang });
     const headerRow = columns.map((col) => escapeCsvField(col.label)).join(',');
     const dataRows = data.map((row) =>
       columns
@@ -149,6 +151,7 @@ export function DataPersistenceControls<T>({
   const handleImportCsv = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    trackEvent('exercise_csv_import', { exercise: storageKey, locale: lang });
 
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -181,6 +184,7 @@ export function DataPersistenceControls<T>({
   };
 
   const handleDownloadPdf = async () => {
+    trackEvent('exercise_pdf_download', { exercise: storageKey, locale: lang });
     const html2pdf = (await import('html2pdf.js')).default;
 
     const tableHtml = `

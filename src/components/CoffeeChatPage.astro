@@ -12,7 +12,7 @@ const i = t(lang);
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout lang={lang} title={i.coffeechat.title} description={i.coffeechat.subtitle}>
+<Layout lang={lang} title={i.coffeechat.title} description={i.coffeechat.subtitle} pageType="coffee-chat">
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <h1 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-3">{i.coffeechat.title}</h1>
     <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-6"></div>
@@ -25,6 +25,8 @@ const base = import.meta.env.BASE_URL;
         target="_blank"
         rel="noopener noreferrer"
         class="block p-8 bg-surface-dark/40 border border-primary/10 rounded-lg hover:border-primary/30 hover:shadow-md transition-all group"
+        data-track="coffee_chat_book"
+        data-track-dest="calendly"
       >
         <div class="flex items-start gap-5">
           <div class="flex-shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
@@ -45,6 +47,8 @@ const base = import.meta.env.BASE_URL;
         target="_blank"
         rel="noopener noreferrer"
         class="block p-8 bg-surface-dark/40 border border-primary/10 rounded-lg hover:border-primary/30 hover:shadow-md transition-all group"
+        data-track="linkedin_connect_click"
+        data-track-dest="linkedin"
       >
         <div class="flex items-start gap-5">
           <div class="flex-shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">

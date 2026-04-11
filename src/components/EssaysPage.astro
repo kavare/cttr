@@ -30,7 +30,7 @@ const articles = [
 ];
 ---
 
-<Layout lang={lang} title={i.essays.title} description={i.essays.subtitle}>
+<Layout lang={lang} title={i.essays.title} description={i.essays.subtitle} pageType="essays">
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
     <h1 class="text-3xl sm:text-4xl font-bold text-primary text-center mb-3">{i.essays.title}</h1>
     <div class="w-16 h-1 bg-accent mx-auto rounded-full mb-6"></div>
@@ -43,6 +43,8 @@ const articles = [
           target="_blank"
           rel="noopener noreferrer"
           class="block p-8 bg-surface-dark/40 border border-primary/10 rounded-lg hover:border-primary/30 hover:shadow-md transition-all group"
+          data-track="essay_read_click"
+          data-track-dest="medium"
         >
           <div class="flex items-start gap-5">
             <div class="flex-shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center group-hover:bg-primary/10 transition-colors">
@@ -60,7 +62,7 @@ const articles = [
     </div>
 
     <div class="text-center mt-12">
-      <a href="https://medium.com/dimly-lit" target="_blank" rel="noopener noreferrer" class="cta-link">
+      <a href="https://medium.com/dimly-lit" target="_blank" rel="noopener noreferrer" class="cta-link" data-track="essay_read_click" data-track-dest="medium-all">
         {i.essays.viewAll}
         <svg class="ml-2 w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
       </a>

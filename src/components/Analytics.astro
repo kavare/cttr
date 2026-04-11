@@ -1,0 +1,70 @@
+---
+/**
+ * Analytics component — included once in Layout.astro before </body>.
+ * Handles:
+ *   1. Enriched pageview on every page load (locale + page_type for Sankey/retention)
+ *   2. Delegated click tracking via data-track attributes (conversions + engagement)
+ *   3. No inline event handlers needed anywhere — just add data-track to any element
+ *
+ * data-track attribute format:
+ *   data-track="event_name"           — required, the event name
+ *   data-track-dest="value"           — optional, destination label
+ *   data-track-exercise="value"       — optional, exercise identifier
+ *   data-track-*="value"              — any data-track-* becomes an event property
+ */
+interface Props {
+  lang: string;
+  pageType?: string;
+}
+
+const { lang, pageType = 'page' } = Astro.props;
+---
+
+<script is:inline define:vars={{ lang, pageType }}>
+  // --- Pageview tracking (enriched for retention + Sankey) ---
+  document.addEventListener('DOMContentLoaded', function () {
+    var props = {
+      locale: lang,
+      page_type: pageType,
+      path: window.location.pathname,
+      referrer: document.referrer,
+      title: document.title,
+    };
+    if (window.posthog) window.posthog.capture('$pageview', props);
+    if (window.mixpanel) window.mixpanel.track('Page View', props);
+  });
+
+  // --- Delegated click tracking via data-track attributes ---
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-track]');
+    if (!el) return;
+
+    var eventName = el.getAttribute('data-track');
+    if (!eventName) return;
+
+    // Collect all data-track-* attributes as event properties
+    var props = {
+      locale: lang,
+      page_type: pageType,
+      page_path: window.location.pathname,
+    };
+
+    // Extract all data-track-* properties
+    var attrs = el.attributes;
+    for (var i = 0; i < attrs.length; i++) {
+      var attr = attrs[i];
+      if (attr.name.startsWith('data-track-') && attr.name !== 'data-track') {
+        var key = attr.name.replace('data-track-', '');
+        props[key] = attr.value;
+      }
+    }
+
+    // If it's a link, capture the href as destination
+    if (el.href && !props.dest) {
+      props.dest = el.href;
+    }
+
+    if (window.posthog) window.posthog.capture(eventName, props);
+    if (window.mixpanel) window.mixpanel.track(eventName, props);
+  });
+</script>
