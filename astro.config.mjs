@@ -21,11 +21,6 @@ export default defineConfig({
           ko: 'ko',
         },
       },
-      filter: (page) => {
-        const url = new URL(page);
-        // Exclude the root redirect page
-        return url.pathname !== '/' && url.pathname !== '';
-      },
     }),
   ],
   i18n: {

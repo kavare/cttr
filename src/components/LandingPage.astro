@@ -6,15 +6,17 @@ import { joinBasePath } from '../lib/url';
 
 interface Props {
   lang: Lang;
+  isRoot?: boolean;
+  canonicalOverride?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, isRoot = false, canonicalOverride } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const i = t(lang);
 const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'font-bold'} text-primary uppercase tracking-tight leading-tight font-heading`;
 ---
 
-<Layout lang={lang} pageType="home">
+<Layout lang={lang} pageType="home" canonicalOverride={canonicalOverride}>
   <!-- Hero: Name Title -->
   <section aria-label={i.landing.heroAriaLabel} class="pt-8 sm:pt-14">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -224,4 +226,17 @@ const sectionTitle = `text-2xl sm:text-3xl ${lang === 'en' ? 'font-black' : 'fon
       </div>
     </div>
   </section>
+  {isRoot && (
+    <script is:inline define:vars={{ base }}>
+      // Redirect non-English browsers to their locale; English users stay on root
+      var lang = navigator.language || (navigator.languages && navigator.languages[0]) || 'en';
+      if (lang.startsWith('zh')) {
+        window.location.replace((base === '/' ? '' : base) + '/zh-tw/');
+      } else if (lang.startsWith('ja')) {
+        window.location.replace((base === '/' ? '' : base) + '/ja/');
+      } else if (lang.startsWith('ko')) {
+        window.location.replace((base === '/' ? '' : base) + '/ko/');
+      }
+    </script>
+  )}
 </Layout>

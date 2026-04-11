@@ -19,14 +19,18 @@ interface Props {
   ogImage?: string;
   breadcrumbs?: BreadcrumbItem[];
   pageType?: string;
+  canonicalOverride?: string;
 }
 
-const { title, lang = 'en', description, ogImage, breadcrumbs, pageType = 'page' } = Astro.props;
+const { title, lang = 'en', description, ogImage, breadcrumbs, pageType = 'page', canonicalOverride } = Astro.props;
 const i = t(lang);
 const base = import.meta.env.BASE_URL;
 const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
 const pageDescription = description || i.site.description;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const siteBase = Astro.site ?? Astro.url;
+const canonicalURL = canonicalOverride
+  ? new URL(joinBasePath(base, canonicalOverride), siteBase)
+  : new URL(Astro.url.pathname, siteBase);
 const ogImageURL = ogImage
   ? new URL(ogImage, Astro.site ?? Astro.url).href
   : new URL(joinBasePath(base, '/images/book-cover-all_rights_reserved_aaron_hsieh.png'), Astro.site ?? Astro.url).href;
@@ -129,11 +133,13 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Hreflang for international SEO (page-specific) -->
-    <link rel="alternate" hreflang="en" href={new URL(joinBasePath(base, `/en${pagePath}`), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="zh-TW" href={new URL(joinBasePath(base, `/zh-tw${pagePath}`), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="ja" href={new URL(joinBasePath(base, `/ja${pagePath}`), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="ko" href={new URL(joinBasePath(base, `/ko${pagePath}`), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="x-default" href={new URL(joinBasePath(base, `/en${pagePath}`), Astro.site ?? Astro.url).href} />
+    {/* For homepage: EN and x-default point to root / (carries domain authority) */}
+    {/* For sub-pages: EN points to /en/{page} as usual */}
+    <link rel="alternate" hreflang="en" href={new URL(joinBasePath(base, pagePath === '/' ? '/' : `/en${pagePath}`), siteBase).href} />
+    <link rel="alternate" hreflang="zh-TW" href={new URL(joinBasePath(base, `/zh-tw${pagePath}`), siteBase).href} />
+    <link rel="alternate" hreflang="ja" href={new URL(joinBasePath(base, `/ja${pagePath}`), siteBase).href} />
+    <link rel="alternate" hreflang="ko" href={new URL(joinBasePath(base, `/ko${pagePath}`), siteBase).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(joinBasePath(base, pagePath === '/' ? '/' : `/en${pagePath}`), siteBase).href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
