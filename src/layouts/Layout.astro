@@ -6,14 +6,20 @@ import type { Lang } from '../i18n/translations';
 import { t } from '../i18n/translations';
 import { joinBasePath } from '../lib/url';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface Props {
   title?: string;
   lang?: Lang;
   description?: string;
   ogImage?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-const { title, lang = 'en', description, ogImage } = Astro.props;
+const { title, lang = 'en', description, ogImage, breadcrumbs } = Astro.props;
 const i = t(lang);
 const base = import.meta.env.BASE_URL;
 const pageTitle = title ? `${title} | ${i.site.title}` : i.site.title;
@@ -22,6 +28,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 const ogImageURL = ogImage
   ? new URL(ogImage, Astro.site ?? Astro.url).href
   : new URL(joinBasePath(base, '/images/book-cover-all_rights_reserved_aaron_hsieh.png'), Astro.site ?? Astro.url).href;
+
+// Derive the page path after the locale prefix for page-specific hreflang
+const pathname = Astro.url.pathname;
+const basePrefix = base === '/' ? '' : base.replace(/\/$/, '');
+const pathAfterBase = basePrefix ? pathname.replace(basePrefix, '') : pathname;
+const localePattern = /^\/(en|zh-tw|ja|ko)(\/.*)?$/;
+const localeMatch = pathAfterBase.match(localePattern);
+const pagePath = localeMatch?.[2] || '/';
 
 const ogLocaleMap: Record<string, string> = {
   en: 'en_US',
@@ -46,30 +60,53 @@ const bookNameMap: Record<string, string> = {
   ko: '평범한 사람의 해외 취업 가이드',
 };
 
+const siteOrigin = Astro.site ?? Astro.url;
+
+const jsonLdGraph: Record<string, unknown>[] = [
+  {
+    "@type": "WebSite",
+    "name": i.site.title,
+    "url": new URL(joinBasePath(base, `/${lang}/`), siteOrigin).href,
+    "inLanguage": lang === 'zh-tw' ? 'zh-TW' : lang,
+  },
+  {
+    "@type": "Person",
+    "name": "Aaron Hsieh",
+    "url": new URL(joinBasePath(base, '/en/'), siteOrigin).href,
+    "jobTitle": "Engineering Manager",
+    "worksFor": { "@type": "Organization", "name": "Datadog" },
+    "sameAs": [
+      "https://www.linkedin.com/in/aarontthsieh/",
+      "https://medium.com/dimly-lit"
+    ],
+    "knowsAbout": ["Career Coaching", "International Career Development", "Software Engineering", "Leadership"]
+  },
+  {
+    "@type": "Book",
+    "name": bookNameMap[lang] || bookNameMap.en,
+    "author": { "@type": "Person", "name": "Aaron Hsieh" },
+    "inLanguage": lang === 'zh-tw' ? 'zh-TW' : lang,
+    "description": pageDescription,
+    "url": new URL(joinBasePath(base, `/${lang}/`), siteOrigin).href
+  },
+];
+
+// Add BreadcrumbList if breadcrumbs are provided
+if (breadcrumbs && breadcrumbs.length > 0) {
+  jsonLdGraph.push({
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      ...(index < breadcrumbs.length - 1 ? { "item": item.url } : {}),
+    })),
+  });
+}
+
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "name": "Aaron Hsieh",
-      "url": new URL(joinBasePath(base, '/en/'), Astro.site ?? Astro.url).href,
-      "jobTitle": "Engineering Manager",
-      "worksFor": { "@type": "Organization", "name": "Datadog" },
-      "sameAs": [
-        "https://www.linkedin.com/in/aarontthsieh/",
-        "https://medium.com/dimly-lit"
-      ],
-      "knowsAbout": ["Career Coaching", "International Career Development", "Software Engineering", "Leadership"]
-    },
-    {
-      "@type": "Book",
-      "name": bookNameMap[lang] || bookNameMap.en,
-      "author": { "@type": "Person", "name": "Aaron Hsieh" },
-      "inLanguage": lang === 'zh-tw' ? 'zh-TW' : lang,
-      "description": pageDescription,
-      "url": new URL(joinBasePath(base, `/${lang}/`), Astro.site ?? Astro.url).href
-    }
-  ]
+  "@graph": jsonLdGraph,
 };
 ---
 
@@ -78,7 +115,10 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href={joinBasePath(base, '/favicon-all_rights_reserved_aaron_hsieh.png')} />
+    <link rel="apple-touch-icon" href={joinBasePath(base, '/favicon-all_rights_reserved_aaron_hsieh.png')} />
+    <link rel="manifest" href={joinBasePath(base, '/manifest.json')} />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f0ede6" />
     <meta name="description" content={pageDescription} />
     <meta name="keywords" content={keywords} />
     <meta name="author" content="Aaron Hsieh" />
@@ -86,12 +126,12 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL.href} />
 
-    <!-- Hreflang for international SEO -->
-    <link rel="alternate" hreflang="en" href={new URL(joinBasePath(base, '/en/'), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="zh-TW" href={new URL(joinBasePath(base, '/zh-tw/'), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="ja" href={new URL(joinBasePath(base, '/ja/'), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="ko" href={new URL(joinBasePath(base, '/ko/'), Astro.site ?? Astro.url).href} />
-    <link rel="alternate" hreflang="x-default" href={new URL(joinBasePath(base, '/en/'), Astro.site ?? Astro.url).href} />
+    <!-- Hreflang for international SEO (page-specific) -->
+    <link rel="alternate" hreflang="en" href={new URL(joinBasePath(base, `/en${pagePath}`), Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="zh-TW" href={new URL(joinBasePath(base, `/zh-tw${pagePath}`), Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="ja" href={new URL(joinBasePath(base, `/ja${pagePath}`), Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="ko" href={new URL(joinBasePath(base, `/ko${pagePath}`), Astro.site ?? Astro.url).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(joinBasePath(base, `/en${pagePath}`), Astro.site ?? Astro.url).href} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={pageTitle} />
@@ -111,16 +151,21 @@ const jsonLd = {
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+    <!-- Fonts: base Latin fonts (critical) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+    {/* Fonts: CJK fonts loaded per locale to reduce payload */}
+    {lang === 'zh-tw' && (
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet" />
+    )}
+    {lang === 'ja' && (
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet" />
+    )}
+    {lang === 'ko' && (
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet" />
+    )}
     <title>{pageTitle}</title>
-    <!-- PostHog Analytics -->
-    <script is:inline>
-      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-      // Replace with your PostHog project API key and host
-      // posthog.init('<ph_project_api_key>', {api_host: 'https://app.posthog.com'});
-    </script>
   </head>
   <body class="min-h-screen flex flex-col bg-surface text-primary font-sans">
     <Navbar lang={lang} />

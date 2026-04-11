@@ -17,9 +17,16 @@ const { lang, exerciseKey, containerClass = 'max-w-6xl mx-auto px-4 py-10', head
 const base = import.meta.env.BASE_URL;
 const i = t(lang);
 const exercise = i.exercises[exerciseKey];
+const siteOrigin = Astro.site ?? Astro.url;
+
+const breadcrumbs = [
+  { name: i.nav.home, url: new URL(joinBasePath(base, `/${lang}/`), siteOrigin).href },
+  { name: i.nav.exercises, url: new URL(joinBasePath(base, `/${lang}/exercises/`), siteOrigin).href },
+  { name: exercise.title, url: new URL(Astro.url.pathname, siteOrigin).href },
+];
 ---
 
-<Layout title={exercise.title} lang={lang}>
+<Layout title={exercise.title} lang={lang} description={exercise.description} breadcrumbs={breadcrumbs}>
   <section class={containerClass}>
     <a
       href={joinBasePath(base, `/${lang}/exercises/`)}

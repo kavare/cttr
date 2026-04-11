@@ -1,0 +1,15 @@
+{
+  "name": "Aaron Hsieh - Career Coach",
+  "short_name": "Aaron Hsieh",
+  "start_url": "/en/",
+  "display": "browser",
+  "background_color": "#f0ede6",
+  "theme_color": "#f0ede6",
+  "icons": [
+    {
+      "src": "/favicon-all_rights_reserved_aaron_hsieh.png",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

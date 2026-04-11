@@ -1,7 +1,10 @@
 ---
 // Redirect to the appropriate locale based on browser language
+import { joinBasePath } from '../lib/url';
+
 const base = import.meta.env.BASE_URL;
-const basePath = base === '/' ? '' : base;
+const siteOrigin = Astro.site ?? Astro.url;
+const canonicalEN = new URL(joinBasePath(base, '/en/'), siteOrigin).href;
 ---
 
 <html lang="en">
@@ -9,6 +12,15 @@ const basePath = base === '/' ? '' : base;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Redirecting...</title>
+    <!-- Prevent indexing the redirect page; the real pages are at /{lang}/ -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={canonicalEN} />
+    <!-- Help crawlers discover localized versions -->
+    <link rel="alternate" hreflang="en" href={new URL(joinBasePath(base, '/en/'), siteOrigin).href} />
+    <link rel="alternate" hreflang="zh-TW" href={new URL(joinBasePath(base, '/zh-tw/'), siteOrigin).href} />
+    <link rel="alternate" hreflang="ja" href={new URL(joinBasePath(base, '/ja/'), siteOrigin).href} />
+    <link rel="alternate" hreflang="ko" href={new URL(joinBasePath(base, '/ko/'), siteOrigin).href} />
+    <link rel="alternate" hreflang="x-default" href={canonicalEN} />
     <script is:inline define:vars={{ base }}>
       const lang = navigator.language || navigator.languages?.[0] || 'en';
       if (lang.startsWith('zh')) {
@@ -21,7 +33,9 @@ const basePath = base === '/' ? '' : base;
         window.location.replace((base === '/' ? '' : base) + '/en/');
       }
     </script>
-    <meta http-equiv="refresh" content={`0;url=${basePath}/en/`} />
+    <noscript>
+      <meta http-equiv="refresh" content={`0;url=${joinBasePath(base, '/en/')}`} />
+    </noscript>
   </head>
   <body>
     <p>Redirecting...</p>
