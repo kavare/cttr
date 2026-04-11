@@ -1,10 +1,18 @@
 ---
 /**
  * Analytics component — included once in Layout.astro before </body>.
+ *
  * Handles:
- *   1. Enriched pageview on every page load (locale + page_type for Sankey/retention)
- *   2. Delegated click tracking via data-track attributes (conversions + engagement)
- *   3. No inline event handlers needed anywhere — just add data-track to any element
+ *   1. Pageview on every page load with custom business properties (locale, page_type)
+ *   2. Delegated click tracking via data-track attributes
+ *
+ * IMPORTANT: Both PostHog and Mixpanel JS SDKs auto-collect page context
+ * ($current_url, $pathname, $referrer, $browser, $os, $screen_*, etc.)
+ * on every event. We only send custom business properties here.
+ *
+ * Verified against SDK source (2026-04):
+ *   PostHog: packages/browser/src/utils/event-utils.ts → getEventProperties()
+ *   Mixpanel: auto-appends $current_url, $browser, $os, $referrer, etc.
  *
  * data-track attribute format:
  *   data-track="event_name"           — required, the event name
@@ -21,20 +29,22 @@ const { lang, pageType = 'page' } = Astro.props;
 ---
 
 <script is:inline define:vars={{ lang, pageType }}>
-  // --- Pageview tracking (enriched for retention + Sankey) ---
+  // --- Pageview tracking ---
+  // Only send custom business properties. SDKs auto-collect url, referrer, browser, etc.
   document.addEventListener('DOMContentLoaded', function () {
-    var props = {
-      locale: lang,
-      page_type: pageType,
-      path: window.location.pathname,
-      referrer: document.referrer,
-      title: document.title,
-    };
-    if (window.posthog) window.posthog.capture('$pageview', props);
-    if (window.mixpanel) window.mixpanel.track('Page View', props);
+    var custom = { locale: lang, page_type: pageType };
+
+    if (window.posthog) window.posthog.capture('$pageview', custom);
+    if (window.mixpanel) window.mixpanel.track('Page View', custom);
+    // if (window.amplitude) window.amplitude.track('Page Viewed', custom);
+    // if (window.gtag) window.gtag('event', 'page_view', custom);
+    // if (window.pendo) window.pendo.track('pageview', custom);
+    // if (window.DD_RUM) window.DD_RUM.addAction('pageview', custom);
   });
 
   // --- Delegated click tracking via data-track attributes ---
+  // Catches clicks on any element with data-track="event_name".
+  // Works for both desktop clicks and mobile taps.
   document.addEventListener('click', function (e) {
     var el = e.target.closest('[data-track]');
     if (!el) return;
@@ -42,29 +52,25 @@ const { lang, pageType = 'page' } = Astro.props;
     var eventName = el.getAttribute('data-track');
     if (!eventName) return;
 
-    // Collect all data-track-* attributes as event properties
-    var props = {
-      locale: lang,
-      page_type: pageType,
-      page_path: window.location.pathname,
-    };
-
-    // Extract all data-track-* properties
+    // Collect custom properties from data-track-* attributes
+    var custom = { locale: lang, page_type: pageType };
     var attrs = el.attributes;
     for (var i = 0; i < attrs.length; i++) {
       var attr = attrs[i];
       if (attr.name.startsWith('data-track-') && attr.name !== 'data-track') {
-        var key = attr.name.replace('data-track-', '');
-        props[key] = attr.value;
+        custom[attr.name.replace('data-track-', '')] = attr.value;
       }
     }
 
-    // If it's a link, capture the href as destination
-    if (el.href && !props.dest) {
-      props.dest = el.href;
-    }
+    // Capture destination URL for outbound links
+    if (el.href && !custom.dest) custom.dest = el.href;
 
-    if (window.posthog) window.posthog.capture(eventName, props);
-    if (window.mixpanel) window.mixpanel.track(eventName, props);
+    // Dispatch to all providers (SDKs auto-append $current_url, $referrer, etc.)
+    if (window.posthog) window.posthog.capture(eventName, custom);
+    if (window.mixpanel) window.mixpanel.track(eventName, custom);
+    // if (window.amplitude) window.amplitude.track(eventName, custom);
+    // if (window.gtag) window.gtag('event', eventName, custom);
+    // if (window.pendo) window.pendo.track(eventName, custom);
+    // if (window.DD_RUM) window.DD_RUM.addAction(eventName, custom);
   });
 </script>
