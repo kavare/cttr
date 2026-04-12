@@ -51,6 +51,7 @@ declare global {
       capture: (event: string, properties?: Record<string, unknown>) => void;
       identify: (distinctId: string, properties?: Record<string, unknown>) => void;
       register: (properties: Record<string, unknown>) => void;
+      setPersonProperties: (properties: Record<string, unknown>) => void;
     };
     mixpanel?: {
       track: (event: string, properties?: Record<string, unknown>) => void;

@@ -29,21 +29,37 @@ const { lang, pageType = 'page' } = Astro.props;
 ---
 
 <script is:inline define:vars={{ lang, pageType }}>
-  // --- Pageview tracking ---
-  // Only send custom business properties. SDKs auto-collect url, referrer, browser, etc.
+  // --- User & super properties (run once per page load) ---
+  // Sets properties at two levels:
+  //   1. Super properties: attached to EVERY event in this session (locale, page_type)
+  //   2. User properties: attached to the user PROFILE for segmentation in dashboards
+  //
+  // No identify() calls — this is an anonymous site with no login.
+  // All tools auto-assign device IDs for cross-session tracking.
   document.addEventListener('DOMContentLoaded', function () {
     var custom = { locale: lang, page_type: pageType };
 
-    // Contentsquare: enrich auto-captured data with business context
-    // Enables filtering heatmaps/journeys by locale and page type
+    // --- Super properties (enrich every event in this session) ---
+    // PostHog: register() persists in cookie/localStorage across pages
+    if (window.posthog) window.posthog.register({ locale: lang, page_type: pageType });
+    // Mixpanel: register() persists across events in this session
+    if (window.mixpanel) window.mixpanel.register({ locale: lang, page_type: pageType });
+    // Heap: addEventProperties() attaches to all auto-captured + custom events
+    if (window.heap) window.heap.addEventProperties({ locale: lang, page_type: pageType });
+    // Contentsquare: dynamic variables enrich heatmaps/journeys
     if (window._uxa) {
       window._uxa.push(['trackDynamicVariable', { key: 'locale', value: lang }]);
       window._uxa.push(['trackDynamicVariable', { key: 'page_type', value: pageType }]);
     }
 
-    // Heap: enrich ALL auto-captured events (pageviews, clicks, forms) with business context
-    if (window.heap) window.heap.addEventProperties({ locale: lang, page_type: pageType });
+    // --- User properties (profile-level, for segmentation in dashboards) ---
+    // These persist on the user profile and enable cohort analysis
+    // (e.g., "users whose preferred locale is zh-tw")
+    if (window.posthog) window.posthog.setPersonProperties({ locale: lang });
+    if (window.mixpanel) window.mixpanel.people.set({ locale: lang });
+    if (window.heap) window.heap.addUserProperties({ locale: lang });
 
+    // --- Pageview ---
     if (window.posthog) window.posthog.capture('$pageview', custom);
     if (window.mixpanel) window.mixpanel.track('Page View', custom);
     // if (window.amplitude) window.amplitude.track('Page Viewed', custom);
