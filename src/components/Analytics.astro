@@ -34,6 +34,13 @@ const { lang, pageType = 'page' } = Astro.props;
   document.addEventListener('DOMContentLoaded', function () {
     var custom = { locale: lang, page_type: pageType };
 
+    // Contentsquare: enrich auto-captured data with business context
+    // Enables filtering heatmaps/journeys by locale and page type
+    if (window._uxa) {
+      window._uxa.push(['trackDynamicVariable', { key: 'locale', value: lang }]);
+      window._uxa.push(['trackDynamicVariable', { key: 'page_type', value: pageType }]);
+    }
+
     if (window.posthog) window.posthog.capture('$pageview', custom);
     if (window.mixpanel) window.mixpanel.track('Page View', custom);
     // if (window.amplitude) window.amplitude.track('Page Viewed', custom);

@@ -58,6 +58,7 @@ declare global {
       people: { set: (properties: Record<string, unknown>) => void };
       register: (properties: Record<string, unknown>) => void;
     };
+    _uxa?: Array<unknown[]>;
     // Uncomment when adding:
     // amplitude?: { track: (event: string, properties?: Record<string, unknown>) => void };
     // gtag?: (...args: unknown[]) => void;
