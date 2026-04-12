@@ -59,6 +59,11 @@ declare global {
       register: (properties: Record<string, unknown>) => void;
     };
     _uxa?: Array<unknown[]>;
+    heap?: {
+      track: (event: string, properties?: Record<string, unknown>) => void;
+      addEventProperties: (properties: Record<string, unknown>) => void;
+      identify: (identity: string) => void;
+    };
     // Uncomment when adding:
     // amplitude?: { track: (event: string, properties?: Record<string, unknown>) => void };
     // gtag?: (...args: unknown[]) => void;
@@ -82,6 +87,12 @@ const providers: AnalyticsProvider[] = [
     name: 'Mixpanel',
     isReady: () => typeof window !== 'undefined' && !!window.mixpanel,
     track: (event, props) => window.mixpanel!.track(event, props),
+    pageviewEvent: 'Page View',
+  },
+  {
+    name: 'Heap',
+    isReady: () => typeof window !== 'undefined' && !!window.heap,
+    track: (event, props) => window.heap!.track(event, props),
     pageviewEvent: 'Page View',
   },
   // --- Future providers ---

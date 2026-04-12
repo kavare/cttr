@@ -41,6 +41,9 @@ const { lang, pageType = 'page' } = Astro.props;
       window._uxa.push(['trackDynamicVariable', { key: 'page_type', value: pageType }]);
     }
 
+    // Heap: enrich ALL auto-captured events (pageviews, clicks, forms) with business context
+    if (window.heap) window.heap.addEventProperties({ locale: lang, page_type: pageType });
+
     if (window.posthog) window.posthog.capture('$pageview', custom);
     if (window.mixpanel) window.mixpanel.track('Page View', custom);
     // if (window.amplitude) window.amplitude.track('Page Viewed', custom);
@@ -75,6 +78,7 @@ const { lang, pageType = 'page' } = Astro.props;
     // Dispatch to all providers (SDKs auto-append $current_url, $referrer, etc.)
     if (window.posthog) window.posthog.capture(eventName, custom);
     if (window.mixpanel) window.mixpanel.track(eventName, custom);
+    if (window.heap) window.heap.track(eventName, custom);
     // if (window.amplitude) window.amplitude.track(eventName, custom);
     // if (window.gtag) window.gtag('event', eventName, custom);
     // if (window.pendo) window.pendo.track(eventName, custom);
