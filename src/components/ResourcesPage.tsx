@@ -113,10 +113,12 @@ function loadExerciseData(storageKey: string): Record<string, unknown>[] | null 
   }
 }
 
+const EMPTY_ROWS_COUNT = 8;
+
 function buildHtmlForExercise(
   title: string,
   columns: ColumnDef[],
-  data: Record<string, unknown>[]
+  data: Record<string, unknown>[] | null
 ): string {
   const headerCells = columns
     .map(
@@ -125,20 +127,37 @@ function buildHtmlForExercise(
     )
     .join('');
 
-  const rows = data
-    .map(
-      (row, idx) =>
-        `<tr style="background:${idx % 2 === 0 ? '#ffffff' : '#f9fafb'};">
-          <td style="padding:6px 10px;border:1px solid #ddd;text-align:center;font-size:11px;color:#6b7280;">${idx + 1}</td>
-          ${columns
-            .map(
-              (col) =>
-                `<td style="padding:6px 10px;border:1px solid #ddd;white-space:pre-wrap;font-size:11px;">${String(row[col.key] ?? '')}</td>`
-            )
-            .join('')}
-        </tr>`
-    )
-    .join('');
+  const hasData = data && data.length > 0;
+
+  const rows = hasData
+    ? data
+        .map(
+          (row, idx) =>
+            `<tr style="background:${idx % 2 === 0 ? '#ffffff' : '#f9fafb'};">
+              <td style="padding:6px 10px;border:1px solid #ddd;text-align:center;font-size:11px;color:#6b7280;">${idx + 1}</td>
+              ${columns
+                .map(
+                  (col) =>
+                    `<td style="padding:6px 10px;border:1px solid #ddd;white-space:pre-wrap;font-size:11px;">${String(row[col.key] ?? '')}</td>`
+                )
+                .join('')}
+            </tr>`
+        )
+        .join('')
+    : Array.from({ length: EMPTY_ROWS_COUNT })
+        .map(
+          (_, idx) =>
+            `<tr style="background:${idx % 2 === 0 ? '#ffffff' : '#f9fafb'};">
+              <td style="padding:6px 10px;border:1px solid #ddd;text-align:center;font-size:11px;color:#6b7280;">${idx + 1}</td>
+              ${columns
+                .map(
+                  () =>
+                    `<td style="padding:6px 10px;border:1px solid #ddd;min-height:24px;">&nbsp;</td>`
+                )
+                .join('')}
+            </tr>`
+        )
+        .join('');
 
   return `
     <div style="font-family:'Noto Sans TC',Inter,sans-serif;padding:20px;">
@@ -184,24 +203,11 @@ export default function ResourcesPage({ lang }: Props) {
   const i = t(lang);
   const [downloading, setDownloading] = useState<string | null>(null);
 
-  const noDataLabel =
-    lang === 'en'
-      ? 'No data saved yet for this exercise. Complete the exercise first.'
-      : '此練習尚無已儲存的資料。請先完成練習。';
-
-  const noDataAllLabel =
-    lang === 'en'
-      ? 'No data saved for any exercise yet. Complete at least one exercise first.'
-      : '尚無任何練習的已儲存資料。請先完成至少一項練習。';
-
   const handleDownload = async (exercise: ExerciseInfo) => {
     const title = i.exercises[exercise.titleKey].title;
     const data = loadExerciseData(`${exercise.storageKey}-${lang}`);
-    if (!data) {
-      alert(noDataLabel);
-      return;
-    }
-    trackEvent('resources_download_single', { exercise: exercise.titleKey, locale: lang });
+    const hasData = data !== null;
+    trackEvent('resources_download_single', { exercise: exercise.titleKey, locale: lang, has_data: hasData });
     setDownloading(exercise.storageKey);
     try {
       const columns = exercise.getColumns(lang);
@@ -220,20 +226,12 @@ export default function ResourcesPage({ lang }: Props) {
     setDownloading('all');
     try {
       let combinedHtml = '';
-      let hasAny = false;
       for (const exercise of exercises) {
         const title = i.exercises[exercise.titleKey].title;
         const data = loadExerciseData(`${exercise.storageKey}-${lang}`);
-        if (data) {
-          hasAny = true;
-          const columns = exercise.getColumns(lang);
-          combinedHtml += buildHtmlForExercise(title, columns, data);
-          combinedHtml += '<div style="page-break-after:always;"></div>';
-        }
-      }
-      if (!hasAny) {
-        alert(noDataAllLabel);
-        return;
+        const columns = exercise.getColumns(lang);
+        combinedHtml += buildHtmlForExercise(title, columns, data);
+        combinedHtml += '<div style="page-break-after:always;"></div>';
       }
       await generatePdf(combinedHtml, 'all-exercises.pdf');
     } catch (err) {
